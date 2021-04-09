@@ -37,7 +37,7 @@ public class Splash extends AppCompatActivity {
     int PERMISSION_ID = 44;
     private AlertDialog dialog;
     private String langrouge;
-    private String english;
+    private String englishii;
 
     ActivitySplashBinding activitySplashBinding;
 
