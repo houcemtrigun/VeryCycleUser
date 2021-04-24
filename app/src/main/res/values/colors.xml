@@ -26,4 +26,7 @@
     <color name="blue_color">#87C2EE</color>
     <color name="bg_gray">#E8E8E8</color>
     <color name="yellow_color">#FEB359</color>
+    <color name="grey_one_color">#C4C4C4 </color>
+    <color name="grey_two_color">#878789</color>
+
 </resources>

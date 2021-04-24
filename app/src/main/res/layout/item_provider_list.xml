@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/_10sdp"
+        app:cardCornerRadius="@dimen/_5sdp"
+        app:cardElevation="@dimen/_8sdp"
+        >
+        <RelativeLayout
+            android:id="@+id/layoutMain"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_80sdp"
+            android:padding="@dimen/_10sdp"
+            android:background="@color/white"
+            >
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/ivProfile"
+                android:layout_width="@dimen/_50sdp"
+                android:layout_height="@dimen/_50sdp"
+                android:background="@drawable/user_default"
+
+                />
+
+            <TextView
+                android:id="@+id/tvName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Neil Woods"
+                android:textColor="@color/black"
+                android:textSize="@dimen/_14sdp"
+                android:fontFamily="@font/poppinsmedium"
+                android:layout_toRightOf="@id/ivProfile"
+                android:layout_marginLeft="@dimen/_10sdp"
+                android:layout_marginTop="@dimen/_5sdp"
+                android:singleLine="true"
+
+                />
+
+            <TextView
+                android:id="@+id/tvAddress"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Neil Woods"
+                android:layout_below="@+id/tvName"
+                android:textColor="@color/black"
+                android:textSize="@dimen/_12sdp"
+                android:fontFamily="@font/poppins_regular"
+                android:layout_toRightOf="@id/ivProfile"
+                android:layout_marginLeft="@dimen/_10sdp"
+                android:layout_marginTop="-3dp"
+                android:singleLine="true"
+                />
+
+
+
+
+            <RatingBar
+                android:id="@+id/rate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/tvAddress"
+                android:layout_toRightOf="@id/ivProfile"
+                android:layout_marginLeft="@dimen/_10sdp"
+                android:rating="4"
+                android:progressTint="@color/yellow_color"
+                style="@style/Widget.AppCompat.RatingBar.Small"
+
+                />
+
+
+
+
+            <TextView
+                android:id="@+id/tvDistance"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="10 km"
+                android:layout_below="@+id/tvTime"
+                android:textColor="@color/black"
+                android:textSize="@dimen/_12sdp"
+                android:layout_alignParentRight="true"
+                android:fontFamily="@font/poppinsmedium"
+                android:layout_marginTop="-3dp"
+
+                />
+        </RelativeLayout>
+    </androidx.cardview.widget.CardView>
+</layout>

@@ -21,23 +21,43 @@
                 android:layout_height="@dimen/_30sdp"
                 android:layout_gravity="center_vertical"
                 android:layout_marginLeft="@dimen/_15sdp"
+                android:layout_marginTop="-10dp"
                 android:padding="@dimen/_5sdp"
                 android:src="@drawable/ic_previous" />
 
 
-            <TextView
-                android:layout_width="0dp"
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
-                android:layout_marginLeft="@dimen/_15sdp"
-                android:layout_marginTop="@dimen/_12sdp"
-                android:layout_weight="1"
-                android:fontFamily="@font/poppinsmedium"
-                android:text="@string/what_is_the_problem_with_your_bike"
-                android:textAlignment="center"
-                android:textColor="@color/white"
-                android:textSize="@dimen/_15sdp"
-                tools:ignore="RtlCompat" />
+                android:layout_marginTop="@dimen/_30sdp"
+                android:orientation="vertical"
+
+                >
+
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+
+                    android:layout_weight="1"
+                    android:fontFamily="@font/poppinsmedium"
+                    android:text="@string/choose_possible_repair_time_or_address"
+                    android:textAlignment="center"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/_15sdp"
+                    tools:ignore="RtlCompat" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/pick_at_least_ten_spread_over_three_days"
+                    android:textAlignment="center"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/_12sdp" />
+
+
+            </LinearLayout>
 
 
         </LinearLayout>
@@ -66,86 +86,61 @@
 
 
                 <TextView
-                    android:id="@+id/tv1"
+                    android:id="@+id/tvDate"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="@drawable/btn_bg_"
                     android:fontFamily="@font/poppinsmedium"
-                    android:gravity="center"
+                    android:gravity="center_vertical"
                     android:padding="@dimen/_8sdp"
-                    android:text="@string/my_speeds_go_wrong"
+                    android:singleLine="true"
+                    android:text="@string/select_date"
                     android:textColor="@color/black"
                     android:textStyle="bold" />
 
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginTop="@dimen/_5sdp"
+                    android:background="@color/grey" />
 
                 <TextView
-                    android:id="@+id/tv2"
+                    android:id="@+id/tvTime"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="@dimen/_25sdp"
-                    android:layout_marginTop="@dimen/_15sdp"
-                    android:background="@drawable/btn_bg_"
-                    android:fontFamily="@font/poppinsmedium"
-                    android:gravity="center"
-                    android:padding="@dimen/_8sdp"
-                    android:text="@string/my_tire_is_flat"
-                    android:textColor="@color/black"
-                    android:textStyle="bold" />
-
-
-                <TextView
-                    android:id="@+id/tv3"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/_15sdp"
-                    android:layout_marginRight="@dimen/_25sdp"
-                    android:background="@drawable/btn_bg_"
-                    android:fontFamily="@font/poppinsmedium"
-                    android:gravity="center"
-                    android:padding="@dimen/_8sdp"
-                    android:text="@string/i_have_a_brake_problem"
-                    android:textColor="@color/black"
-                    android:textStyle="bold" />
-
-
-                <TextView
-                    android:id="@+id/tv4"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/_15sdp"
-                    android:layout_marginRight="@dimen/_5sdp"
-                    android:background="@drawable/btn_bg_problem"
-                    android:fontFamily="@font/poppinsmedium"
-                    android:gravity="center"
-                    android:padding="@dimen/_8sdp"
-                    android:text="@string/my_eBike_has_broken_down"
-                    android:textColor="@color/black"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:id="@+id/tvOther"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/_15sdp"
-                    android:layout_marginRight="@dimen/_65sdp"
-                    android:background="@drawable/btn_bg_"
-                    android:fontFamily="@font/poppinsmedium"
-                    android:gravity="center"
-                    android:padding="@dimen/_8sdp"
-                    android:text="@string/other"
-                    android:textColor="@color/black"
-                    android:textStyle="bold" />
-
-                /
-
-
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="@dimen/_15sdp"
                     android:layout_marginTop="@dimen/_10sdp"
-                    android:src="@drawable/cycle_img_null" />
+                    android:fontFamily="@font/poppinsmedium"
+                    android:gravity="center_vertical"
+                    android:padding="@dimen/_8sdp"
+                    android:singleLine="true"
+                    android:text="@string/select_time"
+                    android:textColor="@color/black"
+                    android:textStyle="bold" />
 
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginTop="@dimen/_5sdp"
+                    android:background="@color/grey" />
+
+
+                <TextView
+                    android:id="@+id/tvAddress"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:fontFamily="@font/poppinsmedium"
+                    android:gravity="center_vertical"
+                    android:padding="@dimen/_8sdp"
+                    android:singleLine="true"
+                    android:text="@string/select_address"
+                    android:textColor="@color/black"
+                    android:textStyle="bold" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginTop="@dimen/_5sdp"
+                    android:background="@color/grey" />
 
             </LinearLayout>
 
@@ -175,7 +170,7 @@
                 android:gravity="center_horizontal"
                 android:text="@string/continue_"
                 android:textAlignment="center"
-                android:textColor="#000"
+                android:textColor="@color/black"
                 android:textSize="@dimen/_12sdp"
                 android:textStyle="bold">
 

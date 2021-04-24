@@ -2,6 +2,8 @@ package com.verycycle.retrofit;
 
 
 
+import com.verycycle.model.CycleModel;
+import com.verycycle.model.ProviderModel;
 import com.verycycle.model.SignupModel;
 
 import java.util.Map;
@@ -12,6 +14,7 @@ import okhttp3.RequestBody;
 import retrofit2.Call;
 import retrofit2.http.FieldMap;
 import retrofit2.http.FormUrlEncoded;
+import retrofit2.http.GET;
 import retrofit2.http.Multipart;
 import retrofit2.http.POST;
 import retrofit2.http.Part;
@@ -62,6 +65,35 @@ public interface VeryCycleUserInterface {
     @FormUrlEncoded
     @POST("change_password")
     Call<Map<String,String>> changePassword(@FieldMap Map<String, String> params);
+
+
+
+
+    @GET("get_cycle")
+    Call<CycleModel> getCycleList();
+
+
+    @FormUrlEncoded
+    @POST("get_provider_list_nearbuy")
+    Call<ProviderModel> getNearByProvider(@FieldMap Map<String, String> params);
+
+
+
+    @Multipart
+    @POST("booking_request")
+    Call<Map<String,String>> sendRequest(
+            @Part("cycle_id") RequestBody cycle_id,
+            @Part("problem") RequestBody problem,
+            @Part("date") RequestBody date,
+            @Part("time") RequestBody time,
+            @Part("address") RequestBody address,
+            @Part("lat") RequestBody lat,
+            @Part("lon") RequestBody lon,
+            @Part("user_id") RequestBody user_id,
+            @Part("provider_id") RequestBody provider_id,
+            @Part MultipartBody.Part file, @Part MultipartBody.Part file1);
+
+
 
 
 

@@ -1,186 +1,183 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".ChoosingTypeOfride">
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <LinearLayout
-        android:id="@+id/linear1"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@drawable/rectangle"
-        android:orientation="horizontal">
-
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical"
-            android:layout_marginLeft="@dimen/_15sdp"
-            android:src="@drawable/ic_previous">
-
-        </ImageView>
-
-        <TextView
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical"
-            android:layout_marginLeft="@dimen/_15sdp"
-            android:layout_weight="1"
-            android:fontFamily="@font/poppinsmedium"
-            android:text="Choosing the type of ride"
-            android:textColor="#fff"
-            android:textSize="@dimen/_15sdp">
-
-        </TextView>
-
-
-    </LinearLayout>
-
-
-    <LinearLayout
+    <RelativeLayout xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@id/linear1"
-        android:layout_marginTop="@dimen/_38sdp"
-        android:orientation="vertical">
+        tools:context=".ChoosingTypeOfride">
 
-        <TextView
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:id="@+id/linear1"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="@dimen/_25sdp"
-            android:fontFamily="@font/poppinsmedium"
-            android:text="Exact model "
-            android:textColor="#000">
+            android:background="@drawable/rectangle"
+            android:orientation="horizontal">
 
-        </TextView>
+            <ImageView
+                android:id="@+id/ivBack"
+                android:padding="@dimen/_5sdp"
+                android:layout_width="@dimen/_35sdp"
+                android:layout_height="@dimen/_35sdp"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="@dimen/_15sdp"
+                android:src="@drawable/ic_previous"/>
+
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="@dimen/_15sdp"
+                android:layout_weight="1"
+                android:fontFamily="@font/poppinsmedium"
+                android:text="@string/choosing_the_type_of_ride"
+                android:textColor="#fff"
+                android:textSize="@dimen/_15sdp"/>
+
+
+
+        </LinearLayout>
+
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="@dimen/_25sdp"
-            android:orientation="horizontal">
+            android:layout_height="match_parent"
+            android:layout_below="@id/linear1"
+            android:layout_marginTop="@dimen/_38sdp"
+            android:orientation="vertical">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
+                android:layout_marginLeft="@dimen/_32sdp"
                 android:fontFamily="@font/poppinsmedium"
-                android:text="Model Here">
+                android:text="@string/exact_model"
+                android:textColor="@color/black"/>
 
-            </TextView>
+           <androidx.cardview.widget.CardView
+               android:layout_width="match_parent"
+               android:layout_height="@dimen/_30sdp"
+               android:layout_marginTop="@dimen/_3sdp"
+               android:layout_marginRight="@dimen/_35sdp"
+               android:layout_marginLeft="@dimen/_35sdp"
+               app:cardElevation="@dimen/_5sdp"
+               app:cardCornerRadius="@dimen/_2sdp"
+               >
 
-            <ImageView
-                android:layout_width="@dimen/_20sdp"
-                android:layout_height="@dimen/_20sdp"
-                android:layout_marginLeft="@dimen/_25sdp"
-                android:layout_marginRight="@dimen/_10sdp"
-                android:fontFamily="@font/poppinsmedium"
-                android:src="@drawable/ic_drop"
-                android:text="Exact model ">
+               <Spinner
+                   android:id="@+id/spinnerModel"
+                   android:layout_width="match_parent"
+                   android:layout_height="match_parent"
+                   android:spinnerMode="dropdown"
+                   />
 
-            </ImageView>
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/_35sdp"
-            android:padding="@dimen/_35sdp"
-            android:orientation="vertical"
-            android:layout_marginLeft="@dimen/_35sdp"
-            android:layout_marginRight="@dimen/_35sdp"
-            android:background="#C4C4C4">
+           </androidx.cardview.widget.CardView>
 
 
-             <ImageView
-                android:layout_width="@dimen/_25sdp"
-                android:layout_height="@dimen/_25sdp"
-                android:layout_marginTop="-5dp"
-                android:layout_gravity="end"
-                android:src="@drawable/camera">
 
-             </ImageView>
 
-             <RelativeLayout
+
+            <RelativeLayout
+                android:id="@+id/linerCycle"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="@dimen/_200sdp"
+                android:layout_marginLeft="@dimen/_35sdp"
+                android:layout_marginTop="@dimen/_35sdp"
+                android:layout_marginRight="@dimen/_35sdp"
+                android:background="@color/grey_one_color"
+                android:orientation="vertical">
 
-                 <ImageView
+                <ImageView
+                    android:id="@+id/ivCamera"
+                    android:layout_width="@dimen/_25sdp"
+                    android:layout_height="@dimen/_25sdp"
+                    android:layout_alignParentRight="true"
+                    android:layout_gravity="end"
+                    android:layout_marginTop="@dimen/_35sdp"
+                    android:layout_marginRight="@dimen/_30sdp"
+                    android:src="@drawable/camera" />
+
+                <ImageView
+                    android:id="@+id/ivDemo"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/cycle_img">
 
-                 </ImageView>
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/ivCamera"
+                    android:layout_centerInParent="true"
+                    android:src="@drawable/cycle_img" />
+
+                <ImageView
+                    android:id="@+id/ivCycle"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:scaleType="fitXY" />
 
 
             </RelativeLayout>
 
-        </LinearLayout>
-
-         <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="@dimen/_35sdp"
-            android:layout_marginRight="@dimen/_35sdp"
-            android:background="#878789">
-
-              <TextView
-                 android:layout_width="wrap_content"
-                 android:layout_height="wrap_content"
-                 android:layout_weight="1"
-                  android:textAlignment="center"
-                  android:padding="@dimen/_8sdp"
-                  android:textColor="#fff"
-                 android:fontFamily="@font/poppinsmedium"
-                 android:text="Upload Cycle Image">
-
-              </TextView>
-
-        </LinearLayout>
-
-         <LinearLayout
-             android:id="@+id/linear_next"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/_65sdp"
-            android:gravity="end"
-            android:layout_marginRight="@dimen/_10sdp"
-            android:layout_gravity="center_vertical|center">
-
-            <TextView
-                android:layout_width="wrap_content"
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textAlignment="center"
-                android:textColor="#000"
-                android:textSize="@dimen/_15sdp"
-                android:layout_marginRight="@dimen/_5sdp"
-                android:fontFamily="@font/poppinsmedium"
-                android:layout_marginTop="@dimen/_5sdp"
-                android:text="Next">
-            </TextView>
+                android:layout_marginLeft="@dimen/_35sdp"
+                android:layout_marginRight="@dimen/_35sdp"
+                android:background="@color/grey_two_color">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:fontFamily="@font/poppinsmedium"
+                    android:padding="@dimen/_8sdp"
+                    android:text="@string/upload_cycle_image"
+                    android:textAlignment="center"
+                    android:textColor="@color/white"/>
+
+
+
+            </LinearLayout>
 
             <LinearLayout
-                android:layout_width="@dimen/_35sdp"
-                android:layout_height="@dimen/_35sdp"
-                android:background="@drawable/circle">
+                android:id="@+id/linear_next"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical|center"
+                android:layout_marginTop="@dimen/_65sdp"
+                android:layout_marginRight="@dimen/_10sdp"
+                android:gravity="end">
 
-                <ImageView
-                    android:layout_width="@dimen/_18sdp"
-                    android:layout_height="@dimen/_20sdp"
-                    android:layout_gravity="center_vertical|center"
-                    android:layout_marginLeft="@dimen/_10sdp"
-                    android:src="@drawable/back_arrow">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_5sdp"
+                    android:layout_marginRight="@dimen/_5sdp"
+                    android:fontFamily="@font/poppinsmedium"
+                    android:text="@string/next"
+                    android:textAlignment="center"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/_15sdp"/>
 
-                </ImageView>
+                <LinearLayout
+                    android:layout_width="@dimen/_35sdp"
+                    android:layout_height="@dimen/_35sdp"
+                    android:background="@drawable/circle">
+
+                    <ImageView
+                        android:layout_width="@dimen/_18sdp"
+                        android:layout_height="@dimen/_20sdp"
+                        android:layout_gravity="center_vertical|center"
+                        android:layout_marginLeft="@dimen/_10sdp"
+                        android:src="@drawable/back_arrow"/>
+
+
+
+                </LinearLayout>
 
             </LinearLayout>
 
         </LinearLayout>
 
-    </LinearLayout>
 
+    </RelativeLayout>
 
-</RelativeLayout>
+</layout>

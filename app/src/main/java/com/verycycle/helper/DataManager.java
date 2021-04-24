@@ -29,7 +29,9 @@ import android.widget.TimePicker;
 import androidx.loader.content.CursorLoader;
 
 import com.google.gson.Gson;
+import com.verycycle.DateTimeAct;
 import com.verycycle.R;
+import com.verycycle.listener.DateSetListener;
 import com.verycycle.model.SignupModel;
 import com.verycycle.retrofit.Constant;
 
@@ -389,25 +391,26 @@ public class DataManager {
     }
 
 
-   /* public static void DatePicker(Context context, final DateSetListener listener) {
+
+
+    public static void DatePicker(Context context, final DateSetListener listener) {
         final Calendar myCalendar = Calendar.getInstance();
 
         DatePickerDialog.OnDateSetListener date = new DatePickerDialog.OnDateSetListener() {
             @Override
             public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
                 // TODO Auto-generated method stub
-                myCalendar.set(YEAR, year);
-                myCalendar.set(MONTH, monthOfYear);
+                myCalendar.set(Calendar.YEAR, year);
+                myCalendar.set(Calendar.MONTH, monthOfYear);
                 myCalendar.set(Calendar.DAY_OF_MONTH, dayOfMonth);
                 String myFormat = "dd-MM-yyyy"; // your format yyyy-MM-dd"
                 SimpleDateFormat sdf = new SimpleDateFormat(myFormat, Locale.getDefault());
                 listener.SelectedDate(sdf.format(myCalendar.getTime()));
-                RideOptionAct.date = sdf.format(myCalendar.getTime());
+                DateTimeAct.date = sdf.format(myCalendar.getTime());
             }
 
         };
-        DatePickerDialog datePickerDialog= new DatePickerDialog(context, date, myCalendar.get(YEAR), myCalendar.get(MONTH), myCalendar.get(Calendar.DAY_OF_MONTH)*//* myCalendar.get(Calendar.DAY_OF_MONTH)+1*//*);
-      //  myCalendar.add(Calendar.DAY_OF_MONTH, 1);
+        DatePickerDialog datePickerDialog= new DatePickerDialog(context, date, myCalendar.get(Calendar.YEAR), myCalendar.get(Calendar.MONTH), myCalendar.get(Calendar.DAY_OF_MONTH));
         datePickerDialog.getDatePicker().setMinDate(myCalendar.getTimeInMillis());
         datePickerDialog.show();
     }
@@ -427,17 +430,16 @@ public class DataManager {
                 date.set(Calendar.MINUTE, selectedMinute);
                 String time=new SimpleDateFormat("hh:mm aa").format(date.getTime());
                 listene.SelectedDate(time);
-                RideOptionAct.time = time;
-                RideOptionAct.SelectedTimeInMinutes = selectedHour * 60 + selectedMinute;
-              //  Log.e("Selected Time====",SelectedTimeInMinutes+"");
-              //  Log.e("Selected Time====",selectedHour+" "+selectedMinute );
-                RideOptionAct.hourOfDay = selectedHour;
-                RideOptionAct.minute = selectedMinute;
+                DateTimeAct.time = time;
+
             }
         }, hour, minute, false);//Yes 24 hour time
         mTimePicker.setTitle("Select Time");
         mTimePicker.show();
     }
+
+
+   /*
 
 
      public String getAddress(Context context, double latitude, double longitute) {
