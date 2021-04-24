@@ -1,14 +1,18 @@
-package com.verycycle;
+ package com.verycycle;
 
 import android.content.Intent;
 import android.os.Bundle;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.verycycle.databinding.ActivityMainBinding;
+import com.verycycle.helper.DataManager;
+import com.verycycle.helper.SessionManager;
+import com.verycycle.setting.HelpAndFeedBack;
 import com.verycycle.setting.HelpSetting;
 import com.verycycle.ui.home.HomeFragment;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.view.GravityCompat;
 import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.navigation.NavController;
@@ -25,31 +29,73 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        binding=    DataBindingUtil.setContentView(this,R.layout.activity_main);
+        binding =    DataBindingUtil.setContentView(this,R.layout.activity_main);
 
+/*
         binding.drawerMenuLay1.echo.setOnClickListener(v -> {
              startActivity(new Intent(this, HelpSetting.class));
         });
+*/
 
-        fragment = new HomeFragment();
-        loadFragment(fragment);
-        //BottomNavigationView navView = findViewById(R.id.nav_view);
-        // Passing each menu ID as a set of Ids because each
-        // menu should be considered as top level destinations.
-  /*      AppBarConfiguration appBarConfiguration = new AppBarConfiguration.Builder(
-                R.id.navigation_home, R.id.navigation_dashboard, R.id.navigation_notifications)
-                .build();
-        NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);*/
 
-     /*   NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
-        NavigationUI.setupWithNavController(navView, navController);*/
+
+       /* fragment = new HomeFragment();
+        loadFragment(fragment);*/
+
+        initViews();
+
     }
 
-    private void loadFragment(HomeFragment fragment) {
+    private void initViews() {
+
+        binding.chlidDashboard.tvUsername.setText(getString(R.string.hello) + " "+DataManager.getInstance().getUserData(MainActivity.this).result.username);
+
+        binding.chlidDashboard.linearNormal.setOnClickListener(v -> { startActivity(new Intent(MainActivity.this, ChoosingTypeOfride.class));});
+
+        binding.chlidDashboard.llUrgent.setOnClickListener(v -> {});
+
+        binding.chlidDashboard.llBike.setOnClickListener(v -> {});
+
+        binding.chlidDashboard.navbar.setOnClickListener(v -> {navmenu();});
+
+        binding.childNavDrawer.llHome.setOnClickListener(v -> {navmenu();});
+
+        binding.childNavDrawer.llProfile.setOnClickListener(v -> {startActivity(new Intent(MainActivity.this,MyProfile.class));});
+
+        binding.childNavDrawer.llMyHistory.setOnClickListener(v -> {startActivity(new Intent(MainActivity.this,MyHistory.class));});
+
+        binding.childNavDrawer.llHelp.setOnClickListener(v -> { startActivity(new Intent(MainActivity.this, HelpAndFeedBack.class));});
+
+        binding.childNavDrawer.llNotification.setOnClickListener(v -> {});
+
+        binding.childNavDrawer.llSetting.setOnClickListener(v -> {});
+
+        binding.childNavDrawer.btnSignout.setOnClickListener(v -> {
+            SessionManager.clear(MainActivity.this,"");
+        });
+
+
+
+        //  binding.childNavDrawer.
+
+
+    }
+
+  /*  private void loadFragment(HomeFragment fragment) {
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
         transaction.replace(R.id.fragment_homeContainer, fragment);
         transaction.addToBackStack(null);
         transaction.commit();
+    }*/
+
+
+    public void navmenu() {
+        if (binding.drawerLayout.isDrawerOpen(GravityCompat.START)) {
+            binding.drawerLayout.closeDrawer(GravityCompat.START);
+        } else {
+            binding.drawerLayout.openDrawer(GravityCompat.START);
+        }
     }
+
 
 }

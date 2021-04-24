@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#F1EDED"
+    tools:context=".Problam">
+
+    <LinearLayout
+        android:id="@+id/linear1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/rectangle_bg_black"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="@dimen/_15sdp"
+            android:src="@drawable/ic_previous">
+
+        </ImageView>
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="@dimen/_15sdp"
+            android:layout_marginTop="@dimen/_12sdp"
+            android:layout_weight="1"
+            android:fontFamily="@font/poppinsmedium"
+            android:text="What is the problem with your bike?"
+            android:textAlignment="center"
+            android:textColor="#fff"
+            android:textSize="@dimen/_15sdp"
+            tools:ignore="RtlCompat">
+
+        </TextView>
+
+
+    </LinearLayout>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/card_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginLeft="@dimen/_40sdp"
+        android:layout_marginTop="@dimen/_98sdp"
+        android:layout_marginRight="@dimen/_35sdp"
+        android:elevation="@dimen/_10sdp"
+        app:cardBackgroundColor="@color/white"
+        app:cardCornerRadius="@dimen/_10sdp"
+        app:cardElevation="0dp">
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            android:layout_marginTop="@dimen/_2sdp"
+            android:background="#6BF1F0F0"
+            android:orientation="vertical"
+            android:padding="@dimen/_18sdp">
+
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/btn_bg_"
+                android:fontFamily="@font/poppinsmedium"
+                android:gravity="center"
+                android:padding="@dimen/_8sdp"
+                android:text="My speeds go wrong"
+                android:textColor="#000"
+                android:textStyle="bold">
+
+            </TextView>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/_25sdp"
+                android:layout_marginTop="@dimen/_15sdp"
+                android:background="@drawable/btn_bg_"
+                android:fontFamily="@font/poppinsmedium"
+                android:gravity="center"
+                android:padding="@dimen/_8sdp"
+                android:text="My tire is flat"
+                android:textColor="#000"
+                android:textStyle="bold">
+
+            </TextView>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_25sdp"
+                android:layout_marginRight="@dimen/_25sdp"
+                android:background="@drawable/btn_bg_"
+                android:fontFamily="@font/poppinsmedium"
+                android:gravity="center"
+                android:padding="@dimen/_8sdp"
+                android:text="I have a brake problem"
+                android:textColor="#000"
+                android:textStyle="bold">
+
+            </TextView>
+
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_25sdp"
+                android:layout_marginRight="@dimen/_65sdp"
+                android:background="@drawable/btn_bg_"
+                android:fontFamily="@font/poppinsmedium"
+                android:gravity="center"
+                android:padding="@dimen/_8sdp"
+                android:text="Other"
+                android:textColor="#000"
+                android:textStyle="bold">
+
+            </TextView>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_25sdp"
+                android:layout_marginRight="@dimen/_5sdp"
+                android:background="@drawable/btn_bg_problem"
+                android:fontFamily="@font/poppinsmedium"
+                android:gravity="center"
+                android:padding="@dimen/_8sdp"
+                android:text="My eBike has broken down"
+                android:textColor="#000"
+                android:textStyle="bold">
+
+            </TextView>
+
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/_15sdp"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:src="@drawable/cycle_img_null">
+
+            </ImageView>
+
+
+        </LinearLayout>
+
+    </androidx.cardview.widget.CardView>
+
+
+    <LinearLayout
+        android:id="@+id/email_li"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/_40sdp"
+        android:layout_marginTop="@dimen/_15sdp"
+        android:layout_marginRight="@dimen/_40sdp"
+        android:layout_marginBottom="@dimen/_5sdp"
+        android:background="@drawable/btn_bg"
+        android:orientation="horizontal"
+        android:layout_below="@id/card_view"
+        android:padding="@dimen/_10sdp">
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:fontFamily="@font/poppinsmedium"
+            android:gravity="center_horizontal"
+            android:text="Continue"
+            android:textAlignment="center"
+            android:textColor="#000"
+            android:textSize="@dimen/_12sdp"
+            android:textStyle="bold">
+
+        </TextView>
+
+    </LinearLayout>
+
+
+</RelativeLayout>

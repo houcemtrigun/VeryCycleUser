@@ -17,7 +17,7 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:orientation="vertical">
 
             <LinearLayout
@@ -49,8 +49,9 @@
                     android:layout_marginLeft="@dimen/_10sdp"
                     android:layout_marginTop="@dimen/_15sdp"
                     android:layout_marginRight="@dimen/_15sdp"
-                    app:cardCornerRadius="8dp"
-                    app:cardElevation="0dp">
+                    android:padding="@dimen/_10sdp"
+                    app:cardCornerRadius="@dimen/_10sdp"
+                    app:cardElevation="@dimen/_5sdp">
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -61,14 +62,14 @@
                             android:id="@+id/help_relative"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_marginTop="@dimen/_15sdp">
+                            android:padding="@dimen/_15sdp">
 
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_centerVertical="true"
                                 android:fontFamily="@font/poppinsmedium"
-                                android:text="  Help"
+                                android:text="@string/help"
                                 android:textSize="@dimen/_11sdp" />
 
                             <ImageView
@@ -78,19 +79,21 @@
                                 android:layout_marginRight="@dimen/_15sdp"
                                 android:src="@drawable/ic_rightarraow" />
 
-                            <View
-                                android:layout_width="match_parent"
-                                android:layout_height="@dimen/_1sdp"
-                                android:layout_marginTop="@dimen/_20sdp"
-                                android:background="@color/grey" />
+
 
                         </RelativeLayout>
+
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/_1sdp"
+                            android:background="@color/grey" />
 
                         <RelativeLayout
                             android:id="@+id/rlUnlock1"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_marginTop="@dimen/_15sdp">
+                            android:padding="@dimen/_15sdp">
 
                             <TextView
                                 android:id="@+id/tvUnlockAcc1"
@@ -98,7 +101,7 @@
                                 android:layout_height="wrap_content"
                                 android:layout_centerVertical="true"
                                 android:fontFamily="@font/poppinsmedium"
-                                android:text="  Feedback"
+                                android:text="@string/feedback"
                                 android:textSize="@dimen/_11sdp" />
 
                             <ImageView
@@ -108,20 +111,21 @@
                                 android:layout_marginRight="@dimen/_15sdp"
                                 android:src="@drawable/ic_rightarraow" />
 
-                            <View
-                                android:layout_width="match_parent"
-                                android:layout_height="@dimen/_1sdp"
-                                android:layout_below="@+id/tvUnlockAcc1"
-                                android:layout_marginTop="@dimen/_20sdp"
-                                android:background="@color/grey" />
 
                         </RelativeLayout>
 
-                         <RelativeLayout
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/_1sdp"
+                            android:layout_below="@+id/tvUnlockAcc1"
+                            android:background="@color/grey" />
+
+
+                        <RelativeLayout
                             android:id="@+id/rlUnlock"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_marginTop="@dimen/_15sdp">
+                            android:padding="@dimen/_15sdp">
 
                             <TextView
                                 android:id="@+id/tvUnlockAcc"
@@ -129,7 +133,7 @@
                                 android:layout_height="wrap_content"
                                 android:layout_centerVertical="true"
                                 android:fontFamily="@font/poppinsmedium"
-                                android:text="  Contact us"
+                                android:text="@string/contact_us"
                                 android:textSize="@dimen/_11sdp" />
 
                             <ImageView
@@ -139,14 +143,15 @@
                                 android:layout_marginRight="@dimen/_15sdp"
                                 android:src="@drawable/ic_rightarraow" />
 
-                            <View
-                                android:layout_width="match_parent"
-                                android:layout_height="@dimen/_1sdp"
-                                android:layout_below="@+id/tvUnlockAcc"
-                                android:layout_marginTop="@dimen/_20sdp"
-                                android:background="@color/grey" />
+
 
                         </RelativeLayout>
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/_1sdp"
+                            android:layout_below="@+id/tvUnlockAcc"
+                            android:background="@color/grey" />
 
                     </LinearLayout>
 

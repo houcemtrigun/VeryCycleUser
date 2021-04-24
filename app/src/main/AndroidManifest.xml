@@ -2,39 +2,100 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.verycycle">
 
-     <application
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.CAMERA" />
 
+    <application
+        android:name=".helper.App"
         android:allowBackup="true"
         android:hardwareAccelerated="false"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.VeryCycleUser">
+        android:theme="@style/Theme.VeryCycleUser"
+        android:usesCleartextTraffic="true"
+        android:requestLegacyExternalStorage="true">
 
-        <activity android:name=".LoginActivity2"></activity>
+
+        <activity android:name=".MyHistory"
+            android:screenOrientation="locked"
+            android:theme="@style/AppTheme.NoActionBar"/>
+
+        <activity android:name=".Payment"
+            android:screenOrientation="locked"
+            android:theme="@style/AppTheme.NoActionBar"/>
+
+        <activity android:name=".ChhosingATypeOfRepair"
+            android:screenOrientation="locked"
+            android:theme="@style/AppTheme.NoActionBar"/>
+
+        <activity android:name=".Problam"
+            android:screenOrientation="locked"
+            android:theme="@style/AppTheme.NoActionBar"/>
+
+        <activity android:name=".ChoosingTypeOfride"
+            android:screenOrientation="locked"
+            android:theme="@style/AppTheme.NoActionBar"/>
+
+        <activity android:name=".LoginActivity2" />
+
+        <activity android:name=".setting.HelpAndFeedBack"
+            android:screenOrientation="locked"
+            android:theme="@style/AppTheme.NoActionBar"/>
 
         <activity
             android:name=".Register"
-            android:label="Register" />
-
+            android:screenOrientation="locked"
+            android:theme="@style/AppTheme.NoActionBar"/>
         <activity
             android:name=".LoginActivity"
-            android:label="" />
-
+            android:screenOrientation="locked"
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".MainActivity"
+            android:screenOrientation="locked"
             android:theme="@style/Theme.Design.NoActionBar" />
+
+        <activity
+            android:name=".ForgotPasswordAct"
+            android:screenOrientation="locked"
+            android:theme="@style/AppTheme.NoActionBar"/>
+
+        <activity
+            android:name=".EditProfileAct"
+            android:screenOrientation="locked"
+            android:theme="@style/AppTheme.NoActionBar"/>
+
+
+        <activity
+            android:name=".MyProfile"
+            android:screenOrientation="locked"
+            android:theme="@style/AppTheme.NoActionBar"/>
+
         <activity
             android:name=".Splash"
             android:label="@string/app_name"
-            android:theme="@style/Theme.Design.NoActionBar">
+            android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <provider
+            android:name="androidx.core.content.FileProvider"
+            android:authorities="com.verycycle.provider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/file_path" />
+        </provider>
     </application>
 
 </manifest>

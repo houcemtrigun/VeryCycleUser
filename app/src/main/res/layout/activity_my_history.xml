@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#F4F4F4"
+    tools:context=".MyHistory">
+
+       <androidx.cardview.widget.CardView
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content"
+           android:layout_margin="@dimen/_5sdp"
+           android:elevation="@dimen/_8sdp"
+           app:cardCornerRadius="@dimen/_10sdp"
+           app:cardBackgroundColor="#FFF">
+
+          <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:elevation="@dimen/_5sdp"
+            android:padding="@dimen/_15sdp"
+            app:backgroundTint="@color/white">
+
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginTop="@dimen/_2sdp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/name_participates"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:checked="false"
+                    android:drawableLeft="@drawable/round"
+                    android:fontFamily="@font/poppinsmedium"
+                    android:text="Feb 12, Fri 10:00 30 PM"
+                    android:textColor="#000"
+                    android:textSize="@dimen/_13sdp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/city_partisiaptes"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:checked="false"
+                    android:drawablePadding="@dimen/_15sdp"
+                    android:fontFamily="@font/poppinsmedium"
+                    android:layoutDirection="rtl"
+                    android:padding="@dimen/_4sdp"
+                    android:text="Shar Tau Kok"
+                    android:textColor="#000"
+
+                    android:textSize="@dimen/_12sdp"
+                    android:textStyle="bold" />
+
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:checked="false"
+                    android:drawableLeft="@drawable/ic_location"
+                    android:drawablePadding="@dimen/_15sdp"
+                    android:fontFamily="@font/poppinsmedium"
+                    android:layoutDirection="rtl"
+                    android:padding="@dimen/_4sdp"
+                    android:text="Fanling"
+                    android:textColor="#000"
+                    android:textSize="@dimen/_12sdp"
+                    android:textStyle="bold" />
+
+            </LinearLayout>
+
+             <TextView
+                android:id="@+id/add_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/poppinsmedium"
+                android:gravity="end"
+                 android:layout_weight="1"
+                android:layoutDirection="rtl"
+                android:text="$138.00"
+                android:textAlignment="center"
+                android:textColor="#000"
+                android:textSize="@dimen/_12sdp"
+                android:textStyle="bold"
+                tools:ignore="RtlCompat"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/poppinsmedium"
+                android:gravity="end"
+                android:layoutDirection="ltr"
+                android:text="  Completed  "
+                android:textDirection="inherit"
+                android:background="@color/green"
+                android:padding="@dimen/_2sdp"
+                android:rotation="270"
+                android:layout_marginTop="@dimen/_25sdp"
+                android:textAlignment="center"
+                android:textColor="#fff"
+                android:textSize="@dimen/_8sdp"
+                android:textStyle="bold"
+                tools:ignore="RtlCompat"/>
+
+
+        </LinearLayout>
+
+    </androidx.cardview.widget.CardView>
+
+</RelativeLayout>

@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ChoosingTypeOfride">
+
+    <LinearLayout
+        android:id="@+id/linear1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/rectangle"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="@dimen/_15sdp"
+            android:src="@drawable/ic_previous">
+
+        </ImageView>
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="@dimen/_15sdp"
+            android:layout_weight="1"
+            android:fontFamily="@font/poppinsmedium"
+            android:text="Choosing the type of ride"
+            android:textColor="#fff"
+            android:textSize="@dimen/_15sdp">
+
+        </TextView>
+
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/linear1"
+        android:layout_marginTop="@dimen/_38sdp"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/_25sdp"
+            android:fontFamily="@font/poppinsmedium"
+            android:text="Exact model "
+            android:textColor="#000">
+
+        </TextView>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/_25sdp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:fontFamily="@font/poppinsmedium"
+                android:text="Model Here">
+
+            </TextView>
+
+            <ImageView
+                android:layout_width="@dimen/_20sdp"
+                android:layout_height="@dimen/_20sdp"
+                android:layout_marginLeft="@dimen/_25sdp"
+                android:layout_marginRight="@dimen/_10sdp"
+                android:fontFamily="@font/poppinsmedium"
+                android:src="@drawable/ic_drop"
+                android:text="Exact model ">
+
+            </ImageView>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_35sdp"
+            android:padding="@dimen/_35sdp"
+            android:orientation="vertical"
+            android:layout_marginLeft="@dimen/_35sdp"
+            android:layout_marginRight="@dimen/_35sdp"
+            android:background="#C4C4C4">
+
+
+             <ImageView
+                android:layout_width="@dimen/_25sdp"
+                android:layout_height="@dimen/_25sdp"
+                android:layout_marginTop="-5dp"
+                android:layout_gravity="end"
+                android:src="@drawable/camera">
+
+             </ImageView>
+
+             <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                 <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/cycle_img">
+
+                 </ImageView>
+
+
+            </RelativeLayout>
+
+        </LinearLayout>
+
+         <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/_35sdp"
+            android:layout_marginRight="@dimen/_35sdp"
+            android:background="#878789">
+
+              <TextView
+                 android:layout_width="wrap_content"
+                 android:layout_height="wrap_content"
+                 android:layout_weight="1"
+                  android:textAlignment="center"
+                  android:padding="@dimen/_8sdp"
+                  android:textColor="#fff"
+                 android:fontFamily="@font/poppinsmedium"
+                 android:text="Upload Cycle Image">
+
+              </TextView>
+
+        </LinearLayout>
+
+         <LinearLayout
+             android:id="@+id/linear_next"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_65sdp"
+            android:gravity="end"
+            android:layout_marginRight="@dimen/_10sdp"
+            android:layout_gravity="center_vertical|center">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAlignment="center"
+                android:textColor="#000"
+                android:textSize="@dimen/_15sdp"
+                android:layout_marginRight="@dimen/_5sdp"
+                android:fontFamily="@font/poppinsmedium"
+                android:layout_marginTop="@dimen/_5sdp"
+                android:text="Next">
+            </TextView>
+
+            <LinearLayout
+                android:layout_width="@dimen/_35sdp"
+                android:layout_height="@dimen/_35sdp"
+                android:background="@drawable/circle">
+
+                <ImageView
+                    android:layout_width="@dimen/_18sdp"
+                    android:layout_height="@dimen/_20sdp"
+                    android:layout_gravity="center_vertical|center"
+                    android:layout_marginLeft="@dimen/_10sdp"
+                    android:src="@drawable/back_arrow">
+
+                </ImageView>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+
+</RelativeLayout>

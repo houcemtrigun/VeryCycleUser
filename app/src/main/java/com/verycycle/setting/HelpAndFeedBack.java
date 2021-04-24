@@ -10,6 +10,8 @@ import android.view.Window;
 import android.view.WindowManager;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.Navigation;
@@ -17,26 +19,16 @@ import androidx.navigation.Navigation;
 import com.verycycle.R;
 import com.verycycle.databinding.HelpFeedBackBinding;
 
-public class HelpAndFeedBack extends Fragment {
+public class HelpAndFeedBack extends AppCompatActivity {
     HelpFeedBackBinding binding;
 
-    public View onCreateView(@NonNull LayoutInflater inflater,
-                             ViewGroup container, Bundle savedInstanceState) {
-        binding  = DataBindingUtil.inflate(inflater, R.layout.help_feed_back, container, false);
-        SetuUi();
-        return binding.getRoot();
+    @Override
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        binding = DataBindingUtil.setContentView(this,R.layout.help_feed_back);
+        initViews();
     }
 
-    @SuppressLint("ResourceAsColor")
-    private void SetuUi() {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            Window window = getActivity().getWindow();
-            window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
-            window.setStatusBarColor(R.color.black);
-        }
-      /*  MainActivity.float_action.setVisibility(View.GONE);*/
-       /* binding.helpRelative.setOnClickListener(v -> {
-            Navigation.findNavController(v).navigate(R.id.action_helpAndFeedBack_to_helpSetting);
-        });*/
+    private void initViews() {
     }
 }

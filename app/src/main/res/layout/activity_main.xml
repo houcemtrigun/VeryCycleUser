@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <androidx.drawerlayout.widget.DrawerLayout
-        android:id="@+id/drawer"
+        android:id="@+id/drawerLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/white"
@@ -12,26 +12,26 @@
         tools:openDrawer="start">
 
         <include
-            android:id="@+id/footer_lay_child"
+            android:id="@+id/chlid_dashboard"
             layout="@layout/footer_toolbar">
 
         </include>
 
-          <LinearLayout
-            android:id="@+id/drawer_linear"
-            android:layout_width="match_parent"
+
+
+        <com.google.android.material.navigation.NavigationView
+            android:id="@+id/nav_view"
+            android:layout_width="@dimen/_250sdp"
             android:layout_height="match_parent"
             android:layout_gravity="start"
-            android:nestedScrollingEnabled="true"
-            android:orientation="vertical"
-            android:scrollbars="vertical"
-            android:visibility="visible">
+            android:fitsSystemWindows="true">
 
-             <include
-                android:id="@+id/drawer_menu_lay1"
-                layout="@layout/lay_drawer_menu"/>
+            <include
+                android:id="@+id/child_nav_drawer"
+                layout="@layout/lay_drawer_menu" />
 
-        </LinearLayout>
+        </com.google.android.material.navigation.NavigationView>
+
 
     </androidx.drawerlayout.widget.DrawerLayout>
 

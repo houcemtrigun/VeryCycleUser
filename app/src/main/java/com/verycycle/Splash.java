@@ -16,16 +16,13 @@ import android.util.Base64;
 import android.util.Log;
 import android.view.Window;
 import android.view.WindowManager;
-
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.databinding.DataBindingUtil;
-import androidx.databinding.ViewDataBinding;
 
 
 import com.verycycle.databinding.ActivitySplashBinding;
+import com.verycycle.helper.DataManager;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
@@ -36,8 +33,7 @@ public class Splash extends AppCompatActivity {
     public static int SPLASH_TIME_OUT = 3000;
     int PERMISSION_ID = 44;
     private AlertDialog dialog;
-    private String langrouge;
-    private String englishii;
+
 
     ActivitySplashBinding activitySplashBinding;
 
@@ -53,18 +49,24 @@ public class Splash extends AppCompatActivity {
     }
 
 
-    private boolean isLocationEnabled() {
-        LocationManager locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
-        return locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER) ||
-                locationManager.isProviderEnabled(LocationManager.NETWORK_PROVIDER);
-    }
+
 
     private void processNextActivity() {
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                startActivity(new Intent(Splash.this, LoginActivity.class));
-                finish();
+                if (DataManager.getInstance().getUserData(getApplicationContext()) != null &&
+                        DataManager.getInstance().getUserData(getApplicationContext()).result != null &&
+                        !DataManager.getInstance().getUserData(getApplicationContext())
+                                .result.id.equalsIgnoreCase("")) {
+                    startActivity(new Intent(Splash.this, MainActivity.class));
+                    finish();
+                } else {
+                    startActivity(new Intent(Splash.this, LoginActivity.class));
+                    finish();
+                }
+
+
             }
         }, SPLASH_TIME_OUT);
     }
