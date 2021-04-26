@@ -21,27 +21,12 @@ import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
 public class MainActivity extends AppCompatActivity {
-
-    private HomeFragment fragment;
-
     ActivityMainBinding binding;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding =    DataBindingUtil.setContentView(this,R.layout.activity_main);
-
-/*
-        binding.drawerMenuLay1.echo.setOnClickListener(v -> {
-             startActivity(new Intent(this, HelpSetting.class));
-        });
-*/
-
-
-
-       /* fragment = new HomeFragment();
-        loadFragment(fragment);*/
-
         initViews();
 
     }
@@ -60,6 +45,10 @@ public class MainActivity extends AppCompatActivity {
 
         binding.childNavDrawer.llHome.setOnClickListener(v -> {navmenu();});
 
+        binding.childNavDrawer.llAccept.setOnClickListener(v -> {startActivity(new Intent(MainActivity.this,AcceptReqAct.class));});
+
+        binding.childNavDrawer.llRequest.setOnClickListener(v -> {startActivity(new Intent(MainActivity.this,SendRequestAct.class));});
+
         binding.childNavDrawer.llProfile.setOnClickListener(v -> {startActivity(new Intent(MainActivity.this,MyProfile.class));});
 
         binding.childNavDrawer.llMyHistory.setOnClickListener(v -> {startActivity(new Intent(MainActivity.this,MyHistory.class));});
@@ -74,19 +63,9 @@ public class MainActivity extends AppCompatActivity {
             SessionManager.clear(MainActivity.this,"");
         });
 
-
-
-        //  binding.childNavDrawer.
-
-
     }
 
-  /*  private void loadFragment(HomeFragment fragment) {
-        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-        transaction.replace(R.id.fragment_homeContainer, fragment);
-        transaction.addToBackStack(null);
-        transaction.commit();
-    }*/
+
 
 
     public void navmenu() {

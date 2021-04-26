@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.widget.Toast;
 
+import com.google.firebase.iid.FirebaseInstanceId;
 import com.google.gson.Gson;
 import com.verycycle.databinding.ActivityLoginBinding;
 import com.verycycle.helper.App;
@@ -32,6 +33,7 @@ public class LoginActivity extends AppCompatActivity {
     public String TAG = "LoginActivity";
     ActivityLoginBinding binding;
     VeryCycleUserInterface apiInterface;
+    String refreshedToken="";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -52,6 +54,16 @@ public class LoginActivity extends AppCompatActivity {
 
         binding.btnForgotPass.setOnClickListener(v -> {
             startActivity(new Intent(this,ForgotPasswordAct.class));
+        });
+
+        FirebaseInstanceId.getInstance().getInstanceId().addOnSuccessListener(instanceIdResult -> {
+            try {
+                refreshedToken = instanceIdResult.getToken();
+                Log.e("Token===",refreshedToken);
+                // Yay.. we have our new token now.
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         });
 
     }
@@ -88,7 +100,7 @@ public class LoginActivity extends AppCompatActivity {
         map.put("email",binding.etEmail.getText().toString());
         map.put("password",binding.etPass.getText().toString());
         map.put("type","User");
-        map.put("register_id",/*FirebaseInstanceId.getInstance().getToken()*/ "");
+        map.put("register_id",refreshedToken);
         Log.e(TAG,"Login Request "+map);
         Call<SignupModel> loginCall = apiInterface.userLogin(map);
         loginCall.enqueue(new Callback<SignupModel>() {

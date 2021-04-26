@@ -155,4 +155,8 @@
     <string name="request_send_successfully">Request send successfully</string>
     <string name="new_booking_request">New Booking Request</string>
     <string name="please_upload_repair_image">Please upload repair image</string>
+    <string name="accept">Accept</string>
+    <string name="request">Request</string>
+    <string name="accept_booking">Accept Booking</string>
+    <string name="no_booking_available">No booking available</string>
 </resources>

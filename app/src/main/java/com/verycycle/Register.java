@@ -24,6 +24,7 @@ import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
+import com.google.firebase.iid.FirebaseInstanceId;
 import com.google.gson.Gson;
 import com.verycycle.databinding.ActivityRegisterBinding;
 import com.verycycle.helper.App;
@@ -351,7 +352,7 @@ public class Register extends AppCompatActivity {
         map.put("mobile", binding.etEmail.getText().toString());
         map.put("country_code", binding.ccp.getSelectedCountryCode());
         map.put("password", binding.etPassword.getText().toString());
-        map.put("register_id",/*FirebaseInstanceId.getInstance().getToken()*/ "");
+        map.put("register_id", FirebaseInstanceId.getInstance().getToken());
         map.put("type", "User");
         Log.e(TAG, "Login Request " + map);
         Call<SignupModel> loginCall = apiInterface.signupUser(map);

@@ -4,6 +4,7 @@ package com.verycycle.retrofit;
 
 import com.verycycle.model.CycleModel;
 import com.verycycle.model.ProviderModel;
+import com.verycycle.model.RequestModel;
 import com.verycycle.model.SignupModel;
 
 import java.util.Map;
@@ -94,7 +95,13 @@ public interface VeryCycleUserInterface {
             @Part MultipartBody.Part file, @Part MultipartBody.Part file1);
 
 
+    @FormUrlEncoded
+    @POST("get_accept_user_request")
+    Call<RequestModel> getAcceptReq(@FieldMap Map<String, String> params);
 
 
+    @FormUrlEncoded
+    @POST("get_current_user_request")
+    Call<RequestModel> sendReq(@FieldMap Map<String, String> params);
 
 }
