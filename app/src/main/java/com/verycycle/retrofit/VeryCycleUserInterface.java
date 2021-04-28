@@ -2,6 +2,7 @@ package com.verycycle.retrofit;
 
 
 
+import com.verycycle.model.BookingDetailModel;
 import com.verycycle.model.CycleModel;
 import com.verycycle.model.ProviderModel;
 import com.verycycle.model.RequestModel;
@@ -103,5 +104,31 @@ public interface VeryCycleUserInterface {
     @FormUrlEncoded
     @POST("get_current_user_request")
     Call<RequestModel> sendReq(@FieldMap Map<String, String> params);
+
+
+    @FormUrlEncoded
+    @POST("get_booking_detail")
+    Call<BookingDetailModel> bookingDetails(@FieldMap Map<String, String> params);
+
+
+    @FormUrlEncoded
+    @POST("chat_notification")
+    Call<Map<String, String>> sendPushNotification(@FieldMap Map<String, String> params);
+
+
+    @FormUrlEncoded
+    @POST("get_chat_count")
+    Call<Map<String, String>> getChatCount(@FieldMap Map<String, String> params);
+
+
+    @FormUrlEncoded
+    @POST("reset_chat_count")
+    Call<Map<String, String>> resetChatCount(@FieldMap Map<String, String> params);
+
+
+
+    @FormUrlEncoded
+    @POST("get_latlon_driver")
+    Call<Map<String,String>>  getDriverLocation(@FieldMap Map<String,String> params);
 
 }

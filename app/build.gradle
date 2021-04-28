@@ -55,6 +55,7 @@ dependencies {
     implementation 'com.google.firebase:firebase-messaging:20.1.0'
     implementation 'com.google.firebase:firebase-core:18.0.0'
     implementation 'com.google.firebase:firebase-auth:20.0.1'
+    implementation 'com.github.developeramit3:ApiCall:8f4053a663'
 
     implementation 'com.intuit.sdp:sdp-android:1.0.6'
     testImplementation 'junit:junit:4.+'

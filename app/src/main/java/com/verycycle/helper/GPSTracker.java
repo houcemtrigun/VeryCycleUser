@@ -1,4 +1,3 @@
-/*
 package com.verycycle.helper;
 
 import android.Manifest;
@@ -160,4 +159,4 @@ public class GPSTracker extends Service implements LocationListener {
     public void onProviderDisabled(String s) {
 
     }
-}*/
+}

@@ -1,6 +1,7 @@
 package com.verycycle.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
 
@@ -11,8 +12,11 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
 import com.verycycle.R;
+import com.verycycle.TrackAct;
 import com.verycycle.databinding.ItemAcceptRequestBinding;
+import com.verycycle.helper.SessionManager;
 import com.verycycle.model.RequestModel;
+import com.verycycle.retrofit.Constant;
 
 
 import java.util.ArrayList;
@@ -58,6 +62,13 @@ public class AdapterAcceptBooking extends RecyclerView.Adapter<AdapterAcceptBook
         public MyViewHolder(@NonNull ItemAcceptRequestBinding itemView) {
             super(itemView.getRoot());
             binding = itemView;
+
+            binding.cardView.setOnClickListener(v -> {
+                SessionManager.writeString(context, Constant.driver_id, arrayList.get(getAdapterPosition()).providerId);
+                context.startActivity(new Intent(context, TrackAct.class)
+                        .putExtra("request_id",arrayList.get(getAdapterPosition()).id));
+
+            });
         }
     }
 }

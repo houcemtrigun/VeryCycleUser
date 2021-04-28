@@ -159,4 +159,18 @@
     <string name="request">Request</string>
     <string name="accept_booking">Accept Booking</string>
     <string name="no_booking_available">No booking available</string>
+
+    <!-- Key for map -->
+    <string name="google_maps_key">AIzaSyAXTJrvnDTC8AjYzK2dPatsSAMJaTIc-c0</string>
+    <string name="rate">Rate</string>
+    <string name="msg">Massege</string>
+    <string name="provider_arrived">Provider Arrived</string>
+
+    <string name="you_will_be_automatically_billed_for_the_wait_beyond_4_minuts">You will be automatically billed for the wait beyond 4 minuts</string>
+    <string name="your_service_has_begin">Your service has begin</string>
+    <string name="service_start">Service start</string>
+    <string name="service_end">Service end</string>
+    <string name="your_service_is_finished">Your service is finished</string>
+    <string name="type_msg">Type Massege</string>
+    <string name="track">Track</string>
 </resources>

@@ -98,6 +98,17 @@
             android:screenOrientation="locked"
             android:theme="@style/AppTheme.NoActionBar"/>
 
+        <activity
+            android:name=".TrackAct"
+            android:screenOrientation="locked"
+            android:theme="@style/AppTheme.NoActionBar"/>
+
+
+        <activity
+            android:name=".MsgChatAct"
+            android:screenOrientation="locked"
+            android:theme="@style/AppTheme.NoActionBar"/>
+
 
 
         <activity
@@ -128,6 +139,19 @@
                 <action android:name="com.google.firebase.MESSAGING_EVENT" />
             </intent-filter>
         </service>
+
+
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="@string/google_maps_key" />
+
+
+        <service
+            android:name=".helper.UpdateLocationService"
+            android:enabled="true"
+            android:exported="true" />
+
+
 
     </application>
 
