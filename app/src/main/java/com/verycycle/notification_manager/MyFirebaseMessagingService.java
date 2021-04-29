@@ -6,6 +6,9 @@ import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.drawable.Drawable;
 import android.media.AudioAttributes;
 import android.media.RingtoneManager;
 import android.net.Uri;
@@ -17,6 +20,8 @@ import androidx.core.app.NotificationCompat;
 
 import com.google.firebase.messaging.FirebaseMessagingService;
 import com.google.firebase.messaging.RemoteMessage;
+import com.squareup.picasso.Picasso;
+import com.squareup.picasso.Target;
 import com.verycycle.MainActivity;
 import com.verycycle.R;
 import com.verycycle.helper.SessionManager;
@@ -26,6 +31,9 @@ import com.verycycle.retrofit.Constant;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.InputStream;
+import java.net.HttpURLConnection;
+import java.net.URL;
 import java.util.Map;
 
 ;
@@ -35,6 +43,7 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
     private NotificationChannel mChannel;
     private NotificationManager notifManager;
     JSONObject object;
+    String work_image="",https = "";
 
     @Override
     public void onMessageReceived(RemoteMessage remoteMessage) {
@@ -48,27 +57,61 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
 
                  object = new JSONObject(data.get("message"));
                  status = object.getString("status");
-                if (status.equals("Pending")) {
-                    // title =   object.getString("title");
-                    title = getString(R.string.new_booking_request);
-                    key = object.getString("key");
-                    Intent intent1 = new Intent("Job_Status_Action1");
-                    Log.e("SendData=====", object.toString());
-                    intent1.putExtra("object", object.toString());
+                if (status.equals("Accept")) {
+
+                    SessionManager.writeString(getApplicationContext(), Constant.driver_id, object.getString("driver_id"));
+                    SessionManager.writeString(getApplicationContext(), Constant.request_id, object.getString("request_id"));
+                    SessionManager.writeString(getApplicationContext(), Constant.user_name, object.getString("user_name"));
+                    title = getString(R.string.booking_accept_by_provider);
+                    Intent intent1 = new Intent("Job_Status_Action");
+                    intent1.putExtra("request_id", object.getString("request_id"));
+                    intent1.putExtra("status", status);
                     sendBroadcast(intent1);
-
                 }
-
-             /*   else if (status.equals("chat")) {
-                    key = object.getString("message");
-                    title = getString(R.string.new_chat_msg_user);
-                    Intent intent1 = new Intent("Job_Status_Action1");
+                else if (status.equals("Arrived")) {
+                    title = getString(R.string.provider_arrived_service_location);
+                    SessionManager.writeString(getApplicationContext(), Constant.driver_id, object.getString("driver_id"));
+                    SessionManager.writeString(getApplicationContext(), Constant.request_id, object.getString("request_id"));
+                    SessionManager.writeString(getApplicationContext(), Constant.user_name, object.getString("user_name"));
+                    Intent intent1 = new Intent("Job_Status_Action");
                     intent1.putExtra("request_id", object.getString("request_id"));
                     intent1.putExtra("status", status);
                     sendBroadcast(intent1);
                 }
 
-                else if (status.equals("Cancel_by_user")) {
+                else if (status.equals("Start")) {
+                    title = getString(R.string.provider_start_the_service);
+                    SessionManager.writeString(getApplicationContext(), Constant.driver_id, object.getString("driver_id"));
+                    SessionManager.writeString(getApplicationContext(), Constant.request_id, object.getString("request_id"));
+                    SessionManager.writeString(getApplicationContext(), Constant.user_name, object.getString("user_name"));
+                    Intent intent1 = new Intent("Job_Status_Action");
+                    intent1.putExtra("request_id", object.getString("request_id"));
+                    intent1.putExtra("status", status);
+                    sendBroadcast(intent1);
+                }
+
+                else if (status.equals("Finish")) {
+                    title = getString(R.string.provider_finish_service);
+                    work_image = object.getString("booking_image");
+                    SessionManager.writeString(getApplicationContext(), Constant.driver_id, object.getString("driver_id"));
+                    SessionManager.writeString(getApplicationContext(), Constant.request_id, object.getString("request_id"));
+                    SessionManager.writeString(getApplicationContext(), Constant.user_name, object.getString("user_name"));
+                    Intent intent1 = new Intent("Job_Status_Action");
+                    intent1.putExtra("request_id", object.getString("request_id"));
+                    intent1.putExtra("status", status);
+                    sendBroadcast(intent1);
+                }
+
+              else if (status.equals("chat")) {
+                    key = object.getString("message");
+                    title = getString(R.string.new_chat_msg_provider);
+                    Intent intent1 = new Intent("Job_Status_Action");
+                    intent1.putExtra("request_id", object.getString("request_id"));
+                    intent1.putExtra("status", status);
+                    sendBroadcast(intent1);
+                }
+
+          /*        else if (status.equals("Cancel_by_user")) {
                     key = object.getString("key");
                     title = getString(R.string.booking_cancel_by_user);
                     Intent intent1 = new Intent("Job_Status_Action1");
@@ -129,6 +172,24 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
                     .setSound(RingtoneManager.getDefaultUri
                             (RingtoneManager.TYPE_RINGTONE));
 
+
+            if (status.equals("Finish")) {
+                try {
+                    Bitmap bitmap = getBitmapfromUrl(work_image);
+                    // notificationBuilder.setLargeIcon(bitmap);
+                    //BigPicture Style
+                    builder.setStyle(new NotificationCompat.BigPictureStyle()
+                            //This one is same as large icon but it wont show when its expanded that's why we again setting
+                            .bigLargeIcon(bitmap)
+                            //This is Big Banner image
+                            .bigPicture(bitmap));
+
+
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+
             Notification notification = builder.build();
             notifManager.notify(0, notification);
         } else {
@@ -147,6 +208,40 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
                     .setContentIntent(pendingIntent)
                     .setStyle(new NotificationCompat.BigTextStyle().setBigContentTitle(title).bigText(msg));
 
+
+            if (status.equals("Finish")) {
+                try {
+                    https = work_image;
+                    // String picture = "http://i.stack.imgur.com/CE5lz.png";
+                    Picasso.with(getApplicationContext()).load(https).into(new Target() {
+                        @Override
+                        public void onBitmapLoaded(Bitmap bitmap, Picasso.LoadedFrom from) {
+                            notificationBuilder.setStyle(new NotificationCompat.BigPictureStyle()
+                                    //This one is same as large icon but it wont show when its expanded that's why we again setting
+                                    .bigLargeIcon(bitmap)
+                                    //This is Big Banner image
+                                    .bigPicture(bitmap));
+
+
+                        }
+
+                        @Override
+                        public void onBitmapFailed(Drawable errorDrawable) {
+
+                        }
+
+                        @Override
+                        public void onPrepareLoad(Drawable placeHolderDrawable) {
+
+                        }
+                    });
+
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+
+
             NotificationManager notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
 
             notificationManager.notify(1251, notificationBuilder.build());
@@ -164,6 +259,26 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
             wl.acquire(10000);
             PowerManager.WakeLock wl_cpu = pm.newWakeLock(PowerManager.PARTIAL_WAKE_LOCK, "MyCpuLock");
             wl_cpu.acquire(10000);
+        }
+    }
+
+
+
+    public Bitmap getBitmapfromUrl(String imageUrl) {
+        try {
+            URL url = new URL(imageUrl);
+            HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+            connection.setDoInput(true);
+            connection.connect();
+            InputStream input = connection.getInputStream();
+            Bitmap bitmap = BitmapFactory.decodeStream(input);
+            return bitmap;
+
+        } catch (Exception e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+            return null;
+
         }
     }
 

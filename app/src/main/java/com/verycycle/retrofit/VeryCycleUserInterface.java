@@ -131,4 +131,12 @@ public interface VeryCycleUserInterface {
     @POST("get_latlon_driver")
     Call<Map<String,String>>  getDriverLocation(@FieldMap Map<String,String> params);
 
+
+    @FormUrlEncoded
+    @POST("logout")
+    Call<Map<String,String>>  logout(@FieldMap Map<String,String> params);
+
+
+
+
 }

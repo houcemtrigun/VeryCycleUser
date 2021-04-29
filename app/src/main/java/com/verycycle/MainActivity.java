@@ -60,7 +60,7 @@ public class MainActivity extends AppCompatActivity {
         binding.childNavDrawer.llSetting.setOnClickListener(v -> {});
 
         binding.childNavDrawer.btnSignout.setOnClickListener(v -> {
-            SessionManager.clear(MainActivity.this,"");
+            SessionManager.clear(MainActivity.this,DataManager.getInstance().getUserData(MainActivity.this).result.id);
         });
 
     }

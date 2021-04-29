@@ -8,6 +8,8 @@ import android.widget.Toast;
 
 import com.google.gson.Gson;
 import com.verycycle.Splash;
+import com.verycycle.retrofit.ApiClient;
+import com.verycycle.retrofit.VeryCycleUserInterface;
 
 
 import java.util.HashMap;
@@ -64,17 +66,13 @@ public class SessionManager {
     }
 
     public static void clear(final Context context, String user_id) {
-       // Logout(user_id,context);
-        getEditor(context).clear().commit();
-        Intent intent = new Intent(context, Splash.class);
-        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_NO_HISTORY);
-        context.startActivity(intent);
+        Logout(user_id,context);
     }
 
 
 
-   /* public static void Logout(String id, Context context) {
-        TropikVTCUserInterface apiInterface = ApiClient.getClient().create(TropikVTCUserInterface.class);
+    public static void Logout(String id, Context context) {
+        VeryCycleUserInterface apiInterface = ApiClient.getClient().create(VeryCycleUserInterface.class);
         Map<String, String> map = new HashMap<>();
         map.put("user_id",id);
         Log.e(TAG,"User Logout Request "+map);
@@ -89,8 +87,7 @@ public class SessionManager {
                     Log.e(TAG,"User Logout Response"+responseString);
                     if(data.get("status").equals("1")){
                         getEditor(context).clear().commit();
-                        SessionManager.writeString(context, Constant.LANGUAGE,"");
-                        Intent intent = new Intent(context, SplashAct.class);
+                        Intent intent = new Intent(context, Splash.class);
                         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_NO_HISTORY);
                         context.startActivity(intent);
                     }
@@ -110,7 +107,7 @@ public class SessionManager {
                 DataManager.getInstance().hideProgressMessage();
             }
         });
-    }*/
+    }
 
     public static void clearsession(final Context context) {
         getEditor(context).clear().commit();

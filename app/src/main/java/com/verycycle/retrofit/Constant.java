@@ -33,8 +33,5 @@ public class Constant {
     public  static  final String STRIPE_LIVE_KEY = "";
 
 
-
-
-
-
+    public static String user_name="user_name";
 }

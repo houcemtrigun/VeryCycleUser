@@ -17,12 +17,16 @@ import android.os.Handler;
 import android.os.SystemClock;
 import android.provider.Settings;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
+import android.view.WindowManager;
 import android.view.animation.AccelerateDecelerateInterpolator;
 import android.view.animation.Interpolator;
 import android.view.animation.LinearInterpolator;
+import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -73,7 +77,7 @@ public class TrackAct extends AppCompatActivity implements OnMapReadyCallback {
     int PERMISSION_ID = 44;
     double dLatitude = 0.0, dLongitude = 0.0;
     VeryCycleUserInterface apiInterface;
-    String request_id = "", DriverId = "", DriverName = "", image = "", mobile = "", status = "";
+    String request_id = "", DriverId = "", DriverName = "", image = "", mobile = "", status = "", booking_image = "", ServiceAddress = "";
     private PolylineOptions lineOptions;
     private LatLng PickUpLatLng, DropOffLatLng, carLatLng, prelatLng;
     private MarkerOptions PicUpMarker, DropOffMarker, carMarker1;
@@ -160,18 +164,16 @@ public class TrackAct extends AppCompatActivity implements OnMapReadyCallback {
     }
 
 
-
-
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         apiInterface = ApiClient.getClient().create(VeryCycleUserInterface.class);
-       // gpsTracker = new GPSTracker(TrackAct.this);
+        // gpsTracker = new GPSTracker(TrackAct.this);
         binding = DataBindingUtil.setContentView(this, R.layout.activity_track);
-        if(getIntent()!=null){
-            request_id =  getIntent().getStringExtra("request_id");
+        if (getIntent() != null) {
+            request_id = getIntent().getStringExtra("request_id");
         }
-       
+
         initView();
         getdriverLocation();
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map);
@@ -367,16 +369,17 @@ public class TrackAct extends AppCompatActivity implements OnMapReadyCallback {
                     String responseString = new Gson().toJson(response.body());
                     Log.e(TAG, "Request Accept or Cancel Response :" + responseString);
                     if (data1.status.equals("1")) {
-                        DriverName = data1.result.driverDetails.username ;
+                        DriverName = data1.result.driverDetails.username;
                         DriverId = data1.result.driverDetails.id;
                         status = data1.result.status;
                         image = data1.result.driverDetails.driverImage;
-                        mobile = "+"+data1.result.driverDetails.countryCode + data1.result.driverDetails.mobile;
+                        ServiceAddress = data1.result.address;
+                        mobile = "+" + data1.result.driverDetails.countryCode + data1.result.driverDetails.mobile;
                         binding.tvName.setText(DriverName);
                         Glide.with(TrackAct.this)
                                 .load(image)
                                 .apply(new RequestOptions().placeholder(R.drawable.user_default))
-                                .override(300,300)
+                                .override(300, 300)
                                 .into(binding.ivDriverPropic);
                         prelatLng = null;
                         PickUpLatLng = new LatLng(Double.parseDouble(data1.result.driverDetails.lat), Double.parseDouble(data1.result.driverDetails.lon));
@@ -396,12 +399,14 @@ public class TrackAct extends AppCompatActivity implements OnMapReadyCallback {
                         }
 
 
-                         if (data1.result.status.equals("Arrived")) {
+                        if (data1.result.status.equals("Arrived")) {
                             DriverArriveDialog();
                         } else if (data1.result.status.equals("Start")) {
                             TripStartDialog();
                         } else if (data1.result.status.equals("Finish")) {
-                            TripFinishDialog();
+                            booking_image = data1.result.bookingImage;
+                            // TripFinishDialog();
+                            showWorkImageDialog();
                         }
 
                     } else if (data1.status.equals("0")) {
@@ -412,7 +417,6 @@ public class TrackAct extends AppCompatActivity implements OnMapReadyCallback {
                     e.printStackTrace();
                 }
             }
-
 
 
             @Override
@@ -462,14 +466,14 @@ public class TrackAct extends AppCompatActivity implements OnMapReadyCallback {
             public void Success(ArrayList<LatLng> latLngs) {
                 mMap.clear();
                 polineLanLongLine.clear();
-                polineLanLongLine =latLngs;
+                polineLanLongLine = latLngs;
                 lineOptions = new PolylineOptions();
                 lineOptions.addAll(latLngs);
                 lineOptions.width(10);
                 lineOptions.geodesic(true);
                 lineOptions.color(R.color.black);
                 AddDefaultMarker();
-                prelatLng =null;
+                prelatLng = null;
                 AddCarMarker(carLatLng);
             }
         });
@@ -501,7 +505,7 @@ public class TrackAct extends AppCompatActivity implements OnMapReadyCallback {
                 prelatLng = latLng;
             } else {
                 if (prelatLng != latLng) {
-                    Log.e("locationChange====",latLng+"");
+                    Log.e("locationChange====", latLng + "");
                     Location temp = new Location(LocationManager.GPS_PROVIDER);
                     temp.setLatitude(latLng.latitude);
                     temp.setLongitude(latLng.longitude);
@@ -512,7 +516,7 @@ public class TrackAct extends AppCompatActivity implements OnMapReadyCallback {
                 }
             }
             animateCamera(carLatLng);
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
 
@@ -633,6 +637,56 @@ public class TrackAct extends AppCompatActivity implements OnMapReadyCallback {
                 }
             }
         });
+    }
+
+    private void showWorkImageDialog() {
+        Dialog dialog = new Dialog(TrackAct.this, android.R.style.Theme_Translucent_NoTitleBar);
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        dialog.setContentView(R.layout.dialog_show_work_image);
+        Window window = dialog.getWindow();
+        WindowManager.LayoutParams wlp = window.getAttributes();
+        SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.dmap);
+        mapFragment.getMapAsync(new OnMapReadyCallback() {
+            @Override
+            public void onMapReady(GoogleMap googleMap) {
+                googleMap.addMarker(new MarkerOptions().position(DropOffLatLng)
+                        .icon(BitmapDescriptorFactory.fromResource(R.drawable.blue_marker)));
+                googleMap.animateCamera(CameraUpdateFactory.newCameraPosition(getCameraPositionWithBearing(DropOffLatLng)));
+            }
+        });
+
+        TextView tvAddress = dialog.findViewById(R.id.tvAddress);
+        TextView tvProName = dialog.findViewById(R.id.tvProName);
+        ImageView ivWorkImage = dialog.findViewById(R.id.ivWorkImage);
+        RelativeLayout btnRate = dialog.findViewById(R.id.btnRate);
+
+        btnRate.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(TrackAct.this, PaymentSummaryAct.class)
+                        .putExtra("provider_id", DriverId)
+                        .putExtra("providerName", DriverName)
+                        .putExtra("providerImage", image)
+                        .putExtra("requestId", request_id));
+                finish();
+            }
+        });
+
+        Glide.with(getApplicationContext())
+                .load(booking_image)
+                .apply(new RequestOptions().placeholder(R.drawable.user_default1))
+                .override(400, 400)
+                .into(ivWorkImage);
+        tvAddress.setText(ServiceAddress);
+        tvProName.setText(DriverName + "'s Completed Service");
+
+
+        wlp.gravity = Gravity.CENTER;
+        wlp.flags &= ~WindowManager.LayoutParams.FLAG_BLUR_BEHIND;
+        window.setAttributes(wlp);
+        dialog.getWindow().setLayout(RelativeLayout.LayoutParams.MATCH_PARENT, RelativeLayout.LayoutParams.MATCH_PARENT);
+        dialog.show();
+
     }
 
 }

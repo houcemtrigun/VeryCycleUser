@@ -110,6 +110,12 @@
             android:theme="@style/AppTheme.NoActionBar"/>
 
 
+        <activity
+            android:name=".PaymentSummaryAct"
+            android:screenOrientation="locked"
+            android:theme="@style/AppTheme.NoActionBar"/>
+
+
 
         <activity
             android:name=".Splash"

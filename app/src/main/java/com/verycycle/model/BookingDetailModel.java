@@ -68,6 +68,13 @@ public class BookingDetailModel {
         @SerializedName("delivered_time")
         @Expose
         public String deliveredTime;
+
+        @SerializedName("booking_image")
+        @Expose
+        public String bookingImage;
+
+
+
         @SerializedName("user_details")
         @Expose
         public UserDetails userDetails;

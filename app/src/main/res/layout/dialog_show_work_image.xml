@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/white">
+
+
+    <TextView
+        android:id="@+id/tvWork"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="15dp"
+        android:text="@string/your_service_is_finished"
+        android:textSize="18dp"
+        android:layout_centerHorizontal="true"
+        android:textColor="@color/black"
+        android:fontFamily="@font/poppins_semibold"
+        android:gravity="center_horizontal"/>
+
+
+    <RelativeLayout
+        android:id="@+id/layoutMain"
+        android:layout_below="@+id/tvWork"
+        android:layout_width="match_parent"
+        android:layout_height="130dp"
+        android:layout_margin="10dp">
+
+
+        <fragment xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:tools="http://schemas.android.com/tools"
+            android:id="@+id/dmap"
+            android:name="com.google.android.gms.maps.SupportMapFragment"
+            android:layout_width="160dp"
+            android:layout_height="match_parent"
+            tools:context=".activity.TrackingActivity"
+            />
+
+
+        <RelativeLayout
+            android:id="@+id/DialoglayoutRate"
+            android:layout_width="170dp"
+            android:layout_height="70dp"
+            android:visibility="visible"
+            android:layout_toRightOf="@+id/dmap"
+            >
+
+
+            <RelativeLayout
+                android:id="@+id/btnRate"
+                android:layout_width="150dp"
+                android:layout_height="40dp"
+                android:background="@drawable/btn_bg"
+                android:layout_alignParentRight="true"
+                android:layout_centerHorizontal="true"
+                android:layout_centerInParent="true">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/payment"
+                    android:fontFamily="@font/poppins_regular"
+                    android:textSize="15dp"
+                    android:textColor="@color/white"
+                    android:layout_marginTop="5dp"
+                    android:layout_centerInParent="true"
+
+                    />
+
+
+            </RelativeLayout>
+
+
+
+        </RelativeLayout>
+
+
+        <TextView
+            android:id="@+id/tvAddress"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@+id/dmap"
+            android:layout_below="@+id/DialoglayoutRate"
+            android:layout_centerVertical="true"
+            android:fontFamily="@font/poppins_regular"
+            android:text="sfhsfhchags"
+            android:textColor="@color/black"
+            android:layout_marginLeft="13dp"
+            android:layout_marginRight="10dp"
+            android:maxLines="3"
+            android:textSize="12dp"/>
+
+
+
+    </RelativeLayout>
+
+
+
+    <TextView
+        android:id="@+id/tvProName"
+        android:layout_below="@+id/layoutMain"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:text="Keshav's Completed Work"
+        android:textSize="18dp"
+        android:textColor="@color/black"
+        android:fontFamily="@font/poppins_semibold"/>
+
+
+    <androidx.cardview.widget.CardView
+        android:layout_below="@+id/tvProName"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:cardCornerRadius="10dp"
+        android:layout_margin="10dp">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:id="@+id/ivWorkImage"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scaleType="fitXY"
+                />
+
+
+
+        </RelativeLayout>
+
+
+
+
+
+    </androidx.cardview.widget.CardView>
+
+
+
+
+</RelativeLayout>
