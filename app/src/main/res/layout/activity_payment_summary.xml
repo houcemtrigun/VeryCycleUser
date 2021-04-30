@@ -199,8 +199,9 @@
                             android:layout_marginLeft="@dimen/_10sdp"/>
 
 
+
                         <TextView
-                            android:id="@+id/tvBaseFare"
+                            android:id="@+id/tvServiceAmount"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="$2.00"
@@ -223,7 +224,7 @@
                             android:id="@+id/tvDis"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="@string/service_amount"
+                            android:text="@string/repair_extra_amount"
                             android:textSize="@dimen/_10sdp"
                             android:textColor="@color/grey"
                             android:fontFamily="@font/poppins_regular"
@@ -231,10 +232,10 @@
 
 
                         <TextView
-                            android:id="@+id/tvDistance"
+                            android:id="@+id/tvExtraAmount"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="@string/service_amount"
+
                             android:layout_alignParentRight="true"
                             android:textSize="@dimen/_10sdp"
                             android:textColor="@color/grey"
@@ -242,39 +243,6 @@
 
 
                     </RelativeLayout>
-
-                    <RelativeLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="@dimen/_5sdp"
-                        android:layout_marginRight="@dimen/_5sdp"
-                        >
-
-                        <TextView
-                            android:id="@+id/tvTime"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="time"
-                            android:textSize="@dimen/_10sdp"
-                            android:textColor="@color/grey"
-                            android:fontFamily="@font/poppins_regular"
-                            android:layout_marginLeft="@dimen/_10sdp"/>
-
-
-                        <TextView
-                            android:id="@+id/tvTime1"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Time (44 seconds)"
-                            android:layout_alignParentRight="true"
-                            android:textSize="@dimen/_10sdp"
-                            android:textColor="@color/grey"
-                            android:fontFamily="@font/poppins_regular"/>
-
-
-                    </RelativeLayout>
-
-
 
 
 

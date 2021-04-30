@@ -186,4 +186,7 @@
     <string name="service_date">Service date</string>
     <string name="service_amount">Service amount</string>
     <string name="pay">Pay</string>
+    <string name="repair_extra_amount">Repair extra amount</string>
+    <string name="booking_cancel_by_provider">Your booking cancel by provider</string>
+    <string name="payment_successfully_done">Payment successfully done</string>
 </resources>

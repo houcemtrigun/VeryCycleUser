@@ -663,11 +663,8 @@ public class TrackAct extends AppCompatActivity implements OnMapReadyCallback {
         btnRate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(TrackAct.this, PaymentSummaryAct.class)
-                        .putExtra("provider_id", DriverId)
-                        .putExtra("providerName", DriverName)
-                        .putExtra("providerImage", image)
-                        .putExtra("requestId", request_id));
+                startActivity(new Intent(TrackAct.this, PaymentSummaryAct.class).putExtra("request_id", request_id)
+                        .putExtra("ProviderId",DriverId).putExtra("ProviderName",DriverName).putExtra("ProviderImage",image));
                 finish();
             }
         });
@@ -675,7 +672,7 @@ public class TrackAct extends AppCompatActivity implements OnMapReadyCallback {
         Glide.with(getApplicationContext())
                 .load(booking_image)
                 .apply(new RequestOptions().placeholder(R.drawable.user_default1))
-                .override(400, 400)
+                .override(300, 300)
                 .into(ivWorkImage);
         tvAddress.setText(ServiceAddress);
         tvProName.setText(DriverName + "'s Completed Service");

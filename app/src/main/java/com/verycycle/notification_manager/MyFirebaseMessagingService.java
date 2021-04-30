@@ -111,15 +111,15 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
                     sendBroadcast(intent1);
                 }
 
-          /*        else if (status.equals("Cancel_by_user")) {
-                    key = object.getString("key");
-                    title = getString(R.string.booking_cancel_by_user);
+                 else if (status.equals("Cancel")) {
+                    key = "Booking Cancel";
+                    title = getString(R.string.booking_cancel_by_provider);
                     Intent intent1 = new Intent("Job_Status_Action1");
                     intent1.putExtra("request_id", object.getString("request_id"));
                     intent1.putExtra("status", status);
                     intent1.putExtra("object", object.toString());
                     sendBroadcast(intent1);
-                }*/
+                }
 
                 if (!SessionManager.readString(getApplicationContext(), Constant.USER_INFO, "").equals("")){
                     wakeUpScreen();

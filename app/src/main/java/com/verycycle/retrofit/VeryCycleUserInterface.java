@@ -4,6 +4,7 @@ package com.verycycle.retrofit;
 
 import com.verycycle.model.BookingDetailModel;
 import com.verycycle.model.CycleModel;
+import com.verycycle.model.PaymentSummaryModel;
 import com.verycycle.model.ProviderModel;
 import com.verycycle.model.RequestModel;
 import com.verycycle.model.SignupModel;
@@ -136,7 +137,13 @@ public interface VeryCycleUserInterface {
     @POST("logout")
     Call<Map<String,String>>  logout(@FieldMap Map<String,String> params);
 
+    @FormUrlEncoded
+    @POST("get_payment_detail")
+    Call<PaymentSummaryModel>  getPaymentSummary(@FieldMap Map<String,String> params);
 
+    @FormUrlEncoded
+    @POST("add_rating")
+    Call<Map<String,String>> giveRate(@FieldMap Map<String, String> params);
 
 
 }
