@@ -4,6 +4,7 @@ package com.verycycle.retrofit;
 
 import com.verycycle.model.BookingDetailModel;
 import com.verycycle.model.CycleModel;
+import com.verycycle.model.HistoryModel;
 import com.verycycle.model.PaymentSummaryModel;
 import com.verycycle.model.ProviderModel;
 import com.verycycle.model.RequestModel;
@@ -145,5 +146,9 @@ public interface VeryCycleUserInterface {
     @POST("add_rating")
     Call<Map<String,String>> giveRate(@FieldMap Map<String, String> params);
 
+
+    @FormUrlEncoded
+    @POST("get_user_detail")
+    Call<HistoryModel> getMyHistorty(@FieldMap Map<String, String> params);
 
 }

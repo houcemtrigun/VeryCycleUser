@@ -51,7 +51,7 @@ public class MainActivity extends AppCompatActivity {
 
         binding.childNavDrawer.llProfile.setOnClickListener(v -> {startActivity(new Intent(MainActivity.this,MyProfile.class));});
 
-        binding.childNavDrawer.llMyHistory.setOnClickListener(v -> {startActivity(new Intent(MainActivity.this,MyHistory.class));});
+        binding.childNavDrawer.llMyHistory.setOnClickListener(v -> {startActivity(new Intent(MainActivity.this,MyHistoryAct.class));});
 
         binding.childNavDrawer.llHelp.setOnClickListener(v -> { startActivity(new Intent(MainActivity.this, HelpAndFeedBack.class));});
 

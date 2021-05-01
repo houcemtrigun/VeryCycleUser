@@ -33,10 +33,6 @@
         </activity>
 
 
-        <activity android:name=".MyHistory"
-            android:screenOrientation="locked"
-            android:theme="@style/AppTheme.NoActionBar"/>
-
         <activity android:name=".Payment"
             android:screenOrientation="locked"
             android:theme="@style/AppTheme.NoActionBar"/>
@@ -129,6 +125,12 @@
 
         <activity
             android:name=".RatingAct"
+            android:screenOrientation="locked"
+            android:theme="@style/AppTheme.NoActionBar"/>
+
+
+        <activity
+            android:name=".MyHistoryAct"
             android:screenOrientation="locked"
             android:theme="@style/AppTheme.NoActionBar"/>
 
