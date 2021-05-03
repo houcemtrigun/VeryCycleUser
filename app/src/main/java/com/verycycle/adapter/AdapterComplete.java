@@ -34,7 +34,9 @@ public class AdapterComplete extends RecyclerView.Adapter<AdapterComplete.MyView
 
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
-      holder.binding.tvDateTime.setText(arrayList.get(position).date);
+      holder.binding.tvDateTime.setText(arrayList.get(position).date+ " " + arrayList.get(position).time);
+      holder.binding.tvPrice.setText("$"+arrayList.get(position).totalAmount);
+      holder.binding.tvFrom.setText(arrayList.get(position).address);
     }
 
     @Override
