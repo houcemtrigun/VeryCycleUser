@@ -27,20 +27,26 @@ public interface VeryCycleUserInterface {
 
 
 
- /*   @Multipart
+    @Multipart
     @POST("signup")
     Call<SignupModel> signupUser(
             @Part("username") RequestBody username,
             @Part("email") RequestBody email,
+            @Part("mobile") RequestBody mobile,
+            @Part("country_code") RequestBody country_code,
             @Part("password") RequestBody password,
             @Part("register_id") RequestBody register_id,
             @Part("type") RequestBody type,
-            @Part MultipartBody.Part file);*/
+            @Part MultipartBody.Part file);
 
 
-    @FormUrlEncoded
+
+
+
+
+   /* @FormUrlEncoded
     @POST("signup")
-    Call<SignupModel> signupUser(@FieldMap Map<String, String> params);
+    Call<SignupModel> signupUser(@FieldMap Map<String, String> params);*/
 
 
     @FormUrlEncoded

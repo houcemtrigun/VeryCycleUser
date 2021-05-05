@@ -25,8 +25,7 @@
                     android:layout_height="96dp"
                     android:layout_marginLeft="@dimen/_10sdp"
                     android:layout_marginTop="@dimen/_5sdp"
-                    android:src="@drawable/profile"
-                    app:civ_border_color="#FF000000"
+                    android:src="@drawable/user_default1"
                     app:civ_border_width="2dp" />
 
                 <ImageView
@@ -229,7 +228,7 @@
                                 android:layout_height="wrap_content"
                                 android:backgroundTint="@color/white"
                                 android:imeOptions="actionNext"
-                                android:inputType="textEmailAddress"
+                                android:inputType="number"
                                 android:textSize="@dimen/_12sdp" />
 
                         </com.google.android.material.textfield.TextInputLayout>

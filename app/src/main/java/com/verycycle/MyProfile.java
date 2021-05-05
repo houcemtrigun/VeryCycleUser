@@ -35,7 +35,7 @@ public class MyProfile extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
         binding.tvUsername.setText(DataManager.getInstance().getUserData(MyProfile.this).result.username);
-      //  binding.tvAddress.setText(DataManager.getInstance().getUserData(MyProfile.this).result.address);
+        binding.tvAddress.setText(DataManager.getInstance().getUserData(MyProfile.this).result.email);
         Glide.with(MyProfile.this)
                 .load(DataManager.getInstance().getUserData(MyProfile.this).result.image)
                 .override(80,80)
