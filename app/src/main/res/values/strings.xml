@@ -192,4 +192,8 @@
     <string name="completed">Completed</string>
     <string name="cancelled">Cancelled</string>
     <string name="no_data_available">Data not available</string>
+    <string name="flat_tire">Flat tire</string>
+    <string name="breaking_lock">Breaking a lock</string>
+    <string name="urgent_repair">Urgent repair</string>
+    <string name="please_select_repair_service">Please select repair service</string>
 </resources>

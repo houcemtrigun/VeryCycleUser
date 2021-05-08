@@ -64,6 +64,16 @@ public class RequestModel {
         @SerializedName("image")
         @Expose
         public String image;
+
+        @SerializedName("estimated_distance")
+        @Expose
+        public String estimatedDistance;
+
+        @SerializedName("booktype")
+        @Expose
+        public String booktype;
+
+
         @SerializedName("provider_details")
         @Expose
         public ProviderDetails providerDetails;

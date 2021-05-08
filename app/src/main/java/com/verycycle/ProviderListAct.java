@@ -37,7 +37,7 @@ import retrofit2.Response;
 public class ProviderListAct extends AppCompatActivity implements OnItemPositionListener {
     public String TAG =  "ProviderListAct";
     ActivityProviderListBinding binding;
-    String str_image_path = "",cycleId="",problem="",repair_image_path="",date="",time="",address="",lat="",lon="",providerId="";
+    String str_image_path = "",cycleId="",problem="",repair_image_path="",date="",time="",address="",lat="",lon="",providerId="",serviceType="";
     VeryCycleUserInterface apiInterface;
     ArrayList<ProviderModel.Result>arrayList;
     AdapterProvider adapter;
@@ -64,6 +64,7 @@ public class ProviderListAct extends AppCompatActivity implements OnItemPosition
             address = getIntent().getStringExtra("address");
             lat = getIntent().getStringExtra("lat");
             lon = getIntent().getStringExtra("lon");
+            serviceType = getIntent().getStringExtra("serviceType");
             if(NetworkReceiver.isConnected()) providerList();
             else App.showToast(ProviderListAct.this,getString(R.string.network_failure),Toast.LENGTH_LONG);
         }
@@ -151,8 +152,10 @@ public class ProviderListAct extends AppCompatActivity implements OnItemPosition
         RequestBody longitude = RequestBody.create(MediaType.parse("text/plain"), lon);
         RequestBody provider_id = RequestBody.create(MediaType.parse("text/plain"), providerId);
         RequestBody user_id = RequestBody.create(MediaType.parse("text/plain"), DataManager.getInstance().getUserData(ProviderListAct.this).result.id);
+        RequestBody serviceType1 = RequestBody.create(MediaType.parse("text/plain"), serviceType);
 
-        Call<Map<String,String>> signupCall = apiInterface.sendRequest(cycle_id, problm, datE, timE, addreSS,latitude,longitude,user_id, provider_id,filePart,filePart1);
+
+        Call<Map<String,String>> signupCall = apiInterface.sendRequest(cycle_id, problm, datE, timE, addreSS,latitude,longitude,user_id, provider_id,serviceType1,filePart,filePart1);
         signupCall.enqueue(new Callback<Map<String,String>>() {
             @Override
             public void onResponse(Call<Map<String,String>> call, Response<Map<String,String>> response) {

@@ -135,6 +135,12 @@
             android:theme="@style/AppTheme.NoActionBar"/>
 
 
+        <activity
+            android:name=".UrgenRequestAct"
+            android:screenOrientation="locked"
+            android:theme="@style/AppTheme.NoActionBar"/>
+
+
 
         <provider
             android:name="androidx.core.content.FileProvider"

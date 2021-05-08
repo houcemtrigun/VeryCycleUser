@@ -48,7 +48,7 @@ public class MainActivity extends AppCompatActivity {
 
         binding.chlidDashboard.linearNormal.setOnClickListener(v -> { startActivity(new Intent(MainActivity.this, ChoosingTypeOfride.class));});
 
-        binding.chlidDashboard.llUrgent.setOnClickListener(v -> {});
+        binding.chlidDashboard.llUrgent.setOnClickListener(v -> {startActivity(new Intent(MainActivity.this, UrgenRequestAct.class));});
 
         binding.chlidDashboard.llBike.setOnClickListener(v -> {});
 

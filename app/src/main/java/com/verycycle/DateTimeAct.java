@@ -27,7 +27,7 @@ public class DateTimeAct extends AppCompatActivity {
     public static String date="",time="";
     double latitude = 0.0, longitude = 0.0;
     int AUTOCOMPLETE_REQUEST_CODE_ADDRESS = 101;
-    String str_image_path = "",cycleId="",problem="",repair_image_path="",address="";
+    String str_image_path = "",cycleId="",problem="",repair_image_path="",address="",type="Normal repair";
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -72,7 +72,8 @@ public class DateTimeAct extends AppCompatActivity {
                         .putExtra("time",time)
                         .putExtra("address",address)
                         .putExtra("lat",latitude+"")
-                        .putExtra("lon",longitude+""));
+                        .putExtra("lon",longitude+"")
+                        .putExtra("serviceType",type));
             }
         });
 
