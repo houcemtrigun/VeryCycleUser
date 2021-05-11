@@ -72,6 +72,8 @@ public class Register extends AppCompatActivity {
     }
 
     private void SetupUI() {
+        binding.ccp.setCountryForPhoneCode(33);
+
         binding.regLi.setOnClickListener(v -> {
             validation();
         });

@@ -86,6 +86,8 @@ public class UrgenRequestAct extends AppCompatActivity {
         binding.spinnerModel.setAdapter(adapter);
 
 
+        binding.ivBack.setOnClickListener(v -> {finish();});
+
         binding.linerCycle.setOnClickListener(v -> {
             if(checkPermisssionForReadStorage())
                 showImageSelection();
