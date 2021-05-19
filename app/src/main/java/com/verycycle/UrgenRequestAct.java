@@ -38,6 +38,7 @@ import com.verycycle.adapter.AdapterCycleModel;
 import com.verycycle.databinding.ActivityUrgentRepairBinding;
 import com.verycycle.helper.App;
 import com.verycycle.helper.DataManager;
+import com.verycycle.helper.GPSTracker;
 import com.verycycle.model.CycleModel;
 import com.verycycle.retrofit.ApiClient;
 import com.verycycle.retrofit.VeryCycleUserInterface;
@@ -65,12 +66,15 @@ public class UrgenRequestAct extends AppCompatActivity {
     private Uri uriSavedImage;
     ArrayList<CycleModel.Result> arrayList;
     AdapterCycleModel adapter;
+    GPSTracker gpsTracker;
+    int flatPrice=0,breakDown=0,total;
 
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         apiInterface = ApiClient.getClient().create(VeryCycleUserInterface.class);
+        gpsTracker = new GPSTracker(UrgenRequestAct.this);
         binding = DataBindingUtil.setContentView(this,R.layout.activity_urgent_repair);
         initViews();
     }
@@ -129,9 +133,17 @@ public class UrgenRequestAct extends AppCompatActivity {
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if(isChecked){
                     flatRepair = "Flat repair";
+                    flatPrice =20;
+                    total = flatPrice + breakDown ;
+                    binding.tvContinue.setText(getString(R.string.continue_) + "  " + "€"+ total);
                 }
                 else {
                     flatRepair = "";
+                    flatPrice = 0;
+                    total = flatPrice + breakDown;
+                    if(total==0) binding.tvContinue.setText(getString(R.string.continue_));
+                    else  binding.tvContinue.setText(getString(R.string.continue_) + "  " + "€"+ total);
+
                 }
             }
         });
@@ -141,13 +153,30 @@ public class UrgenRequestAct extends AppCompatActivity {
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if(isChecked){
                     breakingLock = "Breaking a lock";
+                    breakDown = 10;
+                    total = flatPrice + breakDown;
+                    binding.tvContinue.setText(getString(R.string.continue_) + "  " + "€"+ total);
+
                 }
                 else {
                     breakingLock = "";
+                    breakDown = 0;
+                    total = flatPrice + breakDown;
+                    if(total==0) binding.tvContinue.setText(getString(R.string.continue_));
+                    else  binding.tvContinue.setText(getString(R.string.continue_) + "  " + "€"+ total);
+
                 }
             }
         });
 
+
+        binding.ivLocation.setOnClickListener(v -> {
+            latitude = gpsTracker.getLatitude();
+            longitude = gpsTracker.getLongitude();
+            address = DataManager.getInstance().getAddress(UrgenRequestAct.this, gpsTracker.getLatitude(), gpsTracker.getLongitude());
+            binding.tvAddress.setText(address);
+
+        });
 
 
     }
@@ -166,6 +195,7 @@ public class UrgenRequestAct extends AppCompatActivity {
          }
          else {
              String dataTime[] = DataManager.getCurrent().split(" ");
+/*
              startActivity(new Intent(this, ProviderListAct.class).putExtra("cycleModel",cycleId)
                      .putExtra("cycleImage",str_image_path).putExtra("problem",chk)
                      .putExtra("repairImage","")
@@ -175,6 +205,12 @@ public class UrgenRequestAct extends AppCompatActivity {
                      .putExtra("lat",latitude+"")
                      .putExtra("lon",longitude+"")
                      .putExtra("serviceType",type));
+*/
+
+             Toast.makeText(UrgenRequestAct.this, getString(R.string.request_send_successfully), Toast.LENGTH_SHORT).show();
+             startActivity(new Intent(UrgenRequestAct.this,MainActivity.class).addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK| Intent.FLAG_ACTIVITY_CLEAR_TOP));
+             finish();
+
          }
 
     }

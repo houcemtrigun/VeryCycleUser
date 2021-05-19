@@ -466,9 +466,9 @@ public class DataManager {
             String country = addresses.get(0).getCountryName();
             String postalCode = addresses.get(0).getPostalCode();
             String region = addresses.get(0).getAdminArea();
-            Log.e("addressStreet====", addressStreet);
-            Log.e("city====", city);
-            Log.e("region====", region);
+         //   Log.e("addressStreet====", addressStreet);
+          //  Log.e("city====", city);
+           // Log.e("region====", region);
         } catch (IOException e) {
             e.printStackTrace();
         }

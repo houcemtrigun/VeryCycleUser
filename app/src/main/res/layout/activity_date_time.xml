@@ -73,7 +73,12 @@
             android:elevation="@dimen/_10sdp"
             app:cardBackgroundColor="@color/white"
             app:cardCornerRadius="@dimen/_10sdp"
-            app:cardElevation="0dp">
+            app:cardElevation="0dp"
+            android:visibility="gone">
+
+
+
+
 
 
             <LinearLayout
@@ -147,12 +152,27 @@
         </androidx.cardview.widget.CardView>
 
 
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rvdateTime"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_98sdp"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            tools:listitem="@layout/item_time_slot"
+            />
+
+
+
+
+
+
         <LinearLayout
             android:id="@+id/btnContinue"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@id/card_view"
             android:layout_marginLeft="@dimen/_40sdp"
+            android:layout_alignParentBottom="true"
             android:layout_marginTop="@dimen/_15sdp"
             android:layout_marginRight="@dimen/_40sdp"
             android:layout_marginBottom="@dimen/_5sdp"

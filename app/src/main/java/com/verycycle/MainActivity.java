@@ -76,8 +76,8 @@ public class MainActivity extends AppCompatActivity {
 
 
         if (checkPermissions()) {
+            setCurrentLoc();
             if (isLocationEnabled()) {
-                setCurrentLoc();
             } else {
                 Toast.makeText(this, "Turn on location", Toast.LENGTH_LONG).show();
                 Intent intent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);

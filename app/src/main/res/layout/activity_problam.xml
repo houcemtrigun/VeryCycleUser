@@ -45,109 +45,44 @@
         <androidx.cardview.widget.CardView
             android:id="@+id/card_view"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
+            android:layout_height="match_parent"
+            android:layout_above="@+id/btnContinue"
             android:layout_marginLeft="@dimen/_40sdp"
             android:layout_marginTop="@dimen/_98sdp"
             android:layout_marginRight="@dimen/_35sdp"
             android:elevation="@dimen/_10sdp"
             app:cardBackgroundColor="@color/white"
             app:cardCornerRadius="@dimen/_10sdp"
-            app:cardElevation="0dp">
+            app:cardElevation="0dp"
+            android:visibility="visible">
 
 
-            <LinearLayout
+            <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_gravity="bottom"
                 android:layout_marginTop="@dimen/_2sdp"
                 android:orientation="vertical"
-                android:padding="@dimen/_18sdp">
-
-
-                <TextView
-                    android:id="@+id/tv1"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="@drawable/btn_bg_"
-                    android:fontFamily="@font/poppinsmedium"
-                    android:gravity="center"
-                    android:padding="@dimen/_8sdp"
-                    android:text="@string/my_speeds_go_wrong"
-                    android:textColor="@color/black"
-                    android:textStyle="bold" />
-
-
-                <TextView
-                    android:id="@+id/tv2"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="@dimen/_25sdp"
-                    android:layout_marginTop="@dimen/_15sdp"
-                    android:background="@drawable/btn_bg_"
-                    android:fontFamily="@font/poppinsmedium"
-                    android:gravity="center"
-                    android:padding="@dimen/_8sdp"
-                    android:text="@string/my_tire_is_flat"
-                    android:textColor="@color/black"
-                    android:textStyle="bold" />
-
-
-                <TextView
-                    android:id="@+id/tv3"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/_15sdp"
-                    android:layout_marginRight="@dimen/_25sdp"
-                    android:background="@drawable/btn_bg_"
-                    android:fontFamily="@font/poppinsmedium"
-                    android:gravity="center"
-                    android:padding="@dimen/_8sdp"
-                    android:text="@string/i_have_a_brake_problem"
-                    android:textColor="@color/black"
-                    android:textStyle="bold" />
-
-
-                <TextView
-                    android:id="@+id/tv4"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/_15sdp"
-                    android:layout_marginRight="@dimen/_5sdp"
-                    android:background="@drawable/btn_bg_problem"
-                    android:fontFamily="@font/poppinsmedium"
-                    android:gravity="center"
-                    android:padding="@dimen/_8sdp"
-                    android:text="@string/my_eBike_has_broken_down"
-                    android:textColor="@color/black"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:id="@+id/tvOther"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/_15sdp"
-                    android:layout_marginRight="@dimen/_65sdp"
-                    android:background="@drawable/btn_bg_"
-                    android:fontFamily="@font/poppinsmedium"
-                    android:gravity="center"
-                    android:padding="@dimen/_8sdp"
-                    android:text="@string/other"
-                    android:textColor="@color/black"
-                    android:textStyle="bold" />
-
-                /
-
+                android:padding="@dimen/_10sdp">
 
                 <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="@dimen/_15sdp"
                     android:layout_marginTop="@dimen/_10sdp"
-                    android:src="@drawable/cycle_img_null" />
+                    android:layout_alignParentBottom="true"
+                    android:src="@drawable/cycle_img_null"
+                    />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rvProblem"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                    tools:listitem="@layout/item_problem"/>
 
 
-            </LinearLayout>
+
+            </RelativeLayout>
 
         </androidx.cardview.widget.CardView>
 
@@ -156,11 +91,11 @@
             android:id="@+id/btnContinue"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@id/card_view"
+            android:layout_alignParentBottom="true"
             android:layout_marginLeft="@dimen/_40sdp"
             android:layout_marginTop="@dimen/_15sdp"
             android:layout_marginRight="@dimen/_40sdp"
-            android:layout_marginBottom="@dimen/_5sdp"
+            android:layout_marginBottom="@dimen/_10sdp"
             android:background="@drawable/btn_bg"
             android:elevation="@dimen/_5sdp"
             android:orientation="horizontal"
@@ -168,6 +103,7 @@
 
 
             <TextView
+                android:id="@+id/tvPrice"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"

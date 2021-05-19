@@ -196,4 +196,6 @@
     <string name="breaking_lock">Breaking a lock</string>
     <string name="urgent_repair">Urgent repair</string>
     <string name="please_select_repair_service">Please select repair service</string>
+    <string name="whole_morning">Whole morning</string>
+    <string name="all_afternoon">All afternoon</string>
 </resources>

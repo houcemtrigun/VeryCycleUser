@@ -15,32 +15,39 @@ import com.google.android.libraries.places.api.model.Place;
 import com.google.android.libraries.places.widget.Autocomplete;
 import com.google.android.libraries.places.widget.AutocompleteActivity;
 import com.google.android.libraries.places.widget.model.AutocompleteActivityMode;
+import com.verycycle.adapter.AdapterTimeSlot;
 import com.verycycle.databinding.ActivityDateTimeBinding;
 import com.verycycle.helper.App;
 import com.verycycle.helper.DataManager;
+import com.verycycle.model.DateTimeModel;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
 public class DateTimeAct extends AppCompatActivity {
-    ActivityDateTimeBinding  binding;
-    public static String date="",time="";
+    ActivityDateTimeBinding binding;
+    public static String date = "", time = "";
     double latitude = 0.0, longitude = 0.0;
     int AUTOCOMPLETE_REQUEST_CODE_ADDRESS = 101;
-    String str_image_path = "",cycleId="",problem="",repair_image_path="",address="",type="Normal repair";
+    String str_image_path = "", cycleId = "", problem = "", repair_image_path = "", address = "", type = "Normal repair";
+    AdapterTimeSlot adapter;
+    ArrayList<DateTimeModel.Result>arrayList;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        binding = DataBindingUtil.setContentView(this,R.layout.activity_date_time);
+        binding = DataBindingUtil.setContentView(this, R.layout.activity_date_time);
         initViews();
     }
 
     private void initViews() {
+        arrayList = new ArrayList<>();
         if (!Places.isInitialized()) {
             Places.initialize(DateTimeAct.this, getString(R.string.place_api_key));
         }
 
-        if(getIntent()!=null){
+        if (getIntent() != null) {
             cycleId = getIntent().getStringExtra("cycleModel");
             str_image_path = getIntent().getStringExtra("cycleImage");
             problem = getIntent().getStringExtra("problem");
@@ -49,9 +56,12 @@ public class DateTimeAct extends AppCompatActivity {
 
 
 
-        binding.tvDate.setOnClickListener(v -> { DataManager.DatePicker(DateTimeAct.this,binding.tvDate::setText);});
-        binding.tvTime.setOnClickListener(v -> { DataManager.TimePicker(DateTimeAct.this,binding.tvTime::setText);});
 
+
+        // binding.tvDate.setOnClickListener(v -> { DataManager.DatePicker(DateTimeAct.this,binding.tvDate::setText);});
+        //   binding.tvTime.setOnClickListener(v -> { DataManager.TimePicker(DateTimeAct.this,binding.tvTime::setText);});
+
+/*
         binding.btnContinue.setOnClickListener(v -> {
             if(date.equals("")){
                 App.showToast(DateTimeAct.this,getString(R.string.please_select_date), Toast.LENGTH_LONG);
@@ -66,7 +76,7 @@ public class DateTimeAct extends AppCompatActivity {
             }
            else {
                 startActivity(new Intent(this, ProviderListAct.class).putExtra("cycleModel",cycleId)
-                        .putExtra("cycleImage",str_image_path).putExtra("problem",problem)
+                      .putExtra("cycleImage",str_image_path).putExtra("problem",problem)
                         .putExtra("repairImage",repair_image_path)
                         .putExtra("date",date)
                         .putExtra("time",time)
@@ -76,8 +86,11 @@ public class DateTimeAct extends AppCompatActivity {
                         .putExtra("serviceType",type));
             }
         });
+*/
 
 
+
+/*
         binding.tvAddress.setOnClickListener(v -> {
             List<Place.Field> fields = Arrays.asList(Place.Field.ID, Place.Field.NAME, Place.Field.LAT_LNG, Place.Field.ADDRESS);
 
@@ -87,6 +100,22 @@ public class DateTimeAct extends AppCompatActivity {
                     .build(DateTimeAct.this);
 
             startActivityForResult(intent, AUTOCOMPLETE_REQUEST_CODE_ADDRESS);
+        });
+*/
+        adapter = new AdapterTimeSlot(DateTimeAct.this,arrayList);
+        binding.rvdateTime.setAdapter(adapter);
+
+
+        binding.btnContinue.setOnClickListener(v -> {
+            startActivity(new Intent(this, SelectAddressAct.class).putExtra("cycleModel",cycleId)
+                    .putExtra("cycleImage",str_image_path).putExtra("problem",problem)
+                    .putExtra("repairImage",repair_image_path)
+                    //.putExtra("date",date)
+                   // .putExtra("time",time)
+                    .putExtra("address",address)
+                    .putExtra("lat",latitude+"")
+                    .putExtra("lon",longitude+"")
+                    .putExtra("serviceType",type));
         });
 
 

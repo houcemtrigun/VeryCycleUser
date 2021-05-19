@@ -143,6 +143,10 @@
             android:screenOrientation="locked"
             android:theme="@style/AppTheme.NoActionBar"/>
 
+        <activity android:name=".SelectAddressAct"
+            android:screenOrientation="locked"
+            android:theme="@style/AppTheme.NoActionBar"/>
+
 
 
         <provider
