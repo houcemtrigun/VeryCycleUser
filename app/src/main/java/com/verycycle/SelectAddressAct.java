@@ -1,13 +1,19 @@
 package com.verycycle;
 
+import android.Manifest;
+import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.location.LocationManager;
 import android.os.Bundle;
+import android.provider.Settings;
 import android.util.Log;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
 import androidx.databinding.DataBindingUtil;
 
 import com.google.android.gms.common.api.Status;
@@ -40,14 +46,16 @@ public class SelectAddressAct extends AppCompatActivity implements OnMapReadyCal
     int AUTOCOMPLETE_REQUEST_CODE_ADDRESS = 101;
     String str_image_path = "",cycleId="",problem="",repair_image_path="",address="",lat="",lon="",serviceType="";
     GPSTracker gpsTracker;
+    int PERMISSION_ID = 44;
+
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = DataBindingUtil.setContentView(this, R.layout.activity_select_address);
-        gpsTracker = new GPSTracker(SelectAddressAct.this);
-        mapFragment = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map);
-        mapFragment.getMapAsync(this);
+
+     //   mapFragment = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map);
+     //   mapFragment.getMapAsync(this);
 
         initView();
 
@@ -109,11 +117,34 @@ public class SelectAddressAct extends AppCompatActivity implements OnMapReadyCal
             finish();
         });
 
+        if (checkPermissions()) {
+            if (isLocationEnabled()) {
+                setCurrentLoc();
+            } else {
+                Toast.makeText(this, "Turn on location", Toast.LENGTH_LONG).show();
+                Intent intent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
+                startActivity(intent);
+
+            }
+        } else {
+            requestPermissions();
+        }
+
     }
 
     @Override
     public void onMapReady(GoogleMap googleMap) {
         map = googleMap;
+        map.clear();
+        latitude = gpsTracker.getLatitude();
+        longitude = gpsTracker.getLongitude();
+        address = DataManager.getInstance().getAddress(SelectAddressAct.this,gpsTracker.getLatitude(),gpsTracker.getLongitude());
+        binding.tvAddress.setText(address);
+        map.addMarker(new MarkerOptions()
+                .position(new LatLng(latitude, longitude))
+                .title("Marker in Location"));
+        map.animateCamera(CameraUpdateFactory.newCameraPosition(getCameraPositionWithBearing(new LatLng(latitude, longitude))));
+
     }
 
 
@@ -156,5 +187,50 @@ public class SelectAddressAct extends AppCompatActivity implements OnMapReadyCal
 
 
 
+    private boolean checkPermissions() {
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) == PackageManager.PERMISSION_GRANTED &&
+                ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
+            return true;
+        }
+        return false;
+    }
 
+    private void requestPermissions() {
+        ActivityCompat.requestPermissions(
+                this,
+                new String[]{Manifest.permission.ACCESS_COARSE_LOCATION, Manifest.permission.ACCESS_FINE_LOCATION},
+                PERMISSION_ID
+        );
+    }
+
+    private boolean isLocationEnabled() {
+        LocationManager locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
+        return locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER) || locationManager.isProviderEnabled(
+                LocationManager.NETWORK_PROVIDER
+        );
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        if (requestCode == PERMISSION_ID) {
+            if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                setCurrentLoc();
+            }
+        }
+    }
+
+    private void setCurrentLoc() {
+        gpsTracker = new GPSTracker(SelectAddressAct.this);
+        mapFragment = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map);
+        mapFragment.getMapAsync(this);
+        Log.e("Location====","Latitude=== :"+gpsTracker.getLatitude() + "  " + "Longitute=== : " + gpsTracker.getLongitude());
+
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+    }
 }

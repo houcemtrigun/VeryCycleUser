@@ -37,7 +37,6 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding =    DataBindingUtil.setContentView(this,R.layout.activity_main);
-        gpsTracker = new GPSTracker(MainActivity.this);
         initViews();
 
     }
@@ -76,8 +75,8 @@ public class MainActivity extends AppCompatActivity {
 
 
         if (checkPermissions()) {
-            setCurrentLoc();
             if (isLocationEnabled()) {
+                setCurrentLoc();
             } else {
                 Toast.makeText(this, "Turn on location", Toast.LENGTH_LONG).show();
                 Intent intent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
@@ -92,6 +91,7 @@ public class MainActivity extends AppCompatActivity {
 
 
     private void setCurrentLoc() {
+        gpsTracker = new GPSTracker(MainActivity.this);
         binding.chlidDashboard.tvAddress.setText(DataManager.getInstance().getAddress(MainActivity.this,gpsTracker.getLatitude(),gpsTracker.getLongitude()));
     }
 

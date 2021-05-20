@@ -2,14 +2,17 @@ package com.verycycle;
 
 import android.Manifest;
 import android.app.Dialog;
+import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
+import android.location.LocationManager;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
+import android.provider.Settings;
 import android.util.Log;
 import android.view.View;
 import android.view.Window;
@@ -28,6 +31,7 @@ import androidx.databinding.DataBindingUtil;
 
 import com.bumptech.glide.Glide;
 import com.google.android.gms.common.api.Status;
+import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.libraries.places.api.Places;
 import com.google.android.libraries.places.api.model.Place;
 import com.google.android.libraries.places.widget.Autocomplete;
@@ -68,13 +72,14 @@ public class UrgenRequestAct extends AppCompatActivity {
     AdapterCycleModel adapter;
     GPSTracker gpsTracker;
     int flatPrice=0,breakDown=0,total;
+   public static final int PERMISSION_ID = 44;
+
 
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         apiInterface = ApiClient.getClient().create(VeryCycleUserInterface.class);
-        gpsTracker = new GPSTracker(UrgenRequestAct.this);
         binding = DataBindingUtil.setContentView(this,R.layout.activity_urgent_repair);
         initViews();
     }
@@ -88,6 +93,20 @@ public class UrgenRequestAct extends AppCompatActivity {
 
         adapter = new AdapterCycleModel(UrgenRequestAct.this,arrayList);
         binding.spinnerModel.setAdapter(adapter);
+
+
+        if (checkPermissions()) {
+            if (isLocationEnabled()) {
+                setCurrentLoc();
+            } else {
+                Toast.makeText(this, "Turn on location", Toast.LENGTH_LONG).show();
+                Intent intent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
+                startActivity(intent);
+
+            }
+        } else {
+            requestPermissions();
+        }
 
 
         binding.ivBack.setOnClickListener(v -> {finish();});
@@ -474,8 +493,48 @@ public class UrgenRequestAct extends AppCompatActivity {
                 // return;
             }
 
+            case PERMISSION_ID : {
+                if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                    setCurrentLoc();
+                }
+            }
+
 
         }
+    }
+
+    private boolean checkPermissions() {
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) == PackageManager.PERMISSION_GRANTED &&
+                ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
+            return true;
+        }
+        return false;
+    }
+
+    private void requestPermissions() {
+        ActivityCompat.requestPermissions(
+                this,
+                new String[]{Manifest.permission.ACCESS_COARSE_LOCATION, Manifest.permission.ACCESS_FINE_LOCATION},
+                PERMISSION_ID
+        );
+    }
+
+    private boolean isLocationEnabled() {
+        LocationManager locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
+        return locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER) || locationManager.isProviderEnabled(
+                LocationManager.NETWORK_PROVIDER
+        );
+    }
+
+
+    private void setCurrentLoc() {
+        gpsTracker = new GPSTracker(UrgenRequestAct.this);
+        latitude = gpsTracker.getLatitude();
+        longitude = gpsTracker.getLongitude();
+        address = DataManager.getInstance().getAddress(UrgenRequestAct.this,gpsTracker.getLatitude(),gpsTracker.getLongitude());
+        binding.tvAddress.setText(address);
+        Log.e("Location====","Latitude=== :"+gpsTracker.getLatitude() + "  " + "Longitute=== : " + gpsTracker.getLongitude());
+
     }
 
 }

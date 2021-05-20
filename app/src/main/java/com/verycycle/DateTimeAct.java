@@ -102,7 +102,7 @@ public class DateTimeAct extends AppCompatActivity {
             startActivityForResult(intent, AUTOCOMPLETE_REQUEST_CODE_ADDRESS);
         });
 */
-        adapter = new AdapterTimeSlot(DateTimeAct.this,arrayList);
+        adapter = new AdapterTimeSlot(DateTimeAct.this);
         binding.rvdateTime.setAdapter(adapter);
 
 
