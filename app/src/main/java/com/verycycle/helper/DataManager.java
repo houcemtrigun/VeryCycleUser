@@ -272,14 +272,14 @@ public class DataManager {
 */
 
         public static String getCurrent() {
-            SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy  hh:mm aa");
+            SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
             String currentDateandTime = sdf.format(new Date());
             return currentDateandTime;
         }
 
 
     public static String getCurrent1() {
-        SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
+        SimpleDateFormat sdf = new SimpleDateFormat("EEEE dd MMMM");
         String currentDateandTime = sdf.format(new Date());
         return currentDateandTime;
     }

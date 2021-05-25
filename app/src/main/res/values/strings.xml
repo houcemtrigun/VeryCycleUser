@@ -140,7 +140,7 @@
     <string name="what_is_the_problem_with_your_bike">What is the problem with your bike?</string>
     <string name="please_select_problem">Please select problem</string>
     <string name="choose_possible_repair_time_or_address">Choose repair time or address</string>
-    <string name="pick_at_least_ten_spread_over_three_days">( Pick at least 10 spread over 3 days )</string>
+    <string name="pick_at_least_ten_spread_over_three_days">( Pick at least 5 spread over 3 days )</string>
     <string name="select_date">Selecr Date</string>
     <string name="select_time">Select Time</string>
     <string name="select_address">Select Address</string>
@@ -198,4 +198,5 @@
     <string name="please_select_repair_service">Please select repair service</string>
     <string name="whole_morning">Whole morning</string>
     <string name="all_afternoon">All afternoon</string>
+    <string name="add_only_5_time_slot">Add only 5 time slot</string>
 </resources>
