@@ -32,7 +32,7 @@
                     android:layout_centerVertical="true"
                     android:layout_marginTop="@dimen/_20sdp"
                     android:fontFamily="@font/poppinsmedium"
-                    android:text="Account"
+                    android:text="@string/account"
                     android:textColor="@color/black"
                     android:textSize="@dimen/_12sdp"
                     android:textStyle="bold" />
@@ -50,7 +50,7 @@
                         android:layout_height="wrap_content"
                         android:layout_centerVertical="true"
                         android:fontFamily="@font/poppinsmedium"
-                        android:text="Unblock account"
+                        android:text="@string/unblock"
                         android:textSize="@dimen/_11sdp" />
 
                     <ImageView
@@ -79,7 +79,7 @@
                         android:layout_height="wrap_content"
                         android:layout_centerVertical="true"
                         android:fontFamily="@font/poppinsmedium"
-                        android:text="Privacy information"
+                        android:text="@string/privacy_information"
                         android:textSize="@dimen/_11sdp" />
 
                     <ImageView
@@ -109,7 +109,7 @@
                         android:layout_height="wrap_content"
                         android:layout_centerVertical="true"
                         android:fontFamily="@font/poppinsmedium"
-                        android:text="Accepted payment methods"
+                        android:text="@string/accept_payment"
                         android:textSize="@dimen/_11sdp" />
 
                     <ImageView
@@ -135,7 +135,7 @@
                     android:layout_centerVertical="true"
                     android:layout_marginTop="@dimen/_20sdp"
                     android:fontFamily="@font/poppinsmedium"
-                    android:text="Price estimation"
+                    android:text="@string/price_estimation"
                     android:textColor="@color/black"
                     android:textSize="@dimen/_12sdp"
                     android:textStyle="bold" />
@@ -183,7 +183,7 @@
                         android:layout_height="wrap_content"
                         android:layout_centerVertical="true"
                         android:fontFamily="@font/poppinsmedium"
-                        android:text="Damage or cleaning fee"
+                        android:text="@string/damage"
                         android:textSize="@dimen/_11sdp" />
 
                     <ImageView
@@ -213,7 +213,7 @@
                         android:layout_height="wrap_content"
                         android:layout_centerVertical="true"
                         android:fontFamily="@font/poppinsmedium"
-                        android:text="Price higher than accepted "
+                        android:text="@string/price"
                         android:textSize="@dimen/_11sdp" />
 
                     <ImageView

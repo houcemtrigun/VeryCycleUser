@@ -41,7 +41,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/_15sdp"
                     android:fontFamily="@font/poppinsmedium"
-                    android:text="Edit Profile"
+                    android:text="@string/edit_profile"
                     android:textAlignment="center"
                     android:textColor="#000"
                     android:textSize="@dimen/_15sdp"
@@ -127,7 +127,7 @@
                     android:layout_marginLeft="@dimen/_10sdp"
                     android:layout_marginTop="@dimen/_10sdp"
                     android:layout_marginRight="@dimen/_10sdp"
-                    android:hint="Email"
+                    android:hint="@string/email"
                     app:endIconTint="@color/colorPrimaryDark">
 
                     <EditText
@@ -207,7 +207,7 @@
                         android:layout_weight="1"
                         android:fontFamily="@font/poppinsmedium"
                         android:gravity="center_horizontal"
-                        android:text="Save &amp; Update"
+                        android:text="@string/save_update"
                         android:textAlignment="center"
                         android:textColor="#000"
                         android:textSize="@dimen/_12sdp"

@@ -7,8 +7,10 @@ import android.util.Log;
 import android.widget.Toast;
 
 import com.google.gson.Gson;
+import com.verycycle.LoginActivity;
 import com.verycycle.Splash;
 import com.verycycle.retrofit.ApiClient;
+import com.verycycle.retrofit.Constant;
 import com.verycycle.retrofit.VeryCycleUserInterface;
 
 
@@ -87,9 +89,11 @@ public class SessionManager {
                     Log.e(TAG,"User Logout Response"+responseString);
                     if(data.get("status").equals("1")){
                         getEditor(context).clear().commit();
+                        DataManager.updateResources(context,"en");
                         Intent intent = new Intent(context, Splash.class);
                         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_NO_HISTORY);
                         context.startActivity(intent);
+
                     }
                     else if(data.get("status").equals("0")){
                         App.showToast(context,"data not available", Toast.LENGTH_SHORT);

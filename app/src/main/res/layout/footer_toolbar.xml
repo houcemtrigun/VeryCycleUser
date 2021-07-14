@@ -140,6 +140,11 @@
 
             </LinearLayout>
 
+            <ScrollView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:scrollbars="none">
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -202,7 +207,7 @@
                                 android:layout_height="wrap_content"
                                 android:fontFamily="@font/poppinsmedium"
                                 android:gravity="center"
-                                android:text="Normal Repair"
+                                android:text="@string/normal_repair"
                                 android:textColor="#000"
                                 android:textStyle="bold">
 
@@ -272,7 +277,7 @@
                                 android:layout_height="wrap_content"
                                 android:fontFamily="@font/poppinsmedium"
                                 android:gravity="center"
-                                android:text="Urgent Repair"
+                                android:text="@string/urgent_repair"
                                 android:textColor="#000"
                                 android:textStyle="bold">
 
@@ -318,6 +323,8 @@
                         android:layout_marginLeft="@dimen/_40sdp"
                         android:layout_marginTop="@dimen/_8sdp"
                         android:layout_marginRight="@dimen/_35sdp"
+                        android:layout_marginBottom="@dimen/_20sdp"
+
                         android:elevation="@dimen/_10sdp"
                         app:cardBackgroundColor="@color/white"
                         app:cardCornerRadius="8dp"
@@ -340,7 +347,7 @@
                                 android:layout_height="wrap_content"
                                 android:fontFamily="@font/poppinsmedium"
                                 android:gravity="center"
-                                android:text="Bike Rental"
+                                android:text="@string/bike_rental"
                                 android:textColor="#000"
                                 android:textStyle="bold">
 
@@ -354,6 +361,8 @@
                 </RelativeLayout>
 
             </LinearLayout>
+
+            </ScrollView>
 
         </LinearLayout>
 

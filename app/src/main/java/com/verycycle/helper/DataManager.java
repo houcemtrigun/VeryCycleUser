@@ -439,19 +439,17 @@ public class DataManager {
     }
 
 
-   /*
-
-     public static void updateResources(Context context, String language) {
+    public static void updateResources(Context context, String language) {
         Locale locale = new Locale(language);
         Locale.setDefault(locale);
-
         Resources resources = context.getResources();
 
         Configuration configuration = resources.getConfiguration();
         configuration.locale = locale;
 
         resources.updateConfiguration(configuration, resources.getDisplayMetrics());
-    }*/
+    }
+
 
     public String getAddress(Context context, double latitude, double longitute) {
         List<Address> addresses;

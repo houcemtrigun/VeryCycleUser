@@ -199,4 +199,23 @@
     <string name="whole_morning">Whole morning</string>
     <string name="all_afternoon">All afternoon</string>
     <string name="add_only_5_time_slot">Add only 5 time slot</string>
+    <string name="english">English</string>
+    <string name="french">French</string>
+    <string name="invoice">Invoice</string>
+    <string name="unblock">Unblock account</string>
+    <string name="privacy_information">Privacy information</string>
+    <string name="accept_payment">Accepted payment methods</string>
+    <string name="price_estimation">Price estimation</string>
+    <string name="damage">Damage or cleaning fee</string>
+    <string name="price">Price higher than accepted</string>
+    <string name="normal_repair">Normal Repair</string>
+    <string name="bike_rental">Bike Rental</string>
+    <string name="password">Password</string>
+    <string name="sign_up">Sign Up</string>
+    <string name="already_have">Already have an account ? Singin</string>
+    <string name="loging">Loging</string>
+    <string name="enter_your_email_pass">Enter your email and password</string>
+    <string name="forgot_pass">Forgot Password?</string>
+    <string name="dont_have_an_account">Don’t have an account ? Singup</string>
+    <string name="save_update"><![CDATA[Save &amp; Update]]></string>
 </resources>

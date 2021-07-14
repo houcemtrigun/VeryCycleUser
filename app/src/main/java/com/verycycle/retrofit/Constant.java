@@ -5,6 +5,7 @@ public class Constant {
     public static final String BASE_URL = "https://verycycle.fr/webservice/";
     public static final String USER_INFO = "user_info";
 
+    public static final String LANGUAGE = "language";
 
     public static String emailPattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+";
 

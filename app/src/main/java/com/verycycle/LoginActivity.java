@@ -66,6 +66,19 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
 
+
+        binding.btnEnglish.setOnClickListener(v -> {
+            DataManager.updateResources(LoginActivity.this,"en");
+            SessionManager.writeString(LoginActivity.this, Constant.LANGUAGE,"en");
+            resetartActivity();
+        });
+
+        binding.btnFranch.setOnClickListener(v -> {
+            DataManager.updateResources(LoginActivity.this,"fr");
+            SessionManager.writeString(LoginActivity.this,Constant.LANGUAGE,"fr");
+            resetartActivity();
+        });
+
     }
 
     private void validation() {
@@ -132,5 +145,11 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
 
+    }
+
+    private void resetartActivity() {
+        Intent intent = getIntent();
+        finish();
+        startActivity(intent);
     }
 }

@@ -36,7 +36,7 @@
                         android:checked="false"
                         android:gravity="center"
                         android:layoutDirection="rtl"
-                        android:text="Invoice"
+                        android:text="@string/invoice"
                         android:textColor="@color/black"
                         android:textSize="@dimen/_14sdp"
                         android:textStyle="bold" />

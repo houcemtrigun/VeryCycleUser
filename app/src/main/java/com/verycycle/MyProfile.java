@@ -10,6 +10,8 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
 import com.verycycle.databinding.ActivityMyProfileBinding;
 import com.verycycle.helper.DataManager;
+import com.verycycle.helper.SessionManager;
+import com.verycycle.retrofit.Constant;
 
 public class MyProfile extends AppCompatActivity {
     ActivityMyProfileBinding binding;
@@ -26,6 +28,7 @@ public class MyProfile extends AppCompatActivity {
         binding.ivBack.setOnClickListener(v -> {finish();});
 
         binding.btnEditProfile.setOnClickListener(v->{startActivity(new Intent(MyProfile.this,EditProfileAct.class));});
+
 
 
 

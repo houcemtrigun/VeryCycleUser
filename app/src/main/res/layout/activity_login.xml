@@ -45,7 +45,7 @@
                     android:layout_marginLeft="@dimen/_20sdp"
                     android:fontFamily="@font/poppinsmedium"
                     android:padding="@dimen/_2sdp"
-                    android:text="Loging"
+                    android:text="@string/loging"
                     android:textColor="#fff"
                     android:textSize="@dimen/_15sdp"
                     android:textStyle="bold"></TextView>
@@ -57,10 +57,10 @@
                     android:layout_marginLeft="@dimen/_20sdp"
                     android:fontFamily="@font/poppinsmedium"
                     android:padding="@dimen/_2sdp"
-                    android:text="Enter your emails and password"
+                    android:text="@string/enter_your_email_pass"
                     android:textColor="#A5A4A4"
                     android:textSize="@dimen/_12sdp"
-                    android:textStyle="bold"></TextView>
+                    android:textStyle="bold"/>
 
 
             </LinearLayout>
@@ -110,7 +110,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_margin="@dimen/_15sdp"
-                            android:hint="Email"
+                            android:hint="@string/email"
                             app:endIconMode="clear_text"
                             app:endIconTint="@color/colorPrimaryDark">
 
@@ -131,7 +131,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_margin="@dimen/_15sdp"
-                            android:hint="Password"
+                            android:hint="@string/password"
                             app:endIconMode="password_toggle">
 
                             <EditText
@@ -153,7 +153,7 @@
                             android:layout_gravity="end"
                             android:fontFamily="@font/poppinsmedium"
                             android:padding="@dimen/_10sdp"
-                            android:text="Forgot Password?"
+                            android:text="@string/forgot_pass"
                             android:textColor="@color/black">
 
                         </TextView>
@@ -196,11 +196,51 @@
                             android:layout_gravity="center"
                             android:layout_marginTop="@dimen/_5sdp"
                             android:fontFamily="@font/poppinsmedium"
-                            android:layout_marginBottom="@dimen/_20sdp"
-                            android:text="Don’t have an account ? Singup"
-                            android:textColor="@color/black">
+                            android:text="@string/dont_have_an_account"
+                             android:layout_marginBottom="@dimen/_10sdp"
+                            android:textColor="@color/black"/>
 
-                        </TextView>
+
+                         <LinearLayout
+                             android:layout_width="match_parent"
+                             android:layout_height="wrap_content"
+                             android:orientation="horizontal"
+                             android:gravity="center"
+                             android:layout_margin="@dimen/_10sdp"
+                             >
+
+                             <androidx.appcompat.widget.AppCompatButton
+                                 android:id="@+id/btnEnglish"
+                                 android:layout_width="@dimen/_100sdp"
+                                 android:layout_height="@dimen/_45sdp"
+                                 android:text="@string/english"
+                                 android:paddingLeft="@dimen/_10sdp"
+                                 android:paddingRight="@dimen/_10sdp"
+                                 android:fontFamily="@font/poppins_bold"
+                                 android:textSize="@dimen/_14sdp"
+                                 android:layout_gravity="center"
+                                 android:gravity="center"
+                                 android:textAllCaps="false"/>
+
+
+
+                             <androidx.appcompat.widget.AppCompatButton
+                                 android:id="@+id/btnFranch"
+                                 android:layout_width="@dimen/_100sdp"
+                                 android:layout_height="@dimen/_45sdp"
+                                 android:text="@string/french"
+                                 android:paddingLeft="@dimen/_10sdp"
+                                 android:paddingRight="@dimen/_10sdp"
+                                 android:fontFamily="@font/poppins_bold"
+                                 android:textSize="@dimen/_14sdp"
+                                 android:layout_gravity="center"
+                                 android:gravity="center"
+                                 android:textAllCaps="false"
+                                 android:layout_marginLeft="@dimen/_15sdp"/>
+
+
+
+                         </LinearLayout>
 
 
                     </LinearLayout>
