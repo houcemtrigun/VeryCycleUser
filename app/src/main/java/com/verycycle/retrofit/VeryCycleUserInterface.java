@@ -2,9 +2,13 @@ package com.verycycle.retrofit;
 
 
 
+import com.verycycle.model.AddCard;
 import com.verycycle.model.BookingDetailModel;
 import com.verycycle.model.CycleModel;
+import com.verycycle.model.EditCardModel;
+import com.verycycle.model.GetCardModel;
 import com.verycycle.model.HistoryModel;
+import com.verycycle.model.PaymentModel;
 import com.verycycle.model.PaymentSummaryModel;
 import com.verycycle.model.ProblemModel;
 import com.verycycle.model.ProviderModel;
@@ -165,7 +169,24 @@ public interface VeryCycleUserInterface {
     Call<ProblemModel> getProblemList();
 
 
+    @FormUrlEncoded
+    @POST("edit_card_details")
+    Call<EditCardModel> editCard(@FieldMap Map<String, String> params);
 
+
+    @FormUrlEncoded
+    @POST("add_card_details")
+    Call<AddCard> addCardss(@FieldMap Map<String, String> params);
+
+
+    @FormUrlEncoded
+    @POST("get_card_details")
+    Call<GetCardModel> getCardList(@FieldMap Map<String, String> params);
+
+
+    @FormUrlEncoded
+    @POST("stripe_payment")
+    Call<PaymentModel> payment(@FieldMap Map<String, String> params);
 
 
 }

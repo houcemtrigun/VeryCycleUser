@@ -149,6 +149,27 @@
 
 
 
+        <activity android:name=".PaymentAct"
+            android:screenOrientation="locked"
+            android:theme="@style/AppTheme.NoActionBar"/>
+
+
+        <activity android:name=".CardLitActivity"
+            android:screenOrientation="locked"
+            android:theme="@style/AppTheme.NoActionBar"/>
+
+
+        <activity android:name=".AddCardAct"
+            android:screenOrientation="locked"
+            android:theme="@style/AppTheme.NoActionBar"/>
+
+
+        <activity android:name=".EditCardAct"
+            android:screenOrientation="locked"
+            android:theme="@style/AppTheme.NoActionBar"/>
+
+
+
         <provider
             android:name="androidx.core.content.FileProvider"
             android:authorities="com.verycycle.provider"

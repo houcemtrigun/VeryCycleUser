@@ -29,7 +29,7 @@ public class Constant {
 
     public static String card_ = "card_cvv";
 
-    public  static  final String STRIPE_TEST_KEY = "";
+    public  static  final String STRIPE_TEST_KEY = "pk_test_51JGKQZKveSMJkNAVeojtX77L355FAZZtWs1p077I3eQolRA13iRxwrHiFaI8AGHoVr2sjRDMOIJHGsgtFd80GOND00WukMGX6M";
 
     public  static  final String STRIPE_LIVE_KEY = "";
 

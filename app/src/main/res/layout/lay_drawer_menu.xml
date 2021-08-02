@@ -185,6 +185,36 @@
 
                 </LinearLayout>
 
+
+                <LinearLayout
+                    android:id="@+id/llCardList"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_5sdp"
+                    android:orientation="horizontal"
+                    android:padding="@dimen/_10sdp">
+
+                    <ImageView
+                        android:layout_width="@dimen/padding15"
+                        android:layout_height="@dimen/padding15"
+                        android:layout_gravity="center"
+                        android:adjustViewBounds="true"
+                        android:src="@drawable/circle" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/_15sdp"
+                        android:layout_marginRight="@dimen/_15sdp"
+                        android:layout_weight="2"
+                        android:fontFamily="@font/poppins_regular"
+                        android:text="@string/payment_info"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/_16sdp" />
+
+                </LinearLayout>
+
+
                 <LinearLayout
                     android:id="@+id/llHelp"
                     android:layout_width="match_parent"

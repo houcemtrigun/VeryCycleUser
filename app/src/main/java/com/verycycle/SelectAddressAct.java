@@ -29,14 +29,26 @@ import com.google.android.libraries.places.api.model.Place;
 import com.google.android.libraries.places.widget.Autocomplete;
 import com.google.android.libraries.places.widget.AutocompleteActivity;
 import com.google.android.libraries.places.widget.model.AutocompleteActivityMode;
+import com.google.gson.Gson;
 import com.verycycle.databinding.ActivitySelectAddressBinding;
 import com.verycycle.helper.App;
 import com.verycycle.helper.DataManager;
 import com.verycycle.helper.GPSTracker;
 import com.verycycle.helper.NetworkReceiver;
+import com.verycycle.retrofit.ApiClient;
+import com.verycycle.retrofit.VeryCycleUserInterface;
 
+import java.io.File;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Map;
+
+import okhttp3.MediaType;
+import okhttp3.MultipartBody;
+import okhttp3.RequestBody;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class SelectAddressAct extends AppCompatActivity implements OnMapReadyCallback {
     SupportMapFragment mapFragment;
@@ -47,13 +59,14 @@ public class SelectAddressAct extends AppCompatActivity implements OnMapReadyCal
     String str_image_path = "",cycleId="",problem="",repair_image_path="",address="",lat="",lon="",serviceType="";
     GPSTracker gpsTracker;
     int PERMISSION_ID = 44;
+    VeryCycleUserInterface apiInterface;
 
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = DataBindingUtil.setContentView(this, R.layout.activity_select_address);
-
+        apiInterface = ApiClient.getClient().create(VeryCycleUserInterface.class);
      //   mapFragment = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map);
      //   mapFragment.getMapAsync(this);
 
@@ -112,9 +125,11 @@ public class SelectAddressAct extends AppCompatActivity implements OnMapReadyCal
 
 
         binding.btnContinue.setOnClickListener(v -> {
-            Toast.makeText(SelectAddressAct.this, getString(R.string.request_send_successfully), Toast.LENGTH_SHORT).show();
-            startActivity(new Intent(SelectAddressAct.this,MainActivity.class).addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK| Intent.FLAG_ACTIVITY_CLEAR_TOP));
-            finish();
+          //  Toast.makeText(SelectAddressAct.this, getString(R.string.request_send_successfully), Toast.LENGTH_SHORT).show();
+           // startActivity(new Intent(SelectAddressAct.this,SelectAddressAct.class));
+
+            sendBookingRequest("");
+            //finish();
         });
 
         if (checkPermissions()) {
@@ -233,4 +248,70 @@ public class SelectAddressAct extends AppCompatActivity implements OnMapReadyCal
         super.onResume();
 
     }
+
+
+    private void sendBookingRequest(String providerId) {
+        DataManager.getInstance().showProgressMessage(SelectAddressAct.this, getString(R.string.please_wait));
+        MultipartBody.Part filePart,filePart1;
+        if (!str_image_path.equalsIgnoreCase("")) {
+            File file = DataManager.getInstance().saveBitmapToFile(new File(str_image_path));
+            filePart = MultipartBody.Part.createFormData("cycle_image", file.getName(), RequestBody.create(MediaType.parse("cycle_image/*"), file));
+        } else {
+            RequestBody attachmentEmpty = RequestBody.create(MediaType.parse("text/plain"), "");
+            filePart = MultipartBody.Part.createFormData("attachment", "", attachmentEmpty);
+        }
+        if (!repair_image_path.equalsIgnoreCase("")) {
+            File file = DataManager.getInstance().saveBitmapToFile(new File(repair_image_path));
+            filePart1 = MultipartBody.Part.createFormData("repaire_image", file.getName(), RequestBody.create(MediaType.parse("repaire_image/*"), file));
+        } else {
+            RequestBody attachmentEmpty = RequestBody.create(MediaType.parse("text/plain"), "");
+            filePart1 = MultipartBody.Part.createFormData("attachment", "", attachmentEmpty);
+        }
+
+
+        RequestBody cycle_id = RequestBody.create(MediaType.parse("text/plain"),cycleId);
+        RequestBody problm = RequestBody.create(MediaType.parse("text/plain"), problem);
+        RequestBody datE = RequestBody.create(MediaType.parse("text/plain"), "");
+        RequestBody timE = RequestBody.create(MediaType.parse("text/plain"), "");
+        RequestBody addreSS = RequestBody.create(MediaType.parse("text/plain"), address);
+        RequestBody latitude = RequestBody.create(MediaType.parse("text/plain"), lat);
+        RequestBody longitude = RequestBody.create(MediaType.parse("text/plain"), lon);
+        RequestBody provider_id = RequestBody.create(MediaType.parse("text/plain"), "");
+        RequestBody user_id = RequestBody.create(MediaType.parse("text/plain"), DataManager.getInstance().getUserData(SelectAddressAct.this).result.id);
+        RequestBody serviceType1 = RequestBody.create(MediaType.parse("text/plain"), serviceType);
+
+
+        Call<Map<String,String>> signupCall = apiInterface.sendRequest(cycle_id, problm, datE, timE, addreSS,latitude,longitude,user_id, provider_id,serviceType1,filePart,filePart1);
+        signupCall.enqueue(new Callback<Map<String,String>>() {
+            @Override
+            public void onResponse(Call<Map<String,String>> call, Response<Map<String,String>> response) {
+                DataManager.getInstance().hideProgressMessage();
+                try {
+                    Map<String,String> data = response.body();
+                    if (data.get("status").equals("1")) {
+                        String dataResponse = new Gson().toJson(response.body());
+                        String request_id = data.get("request_id");
+                        Log.e("MapMap", "EDIT PROFILE RESPONSE" + dataResponse);
+                       // Toast.makeText(SelectAddressAct.this, getString(R.string.request_send_successfully), Toast.LENGTH_SHORT).show();
+                        startActivity(new Intent(SelectAddressAct.this,PaymentAct.class)
+                        .putExtra("request_id",request_id));
+                        finish();
+                    } else if (data.get("status").equals("0")) {
+                        Toast.makeText(SelectAddressAct.this, data.get("message"), Toast.LENGTH_SHORT).show();
+                    }
+
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<Map<String,String>> call, Throwable t) {
+                call.cancel();
+                DataManager.getInstance().hideProgressMessage();
+            }
+
+        });
+    }
+
 }

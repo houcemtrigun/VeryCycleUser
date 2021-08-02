@@ -16,7 +16,7 @@ import com.verycycle.model.HistoryModel;
 
 import java.util.ArrayList;
 
-public class AdapterComplete extends RecyclerView.Adapter<AdapterComplete.MyViewHolder> {
+public class  AdapterComplete extends RecyclerView.Adapter<AdapterComplete.MyViewHolder> {
     Context context;
     ArrayList<HistoryModel.Result>arrayList;
 

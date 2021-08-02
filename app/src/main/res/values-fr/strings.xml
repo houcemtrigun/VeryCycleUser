@@ -222,5 +222,21 @@
     <string name="save_update">Enregistrer et mettre à jour</string>
 
 
+    <string name="cancel">Annuler</string>
+    <string name="confirm">Confirmer</string>
+    <string name="card_not_valid">Carte non valide</string>
+    <string name="please_complete_form">Veuillez remplir le formulaire</string>
+    <string name="confirm_before_pay">Confirmer avant de payer</string>
+    <string name="card_number">"Numéro de carte: "</string>
+    <string name="expiry_date">"Date d'expiration de la carte: "</string>
+    <string name="card_cvv">"Carte CVV : "</string>
+    <string name="card_not_available">Carte non disponible</string>
+    <string name="payment_info">Informations sur la carte</string>
+    <string name="purchase">Acheter</string>
+    <string name="add_card_">Ajouter une carte</string>
+    <string name="update">Mettre à jour</string>
+    <string name="card_updated">Mise à jour de la carte réussie</string>
+    <string name="edit_card">Modifier la carte</string>
+
 
 </resources>

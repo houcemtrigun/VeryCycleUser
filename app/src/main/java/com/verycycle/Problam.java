@@ -157,5 +157,6 @@ public class Problam extends AppCompatActivity implements OnItemPositionListener
     public void onPosition(int position) {
         problem = arrayList.get(position).name;
         binding.tvPrice.setText(getString(R.string.continue_) + "  " + "€" + arrayList.get(position).price);
+        SessionManager.writeString(Problam.this,"price",arrayList.get(position).price);
     }
 }

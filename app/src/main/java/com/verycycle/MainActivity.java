@@ -69,6 +69,8 @@ public class MainActivity extends AppCompatActivity {
 
         binding.childNavDrawer.llSetting.setOnClickListener(v -> {});
 
+        binding.childNavDrawer.llCardList.setOnClickListener(v -> {startActivity(new Intent(MainActivity.this,CardLitActivity.class));});
+
         binding.childNavDrawer.btnSignout.setOnClickListener(v -> {
             SessionManager.clear(MainActivity.this,DataManager.getInstance().getUserData(MainActivity.this).result.id);
         });

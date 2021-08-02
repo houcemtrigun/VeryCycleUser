@@ -218,4 +218,21 @@
     <string name="forgot_pass">Forgot Password?</string>
     <string name="dont_have_an_account">Don’t have an account ? Singup</string>
     <string name="save_update"><![CDATA[Save &amp; Update]]></string>
+    <string name="cancel">Cancel</string>
+    <string name="confirm">Confirm</string>
+    <string name="card_not_valid">Card Not Valid</string>
+    <string name="please_complete_form">Please complete the form</string>
+    <string name="confirm_before_pay">Confirm before pay</string>
+    <string name="card_number">"Card number: "</string>
+    <string name="expiry_date">"Card expiry date: "</string>
+    <string name="card_cvv">"Card CVV: "</string>
+    <string name="card_not_available">Card not available</string>
+    <string name="payment_info">Card Info</string>
+    <string name="purchase">Purchase</string>
+    <string name="add_card_">Add Card</string>
+    <string name="update">Update</string>
+    <string name="card_updated">Card update Successful</string>
+    <string name="edit_card">Edit Card</string>
+    <string name="edit">Edit</string>
+
 </resources>
