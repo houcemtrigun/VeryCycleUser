@@ -56,7 +56,7 @@ public class SelectAddressAct extends AppCompatActivity implements OnMapReadyCal
     GoogleMap map;
     double latitude = 0.0, longitude = 0.0;
     int AUTOCOMPLETE_REQUEST_CODE_ADDRESS = 101;
-    String str_image_path = "",cycleId="",problem="",repair_image_path="",address="",lat="",lon="",serviceType="";
+    String str_image_path = "",cycleId="",problem="",repair_image_path="",address="",lat="",lon="",serviceType="",time="";
     GPSTracker gpsTracker;
     int PERMISSION_ID = 44;
     VeryCycleUserInterface apiInterface;
@@ -91,7 +91,7 @@ public class SelectAddressAct extends AppCompatActivity implements OnMapReadyCal
             problem = getIntent().getStringExtra("problem");
             repair_image_path = getIntent().getStringExtra("repairImage");
            // date = getIntent().getStringExtra("date");
-         //   time = getIntent().getStringExtra("time");
+            time = getIntent().getStringExtra("time");
             address = getIntent().getStringExtra("address");
             lat = getIntent().getStringExtra("lat");
             lon = getIntent().getStringExtra("lon");
@@ -272,7 +272,7 @@ public class SelectAddressAct extends AppCompatActivity implements OnMapReadyCal
         RequestBody cycle_id = RequestBody.create(MediaType.parse("text/plain"),cycleId);
         RequestBody problm = RequestBody.create(MediaType.parse("text/plain"), problem);
         RequestBody datE = RequestBody.create(MediaType.parse("text/plain"), "");
-        RequestBody timE = RequestBody.create(MediaType.parse("text/plain"), "");
+        RequestBody timE = RequestBody.create(MediaType.parse("text/plain"), time);
         RequestBody addreSS = RequestBody.create(MediaType.parse("text/plain"), address);
         RequestBody latitude = RequestBody.create(MediaType.parse("text/plain"), lat);
         RequestBody longitude = RequestBody.create(MediaType.parse("text/plain"), lon);

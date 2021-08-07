@@ -43,6 +43,8 @@ public class DateTimeAct extends AppCompatActivity {
     int count = 1;
     String currentDate[] ;
 
+    ArrayList<String>timeSlotList ;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -52,6 +54,7 @@ public class DateTimeAct extends AppCompatActivity {
 
     private void initViews() {
         arrayList = new ArrayList<>();
+        timeSlotList = new ArrayList<>();
         if (!Places.isInitialized()) {
             Places.initialize(DateTimeAct.this, getString(R.string.place_api_key));
         }
@@ -83,11 +86,17 @@ public class DateTimeAct extends AppCompatActivity {
                         binding.Firsttv910.setTextColor(getResources().getColor(R.color.white));
                         first910 = true;
                         count++;
+                        AddRemoveTime("add",binding.FirsttvDate.getText().toString() + " " + binding.Firsttv910.getText().toString());
+
                     } else {
                         binding.Firsttv910.setBackgroundResource(R.drawable.rounded_shap_white_5dp);
                         binding.Firsttv910.setTextColor(getResources().getColor(R.color.black));
                         first910 = false;
-                        if (count>1) count--;
+                        if (count>1) {
+                            count--;
+                            AddRemoveTime("remove",binding.FirsttvDate.getText().toString() + " " + binding.Firsttv910.getText().toString());
+
+                        }
                     }
                 }else {
                     App.showToast(DateTimeAct.this, getString(R.string.add_only_5_time_slot), Toast.LENGTH_LONG);
@@ -107,11 +116,17 @@ public class DateTimeAct extends AppCompatActivity {
                         binding.Firsttv1011.setTextColor(getResources().getColor(R.color.white));
                         first1011 = true;
                         count++;
+                        AddRemoveTime("add",binding.FirsttvDate.getText().toString() + " " + binding.Firsttv1011.getText().toString());
+
                     } else {
                         binding.Firsttv1011.setBackgroundResource(R.drawable.rounded_shap_white_5dp);
                         binding.Firsttv1011.setTextColor(getResources().getColor(R.color.black));
                         first1011 = false;
-                        if(count>1) count--;
+                        if(count>1) {
+                            count--;
+                            AddRemoveTime("remove",binding.FirsttvDate.getText().toString() + " " + binding.Firsttv1011.getText().toString());
+
+                        }
                     }
                 }else {
                     App.showToast(DateTimeAct.this, getString(R.string.add_only_5_time_slot), Toast.LENGTH_LONG);
@@ -131,11 +146,17 @@ public class DateTimeAct extends AppCompatActivity {
                         binding.Firsttv1112.setTextColor(getResources().getColor(R.color.white));
                         first1112 = true;
                         count++;
+                        AddRemoveTime("add",binding.FirsttvDate.getText().toString() + " " + binding.Firsttv1112.getText().toString());
+
                     } else {
                         binding.Firsttv1112.setBackgroundResource(R.drawable.rounded_shap_white_5dp);
                         binding.Firsttv1112.setTextColor(getResources().getColor(R.color.black));
                         first1112 = false;
-                        if(count>1) count--;
+                        if(count>1) {
+                            count--;
+                            AddRemoveTime("remove",binding.FirsttvDate.getText().toString() + " " + binding.Firsttv1112.getText().toString());
+
+                        }
                     }
                 }else {
                     App.showToast(DateTimeAct.this, getString(R.string.add_only_5_time_slot), Toast.LENGTH_LONG);
@@ -154,11 +175,17 @@ public class DateTimeAct extends AppCompatActivity {
                         binding.Firsttv1201.setTextColor(getResources().getColor(R.color.white));
                         first1201 = true;
                         count++;
+                        AddRemoveTime("add",binding.FirsttvDate.getText().toString() + " " + binding.Firsttv1201.getText().toString());
+
                     } else {
                         binding.Firsttv1201.setBackgroundResource(R.drawable.rounded_shap_white_5dp);
                         binding.Firsttv1201.setTextColor(getResources().getColor(R.color.black));
                         first1201 = false;
-                        if(count>1) count--;
+                        if(count>1) {
+                            count--;
+                            AddRemoveTime("remove",binding.FirsttvDate.getText().toString() + " " + binding.Firsttv1201.getText().toString());
+
+                        }
                     }
                 }
                 else {
@@ -178,11 +205,16 @@ public class DateTimeAct extends AppCompatActivity {
                         binding.Firsttv0102.setTextColor(getResources().getColor(R.color.white));
                         first0102 = true;
                         count++;
+                        AddRemoveTime("add",binding.FirsttvDate.getText().toString() + " " + binding.Firsttv0102.getText().toString());
                     } else {
                         binding.Firsttv0102.setBackgroundResource(R.drawable.rounded_shap_white_5dp);
                         binding.Firsttv0102.setTextColor(getResources().getColor(R.color.black));
                         first0102 = false;
-                        if(count>1) count--;
+                        if(count>1) {
+                            count--;
+                            AddRemoveTime("remove",binding.FirsttvDate.getText().toString() + " " + binding.Firsttv0102.getText().toString());
+
+                        }
                     }
                 }
                 else {
@@ -201,11 +233,17 @@ public class DateTimeAct extends AppCompatActivity {
                         binding.Firsttv0203.setTextColor(getResources().getColor(R.color.white));
                         first0203 = true;
                         count++;
+                        AddRemoveTime("add",binding.FirsttvDate.getText().toString() + " " + binding.Firsttv0203.getText().toString());
+
                     } else {
                         binding.Firsttv0203.setBackgroundResource(R.drawable.rounded_shap_white_5dp);
                         binding.Firsttv0203.setTextColor(getResources().getColor(R.color.black));
                         first0203 = false;
-                        if(count>1) count--;
+                        if(count>1) {
+                            count--;
+                            AddRemoveTime("remove",binding.FirsttvDate.getText().toString() + " " + binding.Firsttv0203.getText().toString());
+
+                        }
                     }
                 }else {
                     App.showToast(DateTimeAct.this, getString(R.string.add_only_5_time_slot), Toast.LENGTH_LONG);
@@ -223,11 +261,17 @@ public class DateTimeAct extends AppCompatActivity {
                         binding.Firsttv0304.setTextColor(getResources().getColor(R.color.white));
                         first0304 = true;
                         count++;
+                        AddRemoveTime("add",binding.FirsttvDate.getText().toString() + " " + binding.Firsttv0304.getText().toString());
+
                     } else {
                         binding.Firsttv0304.setBackgroundResource(R.drawable.rounded_shap_white_5dp);
                         binding.Firsttv0304.setTextColor(getResources().getColor(R.color.black));
                         first0304 = false;
-                        if(count>1) count--;
+                        if(count>1){
+                            count--;
+                            AddRemoveTime("remove",binding.FirsttvDate.getText().toString() + " " + binding.Firsttv0304.getText().toString());
+
+                        }
                     }
                 }
                 else {
@@ -246,11 +290,17 @@ public class DateTimeAct extends AppCompatActivity {
                         binding.Firsttv0405.setTextColor(getResources().getColor(R.color.white));
                         first0405 = true;
                         count++;
+                        AddRemoveTime("add",binding.FirsttvDate.getText().toString() + " " + binding.Firsttv0405.getText().toString());
+
                     } else {
                         binding.Firsttv0405.setBackgroundResource(R.drawable.rounded_shap_white_5dp);
                         binding.Firsttv0405.setTextColor(getResources().getColor(R.color.black));
                         first0405 = false;
-                        if(count>1) count--;
+                        if(count>1) {
+                            count--;
+                            AddRemoveTime("remove",binding.FirsttvDate.getText().toString() + " " + binding.Firsttv0405.getText().toString());
+
+                        }
                     }
                 }
                 else {
@@ -269,11 +319,17 @@ public class DateTimeAct extends AppCompatActivity {
                         binding.Firsttv0506.setTextColor(getResources().getColor(R.color.white));
                         first0506 = true;
                         count++;
+                        AddRemoveTime("add",binding.FirsttvDate.getText().toString() + " " + binding.Firsttv0506.getText().toString());
+
                     } else {
                         binding.Firsttv0506.setBackgroundResource(R.drawable.rounded_shap_white_5dp);
                         binding.Firsttv0506.setTextColor(getResources().getColor(R.color.black));
                         first0506 = false;
-                        if(count>1) count--;
+                        if(count>1) {
+                            count--;
+                            AddRemoveTime("remove",binding.FirsttvDate.getText().toString() + " " + binding.Firsttv0506.getText().toString());
+
+                        }
                     }
                 }else {
                     App.showToast(DateTimeAct.this, getString(R.string.add_only_5_time_slot), Toast.LENGTH_LONG);
@@ -291,11 +347,17 @@ public class DateTimeAct extends AppCompatActivity {
                         binding.Firsttv0607.setTextColor(getResources().getColor(R.color.white));
                         first0607 = true;
                         count++;
+                        AddRemoveTime("add",binding.FirsttvDate.getText().toString() + " " + binding.Firsttv0607.getText().toString());
+
                     } else {
                         binding.Firsttv0607.setBackgroundResource(R.drawable.rounded_shap_white_5dp);
                         binding.Firsttv0607.setTextColor(getResources().getColor(R.color.black));
                         first0607 = false;
-                        if(count>1) count--;
+                        if(count>1) {
+                            count--;
+                            AddRemoveTime("remove",binding.FirsttvDate.getText().toString() + " " + binding.Firsttv0607.getText().toString());
+
+                        }
                     }
                 }else {
                     App.showToast(DateTimeAct.this, getString(R.string.add_only_5_time_slot), Toast.LENGTH_LONG);
@@ -313,11 +375,17 @@ public class DateTimeAct extends AppCompatActivity {
                         binding.Firsttv0708.setTextColor(getResources().getColor(R.color.white));
                         first0708 = true;
                         count++;
+                        AddRemoveTime("add",binding.FirsttvDate.getText().toString() + " " + binding.Firsttv0708.getText().toString());
+
                     } else {
                         binding.Firsttv0708.setBackgroundResource(R.drawable.rounded_shap_white_5dp);
                         binding.Firsttv0708.setTextColor(getResources().getColor(R.color.black));
                         first0708 = false;
-                        if(count>1) count--;
+                        if(count>1) {
+                            count--;
+                            AddRemoveTime("remove",binding.FirsttvDate.getText().toString() + " " + binding.Firsttv0708.getText().toString());
+
+                        }
                     }
                 }else {
                     App.showToast(DateTimeAct.this, getString(R.string.add_only_5_time_slot), Toast.LENGTH_LONG);
@@ -337,11 +405,17 @@ public class DateTimeAct extends AppCompatActivity {
                         binding.Secondtv910.setTextColor(getResources().getColor(R.color.white));
                         second910 = true;
                         count++;
+                        AddRemoveTime("add",binding.SecondtvDate.getText().toString() + " " + binding.Secondtv910.getText().toString());
+
                     } else {
                         binding.Secondtv910.setBackgroundResource(R.drawable.rounded_shap_white_5dp);
                         binding.Secondtv910.setTextColor(getResources().getColor(R.color.black));
                         second910 = false;
-                        if (count>1) count--;
+                        if (count>1) {
+                            count--;
+                            AddRemoveTime("remove",binding.SecondtvDate.getText().toString() + " " + binding.Secondtv910.getText().toString());
+
+                        }
                     }
                 }else {
                     App.showToast(DateTimeAct.this, getString(R.string.add_only_5_time_slot), Toast.LENGTH_LONG);
@@ -359,11 +433,17 @@ public class DateTimeAct extends AppCompatActivity {
                         binding.Secondtv1011.setTextColor(getResources().getColor(R.color.white));
                         second1011 = true;
                         count++;
+                        AddRemoveTime("add",binding.SecondtvDate.getText().toString() + " " + binding.Secondtv1011.getText().toString());
+
                     } else {
                         binding.Secondtv1011.setBackgroundResource(R.drawable.rounded_shap_white_5dp);
                         binding.Secondtv1011.setTextColor(getResources().getColor(R.color.black));
                         second1011 = false;
-                        if(count>1) count--;
+                        if(count>1) {
+                            count--;
+                            AddRemoveTime("remove",binding.SecondtvDate.getText().toString() + " " + binding.Secondtv1011.getText().toString());
+
+                        }
                     }
                 }else {
                     App.showToast(DateTimeAct.this, getString(R.string.add_only_5_time_slot), Toast.LENGTH_LONG);
@@ -382,11 +462,17 @@ public class DateTimeAct extends AppCompatActivity {
                         binding.Secondtv1112.setTextColor(getResources().getColor(R.color.white));
                         second1112 = true;
                         count++;
+                        AddRemoveTime("add",binding.SecondtvDate.getText().toString() + " " + binding.Secondtv1112.getText().toString());
+
                     } else {
                         binding.Secondtv1112.setBackgroundResource(R.drawable.rounded_shap_white_5dp);
                         binding.Secondtv1112.setTextColor(getResources().getColor(R.color.black));
                         second1112 = false;
-                        if(count>1) count--;
+                        if(count>1) {
+                            count--;
+                            AddRemoveTime("remove",binding.SecondtvDate.getText().toString() + " " + binding.Secondtv1112.getText().toString());
+
+                        }
                     }
 
                 }else {
@@ -404,11 +490,16 @@ public class DateTimeAct extends AppCompatActivity {
                         binding.Secondtv1201.setTextColor(getResources().getColor(R.color.white));
                         second1201 = true;
                         count++;
+                        AddRemoveTime("add",binding.SecondtvDate.getText().toString() + " " + binding.Secondtv1201.getText().toString());
+
                     } else {
                         binding.Secondtv1201.setBackgroundResource(R.drawable.rounded_shap_white_5dp);
                         binding.Secondtv1201.setTextColor(getResources().getColor(R.color.black));
                         second1201 = false;
-                        if(count>1) count--;
+                        if(count>1){
+                            count--;
+                            AddRemoveTime("remove",binding.SecondtvDate.getText().toString() + " " + binding.Secondtv1201.getText().toString());
+                        }
                     }
                 }else {
                     App.showToast(DateTimeAct.this, getString(R.string.add_only_5_time_slot), Toast.LENGTH_LONG);
@@ -426,11 +517,16 @@ public class DateTimeAct extends AppCompatActivity {
                         binding.Secondtv0102.setTextColor(getResources().getColor(R.color.white));
                         second0102 = true;
                         count++;
+                        AddRemoveTime("add",binding.SecondtvDate.getText().toString() + " " + binding.Secondtv0102.getText().toString());
                     } else {
                         binding.Secondtv0102.setBackgroundResource(R.drawable.rounded_shap_white_5dp);
                         binding.Secondtv0102.setTextColor(getResources().getColor(R.color.black));
                         second0102 = false;
-                        if(count>1) count--;
+                        if(count>1) {
+                            count--;
+                            AddRemoveTime("remove",binding.SecondtvDate.getText().toString() + " " + binding.Secondtv0102.getText().toString());
+
+                        }
                     }
                 }else {
                     App.showToast(DateTimeAct.this, getString(R.string.add_only_5_time_slot), Toast.LENGTH_LONG);
@@ -448,11 +544,16 @@ public class DateTimeAct extends AppCompatActivity {
                         binding.Secondtv0203.setTextColor(getResources().getColor(R.color.white));
                         second0203 = true;
                         count++;
+                        AddRemoveTime("add",binding.SecondtvDate.getText().toString() + " " + binding.Secondtv0203.getText().toString());
+
                     } else {
                         binding.Secondtv0203.setBackgroundResource(R.drawable.rounded_shap_white_5dp);
                         binding.Secondtv0203.setTextColor(getResources().getColor(R.color.black));
                         second0203 = false;
-                        if(count>1) count--;
+                        if(count>1){ count--;
+                            AddRemoveTime("remove",binding.SecondtvDate.getText().toString() + " " + binding.Secondtv0203.getText().toString());
+
+                        }
                     }
                 }else {
                     App.showToast(DateTimeAct.this, getString(R.string.add_only_5_time_slot), Toast.LENGTH_LONG);
@@ -470,11 +571,17 @@ public class DateTimeAct extends AppCompatActivity {
                         binding.Secondtv0304.setTextColor(getResources().getColor(R.color.white));
                         second0304 = true;
                         count++;
+                        AddRemoveTime("add",binding.SecondtvDate.getText().toString() + " " + binding.Secondtv0304.getText().toString());
+
                     } else {
                         binding.Secondtv0304.setBackgroundResource(R.drawable.rounded_shap_white_5dp);
                         binding.Secondtv0304.setTextColor(getResources().getColor(R.color.black));
                         second0304 = false;
-                        if(count>1) count--;
+                        if(count>1) {
+                            count--;
+                            AddRemoveTime("remove",binding.SecondtvDate.getText().toString() + " " + binding.Secondtv0304.getText().toString());
+
+                        }
                     }
                 }else {
                     App.showToast(DateTimeAct.this, getString(R.string.add_only_5_time_slot), Toast.LENGTH_LONG);
@@ -492,11 +599,17 @@ public class DateTimeAct extends AppCompatActivity {
                         binding.Secondtv0405.setTextColor(getResources().getColor(R.color.white));
                         second0405 = true;
                         count++;
+                        AddRemoveTime("add",binding.SecondtvDate.getText().toString() + " " + binding.Secondtv0405.getText().toString());
+
                     } else {
                         binding.Secondtv0405.setBackgroundResource(R.drawable.rounded_shap_white_5dp);
                         binding.Secondtv0405.setTextColor(getResources().getColor(R.color.black));
                         second0405 = false;
-                        if(count>1) count--;
+                        if(count>1) {
+                            count--;
+                            AddRemoveTime("remove",binding.SecondtvDate.getText().toString() + " " + binding.Secondtv0405.getText().toString());
+
+                        }
                     }
                 }
                 else {
@@ -515,11 +628,17 @@ public class DateTimeAct extends AppCompatActivity {
                         binding.Secondtv0506.setTextColor(getResources().getColor(R.color.white));
                         second0506 = true;
                         count++;
+                        AddRemoveTime("add",binding.SecondtvDate.getText().toString() + " " + binding.Secondtv0607.getText().toString());
+
                     } else {
                         binding.Secondtv0506.setBackgroundResource(R.drawable.rounded_shap_white_5dp);
                         binding.Secondtv0506.setTextColor(getResources().getColor(R.color.black));
                         second0506 = false;
-                        if(count>1) count--;
+                        if(count>1) {
+                            count--;
+                            AddRemoveTime("remove",binding.SecondtvDate.getText().toString() + " " + binding.Secondtv0506.getText().toString());
+
+                        }
                     }
                 }else {
                     App.showToast(DateTimeAct.this, getString(R.string.add_only_5_time_slot), Toast.LENGTH_LONG);
@@ -537,11 +656,17 @@ public class DateTimeAct extends AppCompatActivity {
                         binding.Secondtv0607.setTextColor(getResources().getColor(R.color.white));
                         second0607 = true;
                         count++;
+                        AddRemoveTime("add",binding.SecondtvDate.getText().toString() + " " + binding.Secondtv0607.getText().toString());
+
                     } else {
                         binding.Secondtv0607.setBackgroundResource(R.drawable.rounded_shap_white_5dp);
                         binding.Secondtv0607.setTextColor(getResources().getColor(R.color.black));
                         second0607 = false;
-                        if(count>1) count--;
+                        if(count>1) {
+                            count--;
+                            AddRemoveTime("remove",binding.SecondtvDate.getText().toString() + " " + binding.Secondtv0607.getText().toString());
+
+                        }
                     }
                 }else {
                     App.showToast(DateTimeAct.this, getString(R.string.add_only_5_time_slot), Toast.LENGTH_LONG);
@@ -559,12 +684,17 @@ public class DateTimeAct extends AppCompatActivity {
                         binding.Secondtv0708.setTextColor(getResources().getColor(R.color.white));
                         second0708 = true;
                         count++;
+                        AddRemoveTime("add",binding.SecondtvDate.getText().toString() + " " + binding.Secondtv0708.getText().toString());
+
                     } else {
                         binding.Secondtv0708.setBackgroundResource(R.drawable.rounded_shap_white_5dp);
                         binding.Secondtv0708.setTextColor(getResources().getColor(R.color.black));
                         second0708 = false;
-                        if(count>1)
+                        if(count>1) {
                             count--;
+                            AddRemoveTime("remove",binding.SecondtvDate.getText().toString() + " " + binding.Secondtv0708.getText().toString());
+
+                        }
                     }
                 }else {
                     App.showToast(DateTimeAct.this, getString(R.string.add_only_5_time_slot), Toast.LENGTH_LONG);
@@ -584,13 +714,18 @@ public class DateTimeAct extends AppCompatActivity {
                         binding.Threetv910.setTextColor(getResources().getColor(R.color.white));
                         three910 = true;
                         count++;
+                        AddRemoveTime("add",binding.ThreetvDate.getText().toString() + " " + binding.Threetv910.getText().toString());
+
 
                     } else {
                         binding.Threetv910.setBackgroundResource(R.drawable.rounded_shap_white_5dp);
                         binding.Threetv910.setTextColor(getResources().getColor(R.color.black));
                         three910 = false;
-                        if (count > 1)
+                        if (count > 1) {
                             count--;
+                            AddRemoveTime("remove",binding.ThreetvDate.getText().toString() + " " + binding.Threetv910.getText().toString());
+
+                        }
                     }
                 } else {
                     App.showToast(DateTimeAct.this, getString(R.string.add_only_5_time_slot), Toast.LENGTH_LONG);
@@ -609,12 +744,17 @@ public class DateTimeAct extends AppCompatActivity {
                         binding.Threetv1011.setTextColor(getResources().getColor(R.color.white));
                         three1011 = true;
                         count++;
+                        AddRemoveTime("add",binding.ThreetvDate.getText().toString() + " " + binding.Threetv1011.getText().toString());
+
                     } else {
                         binding.Threetv1011.setBackgroundResource(R.drawable.rounded_shap_white_5dp);
                         binding.Threetv1011.setTextColor(getResources().getColor(R.color.black));
                         three1011 = false;
-                        if (count > 1)
+                        if (count > 1) {
                             count--;
+                            AddRemoveTime("remove",binding.ThreetvDate.getText().toString() + " " + binding.Threetv1011.getText().toString());
+
+                        }
                     }
                 } else {
                     App.showToast(DateTimeAct.this, getString(R.string.add_only_5_time_slot), Toast.LENGTH_LONG);
@@ -634,12 +774,16 @@ public class DateTimeAct extends AppCompatActivity {
                         binding.Threetv1112.setTextColor(getResources().getColor(R.color.white));
                         three1112 = true;
                         count++;
+                        AddRemoveTime("add",binding.ThreetvDate.getText().toString() + " " + binding.Threetv1112.getText().toString());
                     } else {
                         binding.Threetv1112.setBackgroundResource(R.drawable.rounded_shap_white_5dp);
                         binding.Threetv1112.setTextColor(getResources().getColor(R.color.black));
                         three1112 = false;
-                        if (count > 1)
+                        if (count > 1) {
                             count--;
+                            AddRemoveTime("remove",binding.ThreetvDate.getText().toString() + " " + binding.Threetv1112.getText().toString());
+
+                        }
                     }
                 } else {
                     App.showToast(DateTimeAct.this, getString(R.string.add_only_5_time_slot), Toast.LENGTH_LONG);
@@ -658,13 +802,17 @@ public class DateTimeAct extends AppCompatActivity {
                         binding.Threetv1201.setTextColor(getResources().getColor(R.color.white));
                         three1201 = true;
                         count++;
+                        AddRemoveTime("add",binding.ThreetvDate.getText().toString() + " " + binding.Threetv1201.getText().toString());
+
                     } else {
                         binding.Threetv1201.setBackgroundResource(R.drawable.rounded_shap_white_5dp);
                         binding.Threetv1201.setTextColor(getResources().getColor(R.color.black));
                         three1201 = false;
-                        if (count > 1)
+                        if (count > 1) {
                             count--;
-                    }
+                            AddRemoveTime("remove", binding.ThreetvDate.getText().toString() + " " + binding.Threetv1201.getText().toString());
+                        }
+                        }
                 } else {
                     App.showToast(DateTimeAct.this, getString(R.string.add_only_5_time_slot), Toast.LENGTH_LONG);
 
@@ -683,12 +831,17 @@ public class DateTimeAct extends AppCompatActivity {
                         binding.Threetv0102.setTextColor(getResources().getColor(R.color.white));
                         three0102 = true;
                         count++;
+                        AddRemoveTime("add", binding.ThreetvDate.getText().toString() + " " + binding.Threetv0102.getText().toString());
+
                     } else {
                         binding.Threetv0102.setBackgroundResource(R.drawable.rounded_shap_white_5dp);
                         binding.Threetv0102.setTextColor(getResources().getColor(R.color.black));
                         three0102 = false;
-                        if (count > 1)
+                        if (count > 1) {
                             count--;
+                            AddRemoveTime("remove",binding.ThreetvDate.getText().toString() + " " + binding.Threetv0102.getText().toString());
+
+                        }
                     }
                 } else {
                     App.showToast(DateTimeAct.this, getString(R.string.add_only_5_time_slot), Toast.LENGTH_LONG);
@@ -707,12 +860,17 @@ public class DateTimeAct extends AppCompatActivity {
                         binding.Threetv0203.setTextColor(getResources().getColor(R.color.white));
                         three0203 = true;
                         count++;
+                        AddRemoveTime("add",binding.ThreetvDate.getText().toString() + " " + binding.Threetv0203.getText().toString());
+
                     } else {
                         binding.Threetv0203.setBackgroundResource(R.drawable.rounded_shap_white_5dp);
                         binding.Threetv0203.setTextColor(getResources().getColor(R.color.black));
                         three0203 = false;
-                        if (count > 1)
+                        if (count > 1) {
                             count--;
+                            AddRemoveTime("remove",binding.ThreetvDate.getText().toString() + " " + binding.Threetv0203.getText().toString());
+
+                        }
                     }
                 } else {
                     App.showToast(DateTimeAct.this, getString(R.string.add_only_5_time_slot), Toast.LENGTH_LONG);
@@ -733,12 +891,17 @@ public class DateTimeAct extends AppCompatActivity {
                         binding.Threetv0304.setTextColor(getResources().getColor(R.color.white));
                         three0304 = true;
                         count++;
+                        AddRemoveTime("add",binding.ThreetvDate.getText().toString() + " " + binding.Threetv0304.getText().toString());
+
                     } else {
                         binding.Threetv0304.setBackgroundResource(R.drawable.rounded_shap_white_5dp);
                         binding.Threetv0304.setTextColor(getResources().getColor(R.color.black));
                         three0304 = false;
-                        if (count > 1)
+                        if (count > 1) {
                             count--;
+                            AddRemoveTime("remove",binding.ThreetvDate.getText().toString() + " " + binding.Threetv0304.getText().toString());
+
+                        }
                     }
                 } else {
                     App.showToast(DateTimeAct.this, getString(R.string.add_only_5_time_slot), Toast.LENGTH_LONG);
@@ -757,12 +920,16 @@ public class DateTimeAct extends AppCompatActivity {
                         binding.Threetv0405.setTextColor(getResources().getColor(R.color.white));
                         three0405 = true;
                         count++;
+                        AddRemoveTime("add",binding.ThreetvDate.getText().toString() + " " + binding.Threetv0405.getText().toString());
+
                     } else {
                         binding.Threetv0405.setBackgroundResource(R.drawable.rounded_shap_white_5dp);
                         binding.Threetv0405.setTextColor(getResources().getColor(R.color.black));
                         three0405 = false;
-                        if (count > 1)
-                            count--;
+                        if (count > 1){
+                            AddRemoveTime("remove",binding.ThreetvDate.getText().toString() + " " + binding.Threetv0405.getText().toString());
+                            count--; }
+
                     }
                 } else {
                     App.showToast(DateTimeAct.this, getString(R.string.add_only_5_time_slot), Toast.LENGTH_LONG);
@@ -782,12 +949,15 @@ public class DateTimeAct extends AppCompatActivity {
                         binding.Threetv0506.setTextColor(getResources().getColor(R.color.white));
                         three0506 = true;
                         count++;
+                        AddRemoveTime("add",binding.ThreetvDate.getText().toString() + " " + binding.Threetv0506.getText().toString());
                     } else {
                         binding.Threetv0506.setBackgroundResource(R.drawable.rounded_shap_white_5dp);
                         binding.Threetv0506.setTextColor(getResources().getColor(R.color.black));
                         three0506 = false;
-                        if (count > 1)
+                        if (count > 1) {
                             count--;
+                            AddRemoveTime("remove",binding.ThreetvDate.getText().toString() + " " + binding.Threetv0506.getText().toString());
+                        }
                     }
                 } else {
                     App.showToast(DateTimeAct.this, getString(R.string.add_only_5_time_slot), Toast.LENGTH_LONG);
@@ -807,12 +977,14 @@ public class DateTimeAct extends AppCompatActivity {
                         binding.Threetv0607.setTextColor(getResources().getColor(R.color.white));
                         three0607 = true;
                         count++;
+                        AddRemoveTime("add",binding.ThreetvDate.getText().toString() + " " + binding.Threetv0607.getText().toString());
                     } else {
                         binding.Threetv0607.setBackgroundResource(R.drawable.rounded_shap_white_5dp);
                         binding.Threetv0607.setTextColor(getResources().getColor(R.color.black));
                         three0607 = false;
-                        if (count > 1)
-                            count--;
+                        if (count > 1){
+                            AddRemoveTime("remove",binding.ThreetvDate.getText().toString() + " " +binding.Threetv0607.getText().toString());
+                            count--;}
                     }
                 } else {
                     App.showToast(DateTimeAct.this, getString(R.string.add_only_5_time_slot), Toast.LENGTH_LONG);
@@ -832,12 +1004,14 @@ public class DateTimeAct extends AppCompatActivity {
                         binding.Threetv0708.setTextColor(getResources().getColor(R.color.white));
                         three0708 = true;
                         count++;
+                        AddRemoveTime("add",binding.ThreetvDate.getText().toString() + " " + binding.Threetv0708.getText().toString());
                     } else {
                         binding.Threetv0708.setBackgroundResource(R.drawable.rounded_shap_white_5dp);
                         binding.Threetv0708.setTextColor(getResources().getColor(R.color.black));
                         three0708 = false;
-                        if (count > 1)
-                            count--;
+                        if (count > 1){
+                            AddRemoveTime("remove",binding.ThreetvDate.getText().toString() + " " + binding.Threetv0708.getText().toString());
+                            count--;}
                     }
                 } else {
                     App.showToast(DateTimeAct.this, getString(R.string.add_only_5_time_slot), Toast.LENGTH_LONG);
@@ -897,19 +1071,39 @@ public class DateTimeAct extends AppCompatActivity {
 
 
         binding.btnContinue.setOnClickListener(v -> {
+
+            Log.e("Comma Saprated Value===" , addCommaSeprtValue() );
+
             startActivity(new Intent(this, SelectAddressAct.class).putExtra("cycleModel", cycleId)
                     .putExtra("cycleImage", str_image_path).putExtra("problem", problem)
                     .putExtra("repairImage", repair_image_path)
                     //.putExtra("date",date)
-                    // .putExtra("time",time)
+                     .putExtra("time",addCommaSeprtValue())
                     .putExtra("address", address)
                     .putExtra("lat", latitude + "")
                     .putExtra("lon", longitude + "")
                     .putExtra("serviceType", type));
+
+            for (int i = 0; i < timeSlotList.size(); i++) {
+               Log.e("Date Tme Slot===" , i + " " + timeSlotList.get(i) );
+            }
+
         });
 
 
     }
+
+    public String addCommaSeprtValue(){
+        StringBuilder buff = new StringBuilder();
+        String sep = "";
+        for (String str : timeSlotList) {
+            buff.append(sep);
+            buff.append(str);
+            sep = ",";
+        }
+        return buff.toString();
+    }
+
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
@@ -936,6 +1130,33 @@ public class DateTimeAct extends AppCompatActivity {
         }
 
     }
+
+     public void AddRemoveTime(String chk, String slot){
+         if(chk.equals("add")) {
+             if(arrayList.size()==0){
+                 timeSlotList.add(slot);
+             }
+
+             else {
+                 for (int i = 0; i < timeSlotList.size(); i++) {
+                     if (timeSlotList.get(i).equals(slot)) Toast.makeText(this, getString(R.string.already_added), Toast.LENGTH_SHORT).show();
+                     else   timeSlotList.add(slot);
+
+                 }
+             }
+
+
+         }
+         else {
+             if (timeSlotList.size() != 0) {
+                 for (int i = 0; i < timeSlotList.size(); i++) {
+                     if (timeSlotList.get(i).equals(slot)) timeSlotList.remove(i);
+                 }
+             }
+         }
+     }
+
+
 
 
 }

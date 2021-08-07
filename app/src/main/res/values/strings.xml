@@ -234,5 +234,7 @@
     <string name="card_updated">Card update Successful</string>
     <string name="edit_card">Edit Card</string>
     <string name="edit">Edit</string>
+    <string name="please_select_card">Please select card</string>
+    <string name="already_added">Already added this slot</string>
 
 </resources>

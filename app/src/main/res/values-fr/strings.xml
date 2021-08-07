@@ -237,6 +237,8 @@
     <string name="update">Mettre à jour</string>
     <string name="card_updated">Mise à jour de la carte réussie</string>
     <string name="edit_card">Modifier la carte</string>
-
+    <string name="edit">Éditer</string>
+    <string name="please_select_card">Veuillez sélectionner la carte</string>
+    <string name="already_added">Déjà ajouté cet emplacement</string>
 
 </resources>

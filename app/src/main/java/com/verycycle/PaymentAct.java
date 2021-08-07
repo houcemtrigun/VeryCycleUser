@@ -47,7 +47,7 @@ public class PaymentAct  extends AppCompatActivity implements OnItemPositionList
     AlertDialog.Builder alertBuilder;
     VeryCycleUserInterface apiInterface;
     ArrayList<GetCardModel.Result> arrayList;
-
+    boolean selectCheck = false;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -77,7 +77,12 @@ public class PaymentAct  extends AppCompatActivity implements OnItemPositionList
                 paymentConfirmDialog();
             else Toast.makeText(this, getText(R.string.please_complete_form), Toast.LENGTH_LONG).show();
         });
-        binding.payment.setOnClickListener(v -> {cardPayment(); });
+        binding.payment.setOnClickListener(v -> {
+
+            if(selectCheck== true) cardPayment();
+        else Toast.makeText(this, getString(R.string.please_select_card), Toast.LENGTH_SHORT).show();
+
+        });
 
         binding.header1.ivBack1.setOnClickListener(v -> onBackPressed());
 
@@ -266,7 +271,7 @@ public class PaymentAct  extends AppCompatActivity implements OnItemPositionList
         map.put("payment_method", "Stripe");
         map.put("total_amount", amount);
         map.put("token", token);
-        map.put("currency", "EURO");
+        map.put("currency", "USD");
         Log.e("MapMap", "PAYMENT REQUEST" + map);
         Call<PaymentModel> payCall = apiInterface.payment(map);
         payCall.enqueue(new Callback<PaymentModel>() {
@@ -367,5 +372,6 @@ public class PaymentAct  extends AppCompatActivity implements OnItemPositionList
         expiryMonth = arrayList.get(position).expiryMonth;
         expiryDate = arrayList.get(position).expiryDate;
         cvvv = arrayList.get(position).cvcCode;
+        selectCheck = true;
     }
 }
