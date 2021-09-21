@@ -189,4 +189,9 @@ public interface VeryCycleUserInterface {
     Call<PaymentModel> payment(@FieldMap Map<String, String> params);
 
 
+    @FormUrlEncoded
+    @POST("user_receive_request")
+    Call<Map<String,String>>  estimateMethod(@FieldMap Map<String,String> params);
+
+
 }

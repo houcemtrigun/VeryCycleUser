@@ -1,0 +1,25 @@
+  Bike repair services 
+
+app with should connect bike repair professionals with bike owners for repairs at home. 
+Similar to this one: https://www.cyclofix.com/
+
+
+
+This is the document for this app
+
+https://docs.google.com/document/d/1HUqSbyEs0q9zgmtLnGQejxqbr8Zb5IBG6ZnIOdMeckE/edit?usp=sharing
+
+I have details for the bike repair app
+and the name for the :   van app
+For the Bike Repair App:
+The domain name will be: verycycle.fr
+
+
+Server details 
+
+Plesk:
+https://104.248.243.22:8443/
+admin
+rfJsk5G22k0f8%fUk$
+
+I will add the domain verycycle.fr after lunch

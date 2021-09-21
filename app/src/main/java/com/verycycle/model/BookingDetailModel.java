@@ -83,6 +83,13 @@ public class BookingDetailModel {
         public DriverDetails driverDetails;
 
 
+        @SerializedName("certify_status")
+        @Expose
+        public String certifyStatus;
+
+
+
+
         public class UserDetails {
 
             @SerializedName("id")

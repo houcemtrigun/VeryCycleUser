@@ -4,6 +4,7 @@ import android.Manifest;
 import android.app.Dialog;
 import android.content.BroadcastReceiver;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.pm.PackageManager;
@@ -32,6 +33,7 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.databinding.DataBindingUtil;
@@ -88,6 +90,7 @@ public class TrackAct extends AppCompatActivity implements OnMapReadyCallback {
     boolean isMarkerRotating = false;
     private float start_rotation;
     GPSTracker gpsTracker;
+    AlertDialog alert33;
 
 
     BroadcastReceiver LocationReceiver = new BroadcastReceiver() {
@@ -116,7 +119,19 @@ public class TrackAct extends AppCompatActivity implements OnMapReadyCallback {
                 } else if (intent.getStringExtra("status").equals("Cancel_by_driver")) {
                     startActivity(new Intent(TrackAct.this, MainActivity.class).addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP));
                     finish();
-                } else {
+                }
+                else if (intent.getStringExtra("status").equals("Cancel_by_driver")) {
+                    startActivity(new Intent(TrackAct.this, MainActivity.class).addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP));
+                    finish();
+                }
+                else if (intent.getStringExtra("status").equals("Certify")) {
+                    if (NetworkReceiver.isConnected())
+                        getBookingDetail(intent.getStringExtra("request_id"));
+                    else
+                        App.showToast(TrackAct.this, getString(R.string.network_failure), Toast.LENGTH_SHORT);
+                }
+
+                else {
                     if (NetworkReceiver.isConnected())
                         getBookingDetail(intent.getStringExtra("request_id"));
                     else
@@ -397,6 +412,11 @@ public class TrackAct extends AppCompatActivity implements OnMapReadyCallback {
                         } else {
                             requestPermissions();
                         }
+
+                        if (data1.result.certifyStatus.equals("receive_request"))    EstimateConfirmDialog(data1);
+                        else alert33.dismiss();
+
+
 
 
                         if (data1.result.status.equals("Arrived")) {
@@ -686,4 +706,69 @@ public class TrackAct extends AppCompatActivity implements OnMapReadyCallback {
 
     }
 
+
+
+    private void estimatePriceMethod(BookingDetailModel bookingDetailModel) {
+        Map<String, String> map = new HashMap<>();
+        map.put("request_id", request_id);
+        Log.e("MapMap", "Estimate Price REQUEST" + map);
+        Call<Map<String, String>> chatCount = apiInterface.estimateMethod(map);
+        chatCount.enqueue(new Callback<Map<String, String>>() {
+            @Override
+            public void onResponse(Call<Map<String, String>> call, Response<Map<String, String>> response) {
+                DataManager.getInstance().hideProgressMessage();
+                try {
+                    Map<String, String> data = response.body();
+                    if (data.get("status").equals("1")) {
+                        String dataResponse = new Gson().toJson(response.body());
+                        Log.e("MapMap", "Estimate Price RESPONSE" + dataResponse);
+                        getBookingDetail(request_id);
+
+                    } else if (data.get("status").equals("0")) {
+                        Toast.makeText(TrackAct.this, data.get("message"), Toast.LENGTH_SHORT).show();
+                    }
+
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+
+
+            @Override
+            public void onFailure(Call<Map<String, String>> call, Throwable t) {
+                call.cancel();
+                DataManager.getInstance().hideProgressMessage();
+            }
+        });
+
+    }
+
+    public void EstimateConfirmDialog(BookingDetailModel bookingDetailModel) {
+       AlertDialog.Builder builder1 = new AlertDialog.Builder(TrackAct.this);
+        builder1.setMessage(getResources().getString(R.string.are_you_satisfy_with));
+        builder1.setCancelable(false);
+
+        builder1.setPositiveButton(
+                getString(R.string.yes),
+                new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        dialog.dismiss();
+                        if (NetworkReceiver.isConnected()) estimatePriceMethod(bookingDetailModel);
+
+                        else
+                            App.showToast(TrackAct.this, getString(R.string.network_failure), Toast.LENGTH_LONG);
+                    }
+                });
+
+       /* builder1.setNegativeButton(
+                getString(R.string.no),
+                new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        dialog.dismiss();
+                    }
+                });*/
+
+        alert33 = builder1.create();
+        alert33.show();
+    }
 }

@@ -111,6 +111,16 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
                     sendBroadcast(intent1);
                 }
 
+                if (status.equals("Certify")) {
+                    title = getString(R.string.estimate_confirmation);
+                    key = object.getString("key");
+                    Intent intent1 = new Intent("Job_Status_Action");
+                    Log.e("SendData=====", object.toString());
+                    intent1.putExtra("status", status);
+                    sendBroadcast(intent1);
+
+                }
+
                  else if (status.equals("Cancel")) {
                     key = "Booking Cancel";
                     title = getString(R.string.booking_cancel_by_provider);

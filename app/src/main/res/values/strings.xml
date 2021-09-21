@@ -236,5 +236,7 @@
     <string name="edit">Edit</string>
     <string name="please_select_card">Please select card</string>
     <string name="already_added">Already added this slot</string>
+    <string name="are_you_satisfy_with">Are you satisfied with estimate</string>
+    <string name="estimate_confirmation">Estimate Confirmation</string>
 
 </resources>

@@ -240,5 +240,6 @@
     <string name="edit">Éditer</string>
     <string name="please_select_card">Veuillez sélectionner la carte</string>
     <string name="already_added">Déjà ajouté cet emplacement</string>
+    <string name="are_you_satisfy_with">Are you satisfied with estimate</string>
 
 </resources>
