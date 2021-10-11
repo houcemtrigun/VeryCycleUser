@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.location.LocationManager;
+import android.net.MacAddress;
 import android.os.Bundle;
 import android.provider.Settings;
 import android.widget.Toast;
@@ -14,6 +15,7 @@ import com.verycycle.databinding.ActivityMainBinding;
 import com.verycycle.helper.DataManager;
 import com.verycycle.helper.GPSTracker;
 import com.verycycle.helper.SessionManager;
+import com.verycycle.retrofit.Constant;
 import com.verycycle.setting.HelpAndFeedBack;
 import com.verycycle.setting.HelpSetting;
 import com.verycycle.ui.home.HomeFragment;
@@ -42,6 +44,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void initViews() {
+        DataManager.updateResources(MainActivity.this,"fr");
+        SessionManager.writeString(MainActivity.this, Constant.LANGUAGE,"fr");
 
         binding.chlidDashboard.tvUsername.setText(getString(R.string.hello) + " "+DataManager.getInstance().getUserData(MainActivity.this).result.username);
 

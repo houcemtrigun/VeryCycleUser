@@ -26,6 +26,8 @@ import androidx.databinding.DataBindingUtil;
 
 import com.verycycle.databinding.ActivitySplashBinding;
 import com.verycycle.helper.DataManager;
+import com.verycycle.helper.SessionManager;
+import com.verycycle.retrofit.Constant;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
@@ -44,6 +46,8 @@ public class Splash extends AppCompatActivity {
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
         activitySplashBinding = DataBindingUtil.setContentView(this, R.layout.activity_splash);
+        DataManager.updateResources(Splash.this,"fr");
+        SessionManager.writeString(Splash.this, Constant.LANGUAGE,"fr");
         KeyHash();
         if (checkPermissions()) {
             if (isLocationEnabled()) {

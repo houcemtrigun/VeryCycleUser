@@ -79,7 +79,7 @@ public class PaymentAct  extends AppCompatActivity implements OnItemPositionList
         });
         binding.payment.setOnClickListener(v -> {
 
-            if(selectCheck== true) cardPayment();
+            if(selectCheck== true)   PayConfrm();
         else Toast.makeText(this, getString(R.string.please_select_card), Toast.LENGTH_SHORT).show();
 
         });
@@ -374,4 +374,42 @@ public class PaymentAct  extends AppCompatActivity implements OnItemPositionList
         cvvv = arrayList.get(position).cvcCode;
         selectCheck = true;
     }
+
+
+
+    private void PayConfrm() {
+        AlertDialog.Builder builder1 = new AlertDialog.Builder(PaymentAct.this);
+        String input = cardNumber;
+        String lastFourDigits = "";     //substring containing last 4 characters
+        if (input.length() > 4) {
+            lastFourDigits = input.substring(input.length() - 4);
+        } else {
+            lastFourDigits = input;
+        }
+        builder1.setTitle(getString(R.string.confirm_before_pay));
+        builder1.setMessage(getString(R.string.card_number)+ "XXXXXXXXXXXX" + lastFourDigits);
+        builder1.setCancelable(false);
+
+        builder1.setPositiveButton(
+                getString(R.string.confirm),
+                new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        dialog.dismiss();
+                        cardPayment();
+                    }
+                });
+
+        builder1.setNegativeButton(
+                getString(R.string.cancel),
+                new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        dialog.dismiss();
+                    }
+                });
+
+
+        AlertDialog alert11 = builder1.create();
+        alert11.show();
+    }
+
 }

@@ -46,7 +46,7 @@
     <string name="enter_mobile"> Enter Mobile Number </string>
     <string name="okk"> OK </string>
     <string name="call_us">Call Us</string>
-    <string name="home">Home</string>
+    <string name="home">Accueil</string>
     <string name="fav">Favourite</string>
     <string name="account">Account</string>
     <string name="explore">Explore</string>
@@ -143,7 +143,7 @@
     <string name="pick_at_least_ten_spread_over_three_days">(Choisissez au moins 5 répartis sur 3 jours)</string>
     <string name="select_date">Sélectionner une date</string>
     <string name="select_time">Sélectionnez l\'heure</string>
-    <string name="select_address">Select Address</string>
+    <string name="select_address">Sélectionnez l\'adresse</string>
     <string name="place_api_key">AIzaSyC4Eg_qGdkZrcW-td6QsmJAk2g4nzPaat0</string>
     <string name="send_request">Envoyer une demande</string>
     <string name="available_provider">Fournisseur disponible</string>
@@ -211,7 +211,7 @@
     <string name="damage">Dommages ou frais de nettoyage</string>
     <string name="price">Price higher than accepted</string>
     <string name="normal_repair">Réparation normale</string>
-    <string name="bike_rental">Location de vélos</string>
+    <string name="bike_rental">Assemblage de vélo</string>
     <string name="password">Mot de passe</string>
     <string name="sign_up">S\'inscrire</string>
     <string name="already_have">Vous avez déjà un compte ? chanter</string>
@@ -241,5 +241,6 @@
     <string name="please_select_card">Veuillez sélectionner la carte</string>
     <string name="already_added">Déjà ajouté cet emplacement</string>
     <string name="are_you_satisfy_with">Are you satisfied with estimate</string>
+    <string name="estimate_confirmation">Confirmation d\'estimation</string>
 
 </resources>

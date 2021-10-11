@@ -274,14 +274,14 @@ public class SelectAddressAct extends AppCompatActivity implements OnMapReadyCal
         RequestBody datE = RequestBody.create(MediaType.parse("text/plain"), "");
         RequestBody timE = RequestBody.create(MediaType.parse("text/plain"), time);
         RequestBody addreSS = RequestBody.create(MediaType.parse("text/plain"), address);
-        RequestBody latitude = RequestBody.create(MediaType.parse("text/plain"), lat);
-        RequestBody longitude = RequestBody.create(MediaType.parse("text/plain"), lon);
+        RequestBody latitude1 = RequestBody.create(MediaType.parse("text/plain"), String.valueOf(latitude));
+        RequestBody longitude1 = RequestBody.create(MediaType.parse("text/plain"), String.valueOf(longitude));
         RequestBody provider_id = RequestBody.create(MediaType.parse("text/plain"), "");
         RequestBody user_id = RequestBody.create(MediaType.parse("text/plain"), DataManager.getInstance().getUserData(SelectAddressAct.this).result.id);
         RequestBody serviceType1 = RequestBody.create(MediaType.parse("text/plain"), serviceType);
 
 
-        Call<Map<String,String>> signupCall = apiInterface.sendRequest(cycle_id, problm, datE, timE, addreSS,latitude,longitude,user_id, provider_id,serviceType1,filePart,filePart1);
+        Call<Map<String,String>> signupCall = apiInterface.sendRequest(cycle_id, problm, datE, timE, addreSS,latitude1,longitude1,user_id, provider_id,serviceType1,filePart,filePart1);
         signupCall.enqueue(new Callback<Map<String,String>>() {
             @Override
             public void onResponse(Call<Map<String,String>> call, Response<Map<String,String>> response) {

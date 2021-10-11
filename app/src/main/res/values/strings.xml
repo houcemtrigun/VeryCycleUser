@@ -209,7 +209,7 @@
     <string name="damage">Damage or cleaning fee</string>
     <string name="price">Price higher than accepted</string>
     <string name="normal_repair">Normal Repair</string>
-    <string name="bike_rental">Bike Rental</string>
+    <string name="bike_rental">Bike Assembly</string>
     <string name="password">Password</string>
     <string name="sign_up">Sign Up</string>
     <string name="already_have">Already have an account ? Singin</string>
