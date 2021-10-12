@@ -19,6 +19,14 @@ import com.google.android.libraries.places.widget.Autocomplete;
 import com.google.android.libraries.places.widget.AutocompleteActivity;
 import com.google.android.libraries.places.widget.model.AutocompleteActivityMode;
 
+
+import com.google.firebase.ml.common.modeldownload.FirebaseModelDownloadConditions;
+import com.google.firebase.ml.common.modeldownload.FirebaseModelManager;
+import com.google.firebase.ml.naturallanguage.FirebaseNaturalLanguage;
+import com.google.firebase.ml.naturallanguage.translate.FirebaseTranslateLanguage;
+import com.google.firebase.ml.naturallanguage.translate.FirebaseTranslateRemoteModel;
+import com.google.firebase.ml.naturallanguage.translate.FirebaseTranslator;
+import com.google.firebase.ml.naturallanguage.translate.FirebaseTranslatorOptions;
 import com.verycycle.adapter.AdapterTimeSlot;
 import com.verycycle.databinding.ActivityDateTimeBinding;
 import com.verycycle.helper.App;
@@ -28,6 +36,7 @@ import com.verycycle.model.DateTimeModel;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Set;
 
 public class DateTimeAct extends AppCompatActivity {
     ActivityDateTimeBinding binding;
@@ -79,7 +88,7 @@ public class DateTimeAct extends AppCompatActivity {
         binding.SecondtvDate.setText(currentDate[0] + " " + i1 + " " + currentDate[2]);
         binding.ThreetvDate.setText(currentDate[0] + " " + i2 + " " + currentDate[2]);
 
-     //   translateTextToFrench(DataManager.getCurrent1(),1);
+      //  covertIntoFrench(DataManager.getCurrent1());
     //    translateTextToFrench(currentDate[0] + " " + i1 + " " + currentDate[2],2);
     //    translateTextToFrench(currentDate[0] + " " + i2 + " " + currentDate[2],3);
 
@@ -1160,42 +1169,72 @@ public class DateTimeAct extends AppCompatActivity {
     }
 
 
-  /*  public String covertIntoFrench(String date) {
+    public void covertIntoFrench(String date) {
 
-        FirebaseTranslatorOptions options =
-                new FirebaseTranslatorOptions.Builder()
-                        .setSourceLanguage(FirebaseTranslateLanguage.ES)
-                        .setTargetLanguage(FirebaseTranslateLanguage.FR)
-                        .build();
-        final FirebaseTranslator Translator =
-                FirebaseNaturalLanguage.getInstance().getTranslator(options);
+        FirebaseTranslatorOptions firebaseTranslatorOptions = new FirebaseTranslatorOptions.Builder()
+                .setSourceLanguage(FirebaseTranslateLanguage.EN)
+                .setTargetLanguage(FirebaseTranslateLanguage.FR)
+                .build();
+
+        final FirebaseTranslator firebaseTranslator = FirebaseNaturalLanguage.getInstance().getTranslator(firebaseTranslatorOptions);
+
+        FirebaseModelDownloadConditions firebaseModelDownloadConditions = new FirebaseModelDownloadConditions.Builder().build();
+
+        firebaseTranslator.downloadModelIfNeeded(firebaseModelDownloadConditions)
+                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void aVoid) {
+                        Log.e("Model downloaded==","=======");
+
+                        firebaseTranslator.translate(date)
+                                .addOnSuccessListener(new OnSuccessListener<String>() {
+                                    @Override
+                                    public void onSuccess(String s) {
+                                        Log.e("translation==",s);                                    }
+                                })
+                                .addOnFailureListener(new OnFailureListener() {
+                                    @Override
+                                    public void onFailure(@NonNull Exception e) {
+                                        Log.e("exception",e.getMessage()+"");
+
+                                    }
+                                });
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Log.e("Download failed","=====");
+                    }
+                });
+
+    }
 
 
-        Translator.translate(date)
+
+    public void changeText(FirebaseTranslator translator,String text){
+        translator.translate(text)
                 .addOnSuccessListener(
                         new OnSuccessListener<String>() {
                             @Override
                             public void onSuccess(@NonNull String translatedText) {
-                                //do something with the translated text
-                                convrtDate = translatedText;
+                                // Translation successful.
+                                Log.e("translation=====",translatedText);
                             }
                         })
                 .addOnFailureListener(
                         new OnFailureListener() {
                             @Override
                             public void onFailure(@NonNull Exception e) {
-                                //do somthing in failure scenario
+                                // Error.
+                                // ...
                             }
                         });
-
-        return convrtDate;
-
-    }*/
+    }
 
 
 
-
- /*   public void translateText(FirebaseTranslator langTranslator,String text,int i) {
+  /*  public void translateText(FirebaseTranslator langTranslator, String text, int i) {
         //translate source text to english
         langTranslator.translate(text)
                 .addOnSuccessListener(
@@ -1242,7 +1281,7 @@ public class DateTimeAct extends AppCompatActivity {
                         new OnSuccessListener<Void>() {
                             @Override
                             public void onSuccess(Void v) {
-                                Log.d("translator", "downloaded lang  model");
+                                Log.e("translator", "downloaded lang  model");
                                 //after making sure language models are available
                                 //perform translation
                                 translateText(langTranslator,text, i);
@@ -1269,10 +1308,10 @@ public class DateTimeAct extends AppCompatActivity {
                             @Override
                             public void onSuccess(@Nullable String languageCode) {
                                 if (languageCode != "und") {
-                                    Log.d("translator", "lang "+languageCode);
+                                    Log.e("translator", "lang " + languageCode);
                                     //download translator for the identified language
                                     // and translate the entered text into english
-                                    downloadTranslatorAndTranslate(languageCode, text,i);
+                                    downloadTranslatorAndTranslate(languageCode, text, i);
                                 } else {
                                     Toast.makeText(DateTimeAct.this,
                                             "Could not identify language of the text entered",
@@ -1290,6 +1329,8 @@ public class DateTimeAct extends AppCompatActivity {
                             }
                         });
     }*/
+
+
 
 
 

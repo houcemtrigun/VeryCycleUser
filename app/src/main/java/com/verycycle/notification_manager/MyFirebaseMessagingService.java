@@ -24,6 +24,7 @@ import com.squareup.picasso.Picasso;
 import com.squareup.picasso.Target;
 import com.verycycle.MainActivity;
 import com.verycycle.R;
+import com.verycycle.helper.DataManager;
 import com.verycycle.helper.SessionManager;
 import com.verycycle.retrofit.Constant;
 
@@ -48,7 +49,8 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
     @Override
     public void onMessageReceived(RemoteMessage remoteMessage) {
         Log.e(TAG, "Notification_Data:" + remoteMessage.getData());
-
+        DataManager.updateResources(getApplicationContext(),"fr");
+        SessionManager.writeString(getApplicationContext(), Constant.LANGUAGE,"fr");
 
         if (remoteMessage.getData().size() > 0) {
             Map<String, String> data = remoteMessage.getData();
@@ -68,6 +70,23 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
                     intent1.putExtra("status", status);
                     sendBroadcast(intent1);
                 }
+
+
+
+
+                  else if (status.equals("Way")) {
+                    title = getString(R.string.provider_is_on_the_way);
+                    key = object.getString("key");
+                    SessionManager.writeString(getApplicationContext(), Constant.driver_id, object.getString("driver_id"));
+                    SessionManager.writeString(getApplicationContext(), Constant.request_id, object.getString("request_id"));
+                    SessionManager.writeString(getApplicationContext(), Constant.user_name, object.getString("user_name"));
+                    Intent intent1 = new Intent("Job_Status_Action");
+                    intent1.putExtra("request_id", object.getString("request_id"));
+                    intent1.putExtra("status", status);
+                    sendBroadcast(intent1);
+                }
+
+
                 else if (status.equals("Arrived")) {
                     title = getString(R.string.provider_arrived_service_location);
                     SessionManager.writeString(getApplicationContext(), Constant.driver_id, object.getString("driver_id"));

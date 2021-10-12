@@ -39,12 +39,15 @@ public class AdapterAcceptBooking extends RecyclerView.Adapter<AdapterAcceptBook
 
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
+        String dateTimeSlot[] = arrayList.get(position).accept_time_slote.split(" ");
+
+        holder.binding.tvPrice.setText("€"+arrayList.get(position).amount);
         holder.binding.tvServiceType.setText(arrayList.get(position).booktype + " service");
         holder.binding.tvStatus.setText(arrayList.get(position).status);
         holder.binding.tvAddress.setText(arrayList.get(position).address);
-        holder.binding.tvTime.setText(arrayList.get(position).time);
-        holder.binding.tvDate.setText(arrayList.get(position).date);
-        holder.binding.tvDistance.setText("Distance to request in "+arrayList.get(position).estimatedDistance+ "km" );
+        holder.binding.tvTime.setText(dateTimeSlot[3] + " "+ dateTimeSlot[4] + " " + dateTimeSlot[5] + " " + dateTimeSlot[6]+ " " + dateTimeSlot[7]);
+        holder.binding.tvDate.setText(dateTimeSlot[0] + " "+ dateTimeSlot[1] + " " + dateTimeSlot[2]);
+        holder.binding.tvDistance.setText(context.getString(R.string.distance_to_req)+" "+arrayList.get(position).estimatedDistance +"km");
         holder.binding.tvUsername.setText(arrayList.get(position).providerDetails.username);
         holder.binding.tvMobile.setText("+"+arrayList.get(position).providerDetails.countryCode+arrayList.get(position).providerDetails.mobile);
         Glide.with(context)

@@ -107,6 +107,7 @@ public interface VeryCycleUserInterface {
             @Part("user_id") RequestBody user_id,
             @Part("provider_id") RequestBody provider_id,
             @Part("booktype") RequestBody service_type,
+            @Part("amount") RequestBody amount,
             @Part MultipartBody.Part file, @Part MultipartBody.Part file1);
 
 

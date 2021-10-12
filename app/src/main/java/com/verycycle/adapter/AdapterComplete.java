@@ -34,8 +34,8 @@ public class  AdapterComplete extends RecyclerView.Adapter<AdapterComplete.MyVie
 
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
-      holder.binding.tvDateTime.setText(arrayList.get(position).date+ " " + arrayList.get(position).time);
-      holder.binding.tvPrice.setText("$"+arrayList.get(position).totalAmount);
+      holder.binding.tvDateTime.setText(arrayList.get(position).accept_time_slote);
+      holder.binding.tvPrice.setText("€"+arrayList.get(position).totalAmount);
       holder.binding.tvFrom.setText(arrayList.get(position).address);
     }
 

@@ -124,7 +124,7 @@ public class TrackAct extends AppCompatActivity implements OnMapReadyCallback {
                     startActivity(new Intent(TrackAct.this, MainActivity.class).addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP));
                     finish();
                 }
-                else if (intent.getStringExtra("status").equals("Certify")) {
+                else if (intent.getStringExtra("status").equals("Way")) {
                     if (NetworkReceiver.isConnected())
                         getBookingDetail(intent.getStringExtra("request_id"));
                     else
@@ -413,13 +413,14 @@ public class TrackAct extends AppCompatActivity implements OnMapReadyCallback {
                             requestPermissions();
                         }
 
-                        if (data1.result.certifyStatus.equals("receive_request"))    EstimateConfirmDialog(data1);
-                        else alert33.dismiss();
+                      //  if (data1.result.certifyStatus.equals("receive_request"))    EstimateConfirmDialog(data1);
+                      //  else alert33.dismiss();
 
 
-
-
-                        if (data1.result.status.equals("Arrived")) {
+                        if (data1.result.status.equals("Way")) {
+                            DriverOnWayDialog();
+                        }
+                        else   if (data1.result.status.equals("Arrived")) {
                             DriverArriveDialog();
                         } else if (data1.result.status.equals("Start")) {
                             TripStartDialog();
@@ -445,6 +446,21 @@ public class TrackAct extends AppCompatActivity implements OnMapReadyCallback {
                 DataManager.getInstance().hideProgressMessage();
             }
         });
+    }
+
+    private void DriverOnWayDialog() {
+        AlertDialog.Builder builder1 = new AlertDialog.Builder(TrackAct.this);
+        builder1.setMessage(getResources().getString(R.string.provider_is_on_the_way));
+        builder1.setCancelable(false);
+
+        builder1.setPositiveButton(
+                getString(R.string.ok),
+                new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        dialog.dismiss();
+
+                    }
+                });
     }
 
     @Override

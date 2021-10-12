@@ -108,7 +108,7 @@
                         android:singleLine="true"
                         android:text="Time: 9:30am"
                         android:textColor="@color/black"
-                        android:textSize="@dimen/_14sdp"
+                        android:textSize="@dimen/_12sdp"
                         android:textStyle="bold" />
 
                     <ImageView
@@ -121,13 +121,13 @@
 
                     <TextView
                         android:id="@+id/tvDate"
-                        android:layout_width="@dimen/_150sdp"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="@dimen/_5sdp"
                         android:gravity="center_vertical"
                         android:text="Date: 10/07/2019"
                         android:textColor="@color/black"
-                        android:textSize="@dimen/_14sdp"
+                        android:textSize="@dimen/_12sdp"
                         android:textStyle="bold" />
 
                 </LinearLayout>
@@ -204,7 +204,7 @@
                         android:checked="false"
                         android:fontFamily="@font/poppinsmedium"
                         android:gravity="center"
-                        android:text="Profile"
+                        android:text="@string/profile"
                         android:textColor="@color/black"
                         android:textSize="@dimen/_14sdp" />
 
@@ -219,12 +219,13 @@
                         android:checked="false"
                         android:fontFamily="@font/poppinsmedium"
                         android:gravity="center"
-                        android:text="Profile"
+                        android:text="@string/accept"
                         android:textColor="@color/black"
                         android:textSize="@dimen/_14sdp" />
 
 
                 </RelativeLayout>
+
 
                 <RelativeLayout
                     android:layout_width="match_parent"
@@ -259,8 +260,8 @@
                             android:layout_height="wrap_content"
                             android:layout_gravity="center_vertical"
                             android:layout_marginTop="@dimen/_10sdp"
-                            android:padding="@dimen/_5sdp"
                             android:gravity="center_vertical"
+                            android:padding="@dimen/_5sdp"
                             android:singleLine="true"
                             android:text="Marina Parker"
                             android:textColor="@color/black"
@@ -296,9 +297,6 @@
             </LinearLayout>
 
         </androidx.cardview.widget.CardView>
-
-
-
 
 
     </RelativeLayout>

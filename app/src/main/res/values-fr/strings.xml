@@ -242,5 +242,8 @@
     <string name="already_added">Déjà ajouté cet emplacement</string>
     <string name="are_you_satisfy_with">Are you satisfied with estimate</string>
     <string name="estimate_confirmation">Confirmation d\'estimation</string>
+    <string name="provider_is_on_the_way">Le fournisseur est en route</string>
+    <string name="distance_to_req">Distance à demander en</string>
+
 
 </resources>

@@ -74,6 +74,16 @@ public class RequestModel {
         public String booktype;
 
 
+        @SerializedName("accept_time_slote")
+        @Expose
+        public String accept_time_slote;
+
+
+        @SerializedName("amount")
+        @Expose
+        public String amount;
+
+
         @SerializedName("provider_details")
         @Expose
         public ProviderDetails providerDetails;

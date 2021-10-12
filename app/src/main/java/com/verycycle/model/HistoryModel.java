@@ -84,6 +84,11 @@ public class HistoryModel {
         public String serviceAmount;
 
 
+        @SerializedName("accept_time_slote")
+        @Expose
+        public String accept_time_slote;
+
+
 
     }
 

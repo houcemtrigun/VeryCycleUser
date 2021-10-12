@@ -15,6 +15,7 @@ import androidx.databinding.DataBindingUtil;
 
 import com.google.gson.Gson;
 import com.stripe.android.ApiResultCallback;
+import com.stripe.android.PaymentAuthConfig;
 import com.stripe.android.Stripe;
 import com.stripe.android.model.Card;
 import com.stripe.android.model.Token;
@@ -411,5 +412,24 @@ public class PaymentAct  extends AppCompatActivity implements OnItemPositionList
         AlertDialog alert11 = builder1.create();
         alert11.show();
     }
+
+
+    public void Auth(){
+
+        final PaymentAuthConfig.Stripe3ds2UiCustomization uiCustomization =
+                new PaymentAuthConfig.Stripe3ds2UiCustomization.Builder()
+                        .setLabelCustomization(
+                                new PaymentAuthConfig.Stripe3ds2LabelCustomization.Builder()
+                                        .setTextFontSize(12)
+                                        .build())
+                        .build();
+        PaymentAuthConfig.init(new PaymentAuthConfig.Builder()
+                .set3ds2Config(new PaymentAuthConfig.Stripe3ds2Config.Builder()
+                        .setTimeout(5)
+                        .setUiCustomization(uiCustomization)
+                        .build())
+                .build());
+    }
+
 
 }
