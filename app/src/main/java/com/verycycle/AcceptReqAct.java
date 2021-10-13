@@ -15,8 +15,10 @@ import com.verycycle.databinding.ActivityAcceptReqBinding;
 import com.verycycle.helper.App;
 import com.verycycle.helper.DataManager;
 import com.verycycle.helper.NetworkReceiver;
+import com.verycycle.helper.SessionManager;
 import com.verycycle.model.RequestModel;
 import com.verycycle.retrofit.ApiClient;
+import com.verycycle.retrofit.Constant;
 import com.verycycle.retrofit.VeryCycleUserInterface;
 
 
@@ -44,6 +46,8 @@ public class AcceptReqAct extends AppCompatActivity {
     }
 
     private void initViews() {
+        DataManager.updateResources(AcceptReqAct.this,"fr");
+        SessionManager.writeString(AcceptReqAct.this, Constant.LANGUAGE,"fr");
         arrayList = new ArrayList<>();
         adapter = new AdapterAcceptBooking(AcceptReqAct.this, arrayList);
         binding.rvAccept.setAdapter(adapter);

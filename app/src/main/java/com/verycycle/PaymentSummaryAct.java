@@ -33,6 +33,8 @@ public class PaymentSummaryAct extends AppCompatActivity {
     VeryCycleUserInterface apiInterface;
     ActivityPaymentSummaryBinding binding;
     String requestId = "", providerId = "", providerName = "", providerImage = "";
+    int amount =0, anualAmount=0;
+
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -44,6 +46,7 @@ public class PaymentSummaryAct extends AppCompatActivity {
 
 
     private void initView() {
+
         if (getIntent() != null) {
             requestId = getIntent().getStringExtra("request_id");
             providerId = getIntent().getStringExtra("ProviderId");
@@ -55,17 +58,20 @@ public class PaymentSummaryAct extends AppCompatActivity {
                 App.showToast(PaymentSummaryAct.this, getString(R.string.network_failure), Toast.LENGTH_LONG);
         }
 
+
         binding.btnPay.setOnClickListener(v -> {
             RateDialog();
 
         });
 
 
+
+
     }
 
     private void GetPaymentSummary(String request_id) {
         Map<String, String> map = new HashMap<>();
-        map.put("request_id", request_id);
+        map.put("request_id", requestId);
         Log.e(TAG, "PAYMEN SUMMARY REQUEST" + map);
         Call<PaymentSummaryModel> chatCount = apiInterface.getPaymentSummary(map);
         chatCount.enqueue(new Callback<PaymentSummaryModel>() {
@@ -77,12 +83,18 @@ public class PaymentSummaryAct extends AppCompatActivity {
                     String dataResponse = new Gson().toJson(response.body());
                     Log.e(TAG, "PAYMEN SUMMARY RESPONSE" + dataResponse);
                     if (data.status.equals("1")) {
-                        binding.tvAmount.setText("$" + data.result.totalAmount + "");
-                        binding.tvServiceAmount.setText("$" + data.result.serviceAmount);
-                        binding.tvExtraAmount.setText("$" + data.result.extraAmount);
-                        binding.tvMainTotal.setText("$" + data.result.totalAmount + "");
-                        binding.tvAmount.setText("$" + data.result.totalAmount + "");
-                        binding.tv2.setText(data.result.date + " " + data.result.time);
+
+                      //  binding.tvAmount.setText("$" + data.result.totalAmount + "");
+                        if(!data.result.amount.equals("")) amount = Integer.parseInt(data.result.amount); else amount =0;
+                        if(!data.result.manualAmount.equals(""))   anualAmount = Integer.parseInt(data.result.manualAmount); else anualAmount =0;
+                        int totalAmount = amount+anualAmount;
+                        binding.tvAmount.setText("€"+totalAmount + "");
+                        binding.tvServiceAmount.setText("€"+amount);
+                        binding.tvExtraAmount.setText("€"+anualAmount);
+                        binding.tvMainTotal.setText("€"+totalAmount + "");
+                        binding.tv2.setText(data.result.acceptTimeSlote);
+
+
                     } else if (data.status.equals("0")) {
 
                         App.showToast(PaymentSummaryAct.this, data.message, Toast.LENGTH_SHORT);
@@ -105,11 +117,11 @@ public class PaymentSummaryAct extends AppCompatActivity {
 
     private void RateDialog() {
         AlertDialog.Builder builder1 = new AlertDialog.Builder(PaymentSummaryAct.this);
-        builder1.setMessage(getResources().getString(R.string.payment_successfully_done));
+        builder1.setMessage(getResources().getString(R.string.please_rate_provider));
         builder1.setCancelable(false);
 
         builder1.setPositiveButton(
-                "Give Rate",
+                getString(R.string.give_rate),
                 new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
                         dialog.dismiss();

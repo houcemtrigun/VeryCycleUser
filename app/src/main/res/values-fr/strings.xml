@@ -244,6 +244,10 @@
     <string name="estimate_confirmation">Confirmation d\'estimation</string>
     <string name="provider_is_on_the_way">Le fournisseur est en route</string>
     <string name="distance_to_req">Distance à demander en</string>
+    <string name="order_has_been_finish">La commande est terminée</string>
+
+    <string name="give_rate">Donner un taux</string>
+    <string name="please_rate_provider">Veuillez évaluer le fournisseur</string>
 
 
 </resources>

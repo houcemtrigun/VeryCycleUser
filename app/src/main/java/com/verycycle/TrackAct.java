@@ -91,6 +91,7 @@ public class TrackAct extends AppCompatActivity implements OnMapReadyCallback {
     private float start_rotation;
     GPSTracker gpsTracker;
     AlertDialog alert33;
+    int amount =0, anualAmount=0;
 
 
     BroadcastReceiver LocationReceiver = new BroadcastReceiver() {
@@ -125,8 +126,17 @@ public class TrackAct extends AppCompatActivity implements OnMapReadyCallback {
                     finish();
                 }
                 else if (intent.getStringExtra("status").equals("Way")) {
-                    if (NetworkReceiver.isConnected())
+                    if (NetworkReceiver.isConnected()) {
                         getBookingDetail(intent.getStringExtra("request_id"));
+                    }
+                    else
+                        App.showToast(TrackAct.this, getString(R.string.network_failure), Toast.LENGTH_SHORT);
+                }
+
+                else if (intent.getStringExtra("status").equals("send_request")) {
+                    if (NetworkReceiver.isConnected()) {
+                        getBookingDetail(intent.getStringExtra("request_id"));
+                    }
                     else
                         App.showToast(TrackAct.this, getString(R.string.network_failure), Toast.LENGTH_SHORT);
                 }
@@ -386,10 +396,15 @@ public class TrackAct extends AppCompatActivity implements OnMapReadyCallback {
                     if (data1.status.equals("1")) {
                         DriverName = data1.result.driverDetails.username;
                         DriverId = data1.result.driverDetails.id;
+                        if(data1.result.manual_status.equals("send_request")) data1.result.setStatus(data1.result.manual_status);
                         status = data1.result.status;
                         image = data1.result.driverDetails.driverImage;
                         ServiceAddress = data1.result.address;
                         mobile = "+" + data1.result.driverDetails.countryCode + data1.result.driverDetails.mobile;
+                       if(!data1.result.amount.equals("")) amount = Integer.parseInt(data1.result.amount); else amount =0;
+                        if(!data1.result.manual_amount.equals(""))   anualAmount = Integer.parseInt(data1.result.manual_amount); else anualAmount =0;
+                        int totalAmount = amount+anualAmount;
+                        binding.tvAmount.setText("€"+totalAmount +"");
                         binding.tvName.setText(DriverName);
                         Glide.with(TrackAct.this)
                                 .load(image)
@@ -413,21 +428,21 @@ public class TrackAct extends AppCompatActivity implements OnMapReadyCallback {
                             requestPermissions();
                         }
 
-                      //  if (data1.result.certifyStatus.equals("receive_request"))    EstimateConfirmDialog(data1);
-                      //  else alert33.dismiss();
-
-
                         if (data1.result.status.equals("Way")) {
                             DriverOnWayDialog();
                         }
                         else   if (data1.result.status.equals("Arrived")) {
                             DriverArriveDialog();
-                        } else if (data1.result.status.equals("Start")) {
+                        }
+                        else if (data1.result.status.equals("send_request"))
+                            EstimateConfirmDialog(data1,totalAmount+"");
+
+                        else if (data1.result.status.equals("Start")) {
                             TripStartDialog();
                         } else if (data1.result.status.equals("Finish")) {
                             booking_image = data1.result.bookingImage;
                             // TripFinishDialog();
-                            showWorkImageDialog();
+                            showWorkImageDialog(data1);
                         }
 
                     } else if (data1.status.equals("0")) {
@@ -461,6 +476,8 @@ public class TrackAct extends AppCompatActivity implements OnMapReadyCallback {
 
                     }
                 });
+        alert33 = builder1.create();
+        alert33.show();
     }
 
     @Override
@@ -470,6 +487,7 @@ public class TrackAct extends AppCompatActivity implements OnMapReadyCallback {
         callService();
         registerReceiver(LocationReceiver, new IntentFilter("data_update_location1"));
         registerReceiver(TripStatusReceiver, new IntentFilter("Job_Status_Action"));
+
     }
 
     @Override
@@ -675,7 +693,7 @@ public class TrackAct extends AppCompatActivity implements OnMapReadyCallback {
         });
     }
 
-    private void showWorkImageDialog() {
+    private void showWorkImageDialog(BookingDetailModel data1) {
         Dialog dialog = new Dialog(TrackAct.this, android.R.style.Theme_Translucent_NoTitleBar);
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
         dialog.setContentView(R.layout.dialog_show_work_image);
@@ -699,7 +717,7 @@ public class TrackAct extends AppCompatActivity implements OnMapReadyCallback {
         btnRate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(TrackAct.this, PaymentSummaryAct.class).putExtra("request_id", request_id)
+                startActivity(new Intent(TrackAct.this, PaymentSummaryAct.class).putExtra("request_id", data1.result.id)
                         .putExtra("ProviderId",DriverId).putExtra("ProviderName",DriverName).putExtra("ProviderImage",image));
                 finish();
             }
@@ -724,10 +742,11 @@ public class TrackAct extends AppCompatActivity implements OnMapReadyCallback {
 
 
 
-    private void estimatePriceMethod(BookingDetailModel bookingDetailModel) {
+    private void estimatePriceMethod(String status) {
         Map<String, String> map = new HashMap<>();
         map.put("request_id", request_id);
-        Log.e("MapMap", "Estimate Price REQUEST" + map);
+        map.put("status", status);
+        Log.e(TAG, "Estimate Price REQUEST" + map);
         Call<Map<String, String>> chatCount = apiInterface.estimateMethod(map);
         chatCount.enqueue(new Callback<Map<String, String>>() {
             @Override
@@ -759,30 +778,33 @@ public class TrackAct extends AppCompatActivity implements OnMapReadyCallback {
 
     }
 
-    public void EstimateConfirmDialog(BookingDetailModel bookingDetailModel) {
+    public void EstimateConfirmDialog(BookingDetailModel bookingDetailModel,String amounttt) {
        AlertDialog.Builder builder1 = new AlertDialog.Builder(TrackAct.this);
+
         builder1.setMessage(getResources().getString(R.string.are_you_satisfy_with));
+        builder1.setTitle("€"+amounttt);
+
         builder1.setCancelable(false);
 
         builder1.setPositiveButton(
-                getString(R.string.yes),
+                getString(R.string.confirm),
                 new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
                         dialog.dismiss();
-                        if (NetworkReceiver.isConnected()) estimatePriceMethod(bookingDetailModel);
-
-                        else
-                            App.showToast(TrackAct.this, getString(R.string.network_failure), Toast.LENGTH_LONG);
+                        if (NetworkReceiver.isConnected()) estimatePriceMethod("accept_request");
+                        else App.showToast(TrackAct.this, getString(R.string.network_failure), Toast.LENGTH_LONG);
                     }
                 });
 
-       /* builder1.setNegativeButton(
-                getString(R.string.no),
+        builder1.setNegativeButton(
+                getString(R.string.cancel),
                 new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
                         dialog.dismiss();
+                        if (NetworkReceiver.isConnected()) estimatePriceMethod("cancel_request");
+                        else App.showToast(TrackAct.this, getString(R.string.network_failure), Toast.LENGTH_LONG);
                     }
-                });*/
+                });
 
         alert33 = builder1.create();
         alert33.show();

@@ -15,15 +15,20 @@ public class PaymentSummaryModel {
     @Expose
     public String status;
 
-
     public class Result {
 
         @SerializedName("id")
         @Expose
         public String id;
+        @SerializedName("user_id")
+        @Expose
+        public String userId;
         @SerializedName("provider_id")
         @Expose
         public String providerId;
+        @SerializedName("manual_status")
+        @Expose
+        public String manualStatus;
         @SerializedName("problem")
         @Expose
         public String problem;
@@ -39,9 +44,6 @@ public class PaymentSummaryModel {
         @SerializedName("lon")
         @Expose
         public String lon;
-        @SerializedName("user_id")
-        @Expose
-        public String userId;
         @SerializedName("cycle_image")
         @Expose
         public String cycleImage;
@@ -75,13 +77,41 @@ public class PaymentSummaryModel {
         @SerializedName("extra_amount")
         @Expose
         public String extraAmount;
+        @SerializedName("booktype")
+        @Expose
+        public String booktype;
+        @SerializedName("payment_status")
+        @Expose
+        public String paymentStatus;
+        @SerializedName("send_privders")
+        @Expose
+        public String sendPrivders;
+        @SerializedName("accept_time_slote")
+        @Expose
+        public String acceptTimeSlote;
+        @SerializedName("amount")
+        @Expose
+        public String amount;
+        @SerializedName("manual_service")
+        @Expose
+        public String manualService;
+        @SerializedName("manual_desc")
+        @Expose
+        public String manualDesc;
+        @SerializedName("manual_amount")
+        @Expose
+        public String manualAmount;
         @SerializedName("total_amount")
         @Expose
-        public Integer totalAmount;
+        public String totalAmount;
         @SerializedName("service_amount")
         @Expose
         public String serviceAmount;
 
+
+
     }
 
 }
+
+

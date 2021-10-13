@@ -60,17 +60,29 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
                  object = new JSONObject(data.get("message"));
                  status = object.getString("status");
                 if (status.equals("Accept")) {
-
                     SessionManager.writeString(getApplicationContext(), Constant.driver_id, object.getString("driver_id"));
                     SessionManager.writeString(getApplicationContext(), Constant.request_id, object.getString("request_id"));
                     SessionManager.writeString(getApplicationContext(), Constant.user_name, object.getString("user_name"));
                     title = getString(R.string.booking_accept_by_provider);
+                    key = object.getString("key");
                     Intent intent1 = new Intent("Job_Status_Action");
                     intent1.putExtra("request_id", object.getString("request_id"));
                     intent1.putExtra("status", status);
                     sendBroadcast(intent1);
                 }
 
+
+                else if (status.equals("send_request")) {
+                    title = getString(R.string.confirm);
+                    key = object.getString("msg");
+                    SessionManager.writeString(getApplicationContext(), Constant.driver_id, object.getString("driver_id"));
+                    SessionManager.writeString(getApplicationContext(), Constant.request_id, object.getString("request_id"));
+                    SessionManager.writeString(getApplicationContext(), Constant.user_name, object.getString("user_name"));
+                    Intent intent1 = new Intent("Job_Status_Action");
+                    intent1.putExtra("request_id", object.getString("request_id"));
+                    intent1.putExtra("status", status);
+                    sendBroadcast(intent1);
+                }
 
 
 
@@ -89,6 +101,7 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
 
                 else if (status.equals("Arrived")) {
                     title = getString(R.string.provider_arrived_service_location);
+                    key = object.getString("key");
                     SessionManager.writeString(getApplicationContext(), Constant.driver_id, object.getString("driver_id"));
                     SessionManager.writeString(getApplicationContext(), Constant.request_id, object.getString("request_id"));
                     SessionManager.writeString(getApplicationContext(), Constant.user_name, object.getString("user_name"));
@@ -100,6 +113,7 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
 
                 else if (status.equals("Start")) {
                     title = getString(R.string.provider_start_the_service);
+                    key = object.getString("key");
                     SessionManager.writeString(getApplicationContext(), Constant.driver_id, object.getString("driver_id"));
                     SessionManager.writeString(getApplicationContext(), Constant.request_id, object.getString("request_id"));
                     SessionManager.writeString(getApplicationContext(), Constant.user_name, object.getString("user_name"));
@@ -111,6 +125,7 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
 
                 else if (status.equals("Finish")) {
                     title = getString(R.string.provider_finish_service);
+                    key = getString(R.string.order_has_been_finish);
                     work_image = object.getString("booking_image");
                     SessionManager.writeString(getApplicationContext(), Constant.driver_id, object.getString("driver_id"));
                     SessionManager.writeString(getApplicationContext(), Constant.request_id, object.getString("request_id"));

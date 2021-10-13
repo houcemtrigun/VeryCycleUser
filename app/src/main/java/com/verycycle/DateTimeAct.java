@@ -20,13 +20,7 @@ import com.google.android.libraries.places.widget.AutocompleteActivity;
 import com.google.android.libraries.places.widget.model.AutocompleteActivityMode;
 
 
-import com.google.firebase.ml.common.modeldownload.FirebaseModelDownloadConditions;
-import com.google.firebase.ml.common.modeldownload.FirebaseModelManager;
-import com.google.firebase.ml.naturallanguage.FirebaseNaturalLanguage;
-import com.google.firebase.ml.naturallanguage.translate.FirebaseTranslateLanguage;
-import com.google.firebase.ml.naturallanguage.translate.FirebaseTranslateRemoteModel;
-import com.google.firebase.ml.naturallanguage.translate.FirebaseTranslator;
-import com.google.firebase.ml.naturallanguage.translate.FirebaseTranslatorOptions;
+
 import com.verycycle.adapter.AdapterTimeSlot;
 import com.verycycle.databinding.ActivityDateTimeBinding;
 import com.verycycle.helper.App;
@@ -1169,7 +1163,7 @@ public class DateTimeAct extends AppCompatActivity {
     }
 
 
-    public void covertIntoFrench(String date) {
+   /* public void covertIntoFrench(String date) {
 
         FirebaseTranslatorOptions firebaseTranslatorOptions = new FirebaseTranslatorOptions.Builder()
                 .setSourceLanguage(FirebaseTranslateLanguage.EN)
@@ -1230,7 +1224,7 @@ public class DateTimeAct extends AppCompatActivity {
                                 // ...
                             }
                         });
-    }
+    }*/
 
 
 

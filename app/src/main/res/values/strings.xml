@@ -240,6 +240,9 @@
     <string name="estimate_confirmation">Estimate Confirmation</string>
     <string name="provider_is_on_the_way">Provider is on the way</string>
     <string name="distance_to_req">Distance to request in</string>
+    <string name="give_rate">Give Rate</string>
+    <string name="please_rate_provider">Please rate provider</string>
+    <string name="order_has_been_finish">Order hac been finished</string>
 
 
 </resources>

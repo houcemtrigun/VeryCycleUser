@@ -142,7 +142,7 @@
                     android:layout_gravity="center_vertical|center"
                     android:layout_marginTop="@dimen/_65sdp"
                     android:layout_marginRight="@dimen/_10sdp"
-                    android:layout_marginBottom="@dimen/_20sdp"
+                    android:layout_marginBottom="@dimen/_40sdp"
                     android:gravity="end">
 
                     <TextView

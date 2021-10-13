@@ -42,7 +42,7 @@ public class AdapterAcceptBooking extends RecyclerView.Adapter<AdapterAcceptBook
         String dateTimeSlot[] = arrayList.get(position).accept_time_slote.split(" ");
 
         holder.binding.tvPrice.setText("€"+arrayList.get(position).amount);
-        holder.binding.tvServiceType.setText(arrayList.get(position).booktype + " service");
+       // holder.binding.tvServiceType.setText(arrayList.get(position).booktype + " service");
         holder.binding.tvStatus.setText(arrayList.get(position).status);
         holder.binding.tvAddress.setText(arrayList.get(position).address);
         holder.binding.tvTime.setText(dateTimeSlot[3] + " "+ dateTimeSlot[4] + " " + dateTimeSlot[5] + " " + dateTimeSlot[6]+ " " + dateTimeSlot[7]);

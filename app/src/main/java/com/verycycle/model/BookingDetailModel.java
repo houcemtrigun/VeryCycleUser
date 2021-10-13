@@ -83,12 +83,24 @@ public class BookingDetailModel {
         public DriverDetails driverDetails;
 
 
-        @SerializedName("certify_status")
+        @SerializedName("manual_status")
         @Expose
-        public String certifyStatus;
+        public String manual_status;
 
+        @SerializedName("amount")
+        @Expose
+        public String amount;
+        @SerializedName("manual_amount")
+        @Expose
+        public String manual_amount;
 
+        public String getStatus() {
+            return status;
+        }
 
+        public void setStatus(String status) {
+            this.status = status;
+        }
 
         public class UserDetails {
 

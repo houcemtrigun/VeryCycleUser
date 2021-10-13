@@ -310,7 +310,7 @@
                 android:layout_height="wrap_content"
                 android:padding="@dimen/_10sdp"
                 android:background="@color/yellow_color"
-                android:text="@string/pay"
+                android:text="@string/rate"
                 android:textColor="@color/white"
                 android:textSize="@dimen/_12sdp"
                 android:textAllCaps="false"
