@@ -33,7 +33,7 @@ public class PaymentSummaryAct extends AppCompatActivity {
     VeryCycleUserInterface apiInterface;
     ActivityPaymentSummaryBinding binding;
     String requestId = "", providerId = "", providerName = "", providerImage = "";
-    int amount =0, anualAmount=0;
+    double amount =0.00, anualAmount=0.00;
 
 
     @Override
@@ -85,9 +85,9 @@ public class PaymentSummaryAct extends AppCompatActivity {
                     if (data.status.equals("1")) {
 
                       //  binding.tvAmount.setText("$" + data.result.totalAmount + "");
-                        if(!data.result.amount.equals("")) amount = Integer.parseInt(data.result.amount); else amount =0;
-                        if(!data.result.manualAmount.equals(""))   anualAmount = Integer.parseInt(data.result.manualAmount); else anualAmount =0;
-                        int totalAmount = amount+anualAmount;
+                        if(!data.result.amount.equals("")) amount = Double.parseDouble((data.result.amount)); else amount =0.00;
+                        if(!data.result.manualAmount.equals(""))   anualAmount = Double.parseDouble(data.result.manualAmount); else anualAmount =0.00;
+                        double totalAmount = amount+anualAmount;
                         binding.tvAmount.setText("€"+totalAmount + "");
                         binding.tvServiceAmount.setText("€"+amount);
                         binding.tvExtraAmount.setText("€"+anualAmount);

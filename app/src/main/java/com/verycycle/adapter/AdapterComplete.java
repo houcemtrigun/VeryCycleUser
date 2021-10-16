@@ -19,6 +19,8 @@ import java.util.ArrayList;
 public class  AdapterComplete extends RecyclerView.Adapter<AdapterComplete.MyViewHolder> {
     Context context;
     ArrayList<HistoryModel.Result>arrayList;
+    double amount=0.00,anualAmount=0.00;
+
 
     public AdapterComplete(Context context,ArrayList<HistoryModel.Result>arrayList) {
         this.context = context;
@@ -34,8 +36,12 @@ public class  AdapterComplete extends RecyclerView.Adapter<AdapterComplete.MyVie
 
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
+        if(!arrayList.get(position).amount.equals("")) amount = Double.parseDouble(arrayList.get(position).amount); else amount =0.00;
+        if(!arrayList.get(position).manual_amount.equals(""))   anualAmount = Double.parseDouble(arrayList.get(position).manual_amount); else anualAmount =0.00;
+        double totalAmount = amount+anualAmount;
+
       holder.binding.tvDateTime.setText(arrayList.get(position).accept_time_slote);
-      holder.binding.tvPrice.setText("€"+arrayList.get(position).totalAmount);
+      holder.binding.tvPrice.setText("€"+totalAmount);
       holder.binding.tvFrom.setText(arrayList.get(position).address);
     }
 

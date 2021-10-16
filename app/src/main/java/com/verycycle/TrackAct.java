@@ -91,7 +91,7 @@ public class TrackAct extends AppCompatActivity implements OnMapReadyCallback {
     private float start_rotation;
     GPSTracker gpsTracker;
     AlertDialog alert33;
-    int amount =0, anualAmount=0;
+    double amount =0.00, anualAmount=0.00;
 
 
     BroadcastReceiver LocationReceiver = new BroadcastReceiver() {
@@ -396,14 +396,14 @@ public class TrackAct extends AppCompatActivity implements OnMapReadyCallback {
                     if (data1.status.equals("1")) {
                         DriverName = data1.result.driverDetails.username;
                         DriverId = data1.result.driverDetails.id;
-                        if(data1.result.manual_status.equals("send_request")) data1.result.setStatus(data1.result.manual_status);
+                       if(data1.result.manual_status.equals("send_request")) data1.result.setStatus(data1.result.manual_status);
                         status = data1.result.status;
                         image = data1.result.driverDetails.driverImage;
                         ServiceAddress = data1.result.address;
                         mobile = "+" + data1.result.driverDetails.countryCode + data1.result.driverDetails.mobile;
-                       if(!data1.result.amount.equals("")) amount = Integer.parseInt(data1.result.amount); else amount =0;
-                        if(!data1.result.manual_amount.equals(""))   anualAmount = Integer.parseInt(data1.result.manual_amount); else anualAmount =0;
-                        int totalAmount = amount+anualAmount;
+                       if(!data1.result.amount.equals("")) amount = Double.parseDouble(data1.result.amount); else amount =0.00;
+                        if(!data1.result.manual_amount.equals(""))   anualAmount = Double.parseDouble(data1.result.manual_amount); else anualAmount =0.00;
+                        double totalAmount = amount+anualAmount;
                         binding.tvAmount.setText("€"+totalAmount +"");
                         binding.tvName.setText(DriverName);
                         Glide.with(TrackAct.this)

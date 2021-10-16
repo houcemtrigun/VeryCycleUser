@@ -83,6 +83,10 @@ public class RequestModel {
         @Expose
         public String amount;
 
+        @SerializedName("manual_amount")
+        @Expose
+        public String manual_amount;
+
 
         @SerializedName("provider_details")
         @Expose

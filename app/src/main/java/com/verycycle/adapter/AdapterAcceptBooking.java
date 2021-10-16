@@ -24,6 +24,9 @@ import java.util.ArrayList;
 public class AdapterAcceptBooking extends RecyclerView.Adapter<AdapterAcceptBooking.MyViewHolder>{
     Context context;
     ArrayList<RequestModel.Result>arrayList;
+    double amount = 0.00, anualAmount = 0.00;
+    String mainStatus="";
+
 
     public AdapterAcceptBooking(Context context, ArrayList<RequestModel.Result> arrayList) {
         this.context = context;
@@ -40,10 +43,17 @@ public class AdapterAcceptBooking extends RecyclerView.Adapter<AdapterAcceptBook
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
         String dateTimeSlot[] = arrayList.get(position).accept_time_slote.split(" ");
+        if(arrayList.get(position).status.equals("send_request")) mainStatus = "Order Edit Confirmation";
+        else if(arrayList.get(position).status.equals("accept_request"))mainStatus = arrayList.get(position).status;
+        else mainStatus = arrayList.get(position).status;
+        if(!arrayList.get(position).amount.equals("")) amount = Double.parseDouble(arrayList.get(position).amount); else amount =0.00;
+        if(!arrayList.get(position).manual_amount.equals(""))   anualAmount = Double.parseDouble(arrayList.get(position).manual_amount); else anualAmount =0.00;
+        double totalAmount = amount+anualAmount;
 
-        holder.binding.tvPrice.setText("€"+arrayList.get(position).amount);
+        holder.binding.tvPrice.setText("€"+totalAmount);
        // holder.binding.tvServiceType.setText(arrayList.get(position).booktype + " service");
-        holder.binding.tvStatus.setText(arrayList.get(position).status);
+
+        holder.binding.tvStatus.setText(mainStatus);
         holder.binding.tvAddress.setText(arrayList.get(position).address);
         holder.binding.tvTime.setText(dateTimeSlot[3] + " "+ dateTimeSlot[4] + " " + dateTimeSlot[5] + " " + dateTimeSlot[6]+ " " + dateTimeSlot[7]);
         holder.binding.tvDate.setText(dateTimeSlot[0] + " "+ dateTimeSlot[1] + " " + dateTimeSlot[2]);
