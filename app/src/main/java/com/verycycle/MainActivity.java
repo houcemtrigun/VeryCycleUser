@@ -69,7 +69,8 @@ public class MainActivity extends AppCompatActivity {
 
         binding.childNavDrawer.llHelp.setOnClickListener(v -> { startActivity(new Intent(MainActivity.this, HelpAndFeedBack.class));});
 
-        binding.childNavDrawer.llNotification.setOnClickListener(v -> {});
+        binding.childNavDrawer.llNotification.setOnClickListener(v -> {startActivity(new Intent(MainActivity.this,NotificationAct.class));});
+
 
         binding.childNavDrawer.llSetting.setOnClickListener(v -> {});
 

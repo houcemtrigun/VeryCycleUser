@@ -252,6 +252,10 @@ public class SelectAddressAct extends AppCompatActivity implements OnMapReadyCal
 
 
     private void sendBookingRequest(String providerId) {
+        //double amt  = Double.parseDouble(SessionManager.readString(SelectAddressAct.this,"price",""));
+         //  double vat =  (amt / 100.0f) * 20.00;
+         //  double totalAmount = amt + vat;        //String.format("%.2f", vat);
+
         DataManager.getInstance().showProgressMessage(SelectAddressAct.this, getString(R.string.please_wait));
         MultipartBody.Part filePart,filePart1;
         if (!str_image_path.equalsIgnoreCase("")) {
@@ -269,7 +273,7 @@ public class SelectAddressAct extends AppCompatActivity implements OnMapReadyCal
             filePart1 = MultipartBody.Part.createFormData("attachment", "", attachmentEmpty);
         }
 
-
+       ;
         RequestBody cycle_id = RequestBody.create(MediaType.parse("text/plain"),cycleId);
         RequestBody problm = RequestBody.create(MediaType.parse("text/plain"), problem);
         RequestBody datE = RequestBody.create(MediaType.parse("text/plain"), "");
@@ -280,11 +284,10 @@ public class SelectAddressAct extends AppCompatActivity implements OnMapReadyCal
         RequestBody provider_id = RequestBody.create(MediaType.parse("text/plain"), "");
         RequestBody user_id = RequestBody.create(MediaType.parse("text/plain"), DataManager.getInstance().getUserData(SelectAddressAct.this).result.id);
         RequestBody serviceType1 = RequestBody.create(MediaType.parse("text/plain"), serviceType);
-        RequestBody amount = RequestBody.create(MediaType.parse("text/plain"), SessionManager.readString(SelectAddressAct.this,"price",""));
+        RequestBody amount = RequestBody.create(MediaType.parse("text/plain"),  Double.parseDouble(SessionManager.readString(SelectAddressAct.this,"price",""))+"");
+        RequestBody vat_amount = RequestBody.create(MediaType.parse("text/plain"),""  );
 
-
-
-        Call<Map<String,String>> signupCall = apiInterface.sendRequest(cycle_id, problm, datE, timE, addreSS,latitude1,longitude1,user_id, provider_id,serviceType1,amount,filePart,filePart1);
+        Call<Map<String,String>> signupCall = apiInterface.sendRequest(cycle_id, problm, datE, timE, addreSS,latitude1,longitude1,user_id, provider_id,serviceType1,amount,vat_amount,filePart,filePart1);
         signupCall.enqueue(new Callback<Map<String,String>>() {
             @Override
             public void onResponse(Call<Map<String,String>> call, Response<Map<String,String>> response) {
@@ -296,9 +299,9 @@ public class SelectAddressAct extends AppCompatActivity implements OnMapReadyCal
                         String request_id = data.get("request_id");
                         Log.e("MapMap", "EDIT PROFILE RESPONSE" + dataResponse);
                        // Toast.makeText(SelectAddressAct.this, getString(R.string.request_send_successfully), Toast.LENGTH_SHORT).show();
-                        startActivity(new Intent(SelectAddressAct.this,PaymentAct.class)
+                         startActivity(new Intent(SelectAddressAct.this,PaymentAct.class)
                         .putExtra("request_id",request_id));
-                        finish();
+                         finish();
                     } else if (data.get("status").equals("0")) {
                         Toast.makeText(SelectAddressAct.this, data.get("message"), Toast.LENGTH_SHORT).show();
                     }

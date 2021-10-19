@@ -2,12 +2,14 @@ package com.verycycle.retrofit;
 
 
 
+import com.verycycle.NotificationAct;
 import com.verycycle.model.AddCard;
 import com.verycycle.model.BookingDetailModel;
 import com.verycycle.model.CycleModel;
 import com.verycycle.model.EditCardModel;
 import com.verycycle.model.GetCardModel;
 import com.verycycle.model.HistoryModel;
+import com.verycycle.model.NotificationModel;
 import com.verycycle.model.PaymentModel;
 import com.verycycle.model.PaymentSummaryModel;
 import com.verycycle.model.ProblemModel;
@@ -108,6 +110,7 @@ public interface VeryCycleUserInterface {
             @Part("provider_id") RequestBody provider_id,
             @Part("booktype") RequestBody service_type,
             @Part("amount") RequestBody amount,
+            @Part("vat_amount") RequestBody vat_amount,
             @Part MultipartBody.Part file, @Part MultipartBody.Part file1);
 
 
@@ -194,5 +197,9 @@ public interface VeryCycleUserInterface {
     @POST("user_receive_request")
     Call<Map<String,String>>  estimateMethod(@FieldMap Map<String,String> params);
 
+
+    @FormUrlEncoded
+    @POST("get_notification")
+    Call<NotificationModel> getNotification(@FieldMap Map<String, String> params);
 
 }

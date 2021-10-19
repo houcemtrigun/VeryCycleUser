@@ -243,6 +243,8 @@
     <string name="give_rate">Give Rate</string>
     <string name="please_rate_provider">Please rate provider</string>
     <string name="order_has_been_finish">Order hac been finished</string>
-
+    <string name="tax">Tax</string>
+    <string name="footer_text">© Copyright 2021. All Rights Reserved.</string>
+    <string name="notifications">Notifications</string>
 
 </resources>

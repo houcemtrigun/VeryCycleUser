@@ -155,8 +155,11 @@ public class ProviderListAct extends AppCompatActivity implements OnItemPosition
         RequestBody user_id = RequestBody.create(MediaType.parse("text/plain"), DataManager.getInstance().getUserData(ProviderListAct.this).result.id);
         RequestBody serviceType1 = RequestBody.create(MediaType.parse("text/plain"), serviceType);
         RequestBody amount = RequestBody.create(MediaType.parse("text/plain"), SessionManager.readString(ProviderListAct.this,"price",""));
+        RequestBody vat_amount = RequestBody.create(MediaType.parse("text/plain"),""  );
 
-        Call<Map<String,String>> signupCall = apiInterface.sendRequest(cycle_id, problm, datE, timE, addreSS,latitude,longitude,user_id, provider_id,serviceType1,amount,filePart,filePart1);
+
+
+        Call<Map<String,String>> signupCall = apiInterface.sendRequest(cycle_id, problm, datE, timE, addreSS,latitude,longitude,user_id, provider_id,serviceType1,amount,vat_amount,filePart,filePart1);
         signupCall.enqueue(new Callback<Map<String,String>>() {
             @Override
             public void onResponse(Call<Map<String,String>> call, Response<Map<String,String>> response) {

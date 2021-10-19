@@ -168,6 +168,10 @@
             android:screenOrientation="locked"
             android:theme="@style/AppTheme.NoActionBar"/>
 
+        <activity android:name=".NotificationAct"
+            android:screenOrientation="locked"
+            android:theme="@style/AppTheme.NoActionBar"/>
+
 
 
         <provider

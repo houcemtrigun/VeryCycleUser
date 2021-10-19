@@ -248,6 +248,9 @@
 
     <string name="give_rate">Donner un taux</string>
     <string name="please_rate_provider">Veuillez évaluer le fournisseur</string>
+    <string name="tax">Impôt</string>
+    <string name="footer_text">© Copyright 2021. Tous droits réservés.</string>
+    <string name="notifications">Notifications</string>
 
 
 </resources>

@@ -88,12 +88,16 @@ public class PaymentSummaryAct extends AppCompatActivity {
                         if(!data.result.amount.equals("")) amount = Double.parseDouble((data.result.amount)); else amount =0.00;
                         if(!data.result.manualAmount.equals(""))   anualAmount = Double.parseDouble(data.result.manualAmount); else anualAmount =0.00;
                         double totalAmount = amount+anualAmount;
-                        binding.tvAmount.setText("€"+totalAmount + "");
-                        binding.tvServiceAmount.setText("€"+amount);
-                        binding.tvExtraAmount.setText("€"+anualAmount);
-                        binding.tvMainTotal.setText("€"+totalAmount + "");
+                        binding.tvAmount.setText("€"+ String.format("%.2f", totalAmount) + "");
+                        binding.tvServiceAmount.setText("€"+String.format("%.2f", amount));
+                        binding.tvExtraAmount.setText("€"+String.format("%.2f", anualAmount));
+                        binding.tvMainTotal.setText("€"+String.format("%.2f", totalAmount) + "");
+                        double vat =  (totalAmount / 100.0f) * 20.00;
+                        binding.tvVat.setText("€"+String.format("%.2f", vat) + "");
                         binding.tv2.setText(data.result.acceptTimeSlote);
-
+                        binding.tvName.setText(data.result.providerDetails.username);
+                        binding.tvAddress.setText(data.result.address);
+                        binding.tvEmail.setText(data.result.providerDetails.email);
 
                     } else if (data.status.equals("0")) {
 
