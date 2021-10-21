@@ -3,7 +3,9 @@ package com.verycycle.retrofit;
 
 
 import com.verycycle.NotificationAct;
+import com.verycycle.adapter.AdapterAssemble;
 import com.verycycle.model.AddCard;
+import com.verycycle.model.AssembleModel;
 import com.verycycle.model.BookingDetailModel;
 import com.verycycle.model.CycleModel;
 import com.verycycle.model.EditCardModel;
@@ -201,5 +203,21 @@ public interface VeryCycleUserInterface {
     @FormUrlEncoded
     @POST("get_notification")
     Call<NotificationModel> getNotification(@FieldMap Map<String, String> params);
+
+
+    @GET("get_bike_list")
+    Call<AssembleModel> getAllTypess();
+
+
+    @Multipart
+    @POST("add_bike_request")
+    Call<Map<String,String>> addCarAsmReq(
+            @Part("user_id") RequestBody user_id,
+            @Part("bike_id") RequestBody bike_id,
+            @Part("bike_name") RequestBody bike_name,
+            @Part MultipartBody.Part file);
+
+
+
 
 }

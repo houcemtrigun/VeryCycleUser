@@ -1,11 +1,5 @@
 package com.verycycle;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.app.ActivityCompat;
-import androidx.core.content.ContextCompat;
-import androidx.core.content.FileProvider;
-import androidx.databinding.DataBindingUtil;
-
 import android.Manifest;
 import android.app.Dialog;
 import android.content.Intent;
@@ -24,50 +18,67 @@ import android.widget.AdapterView;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
+import androidx.core.content.FileProvider;
+import androidx.databinding.DataBindingUtil;
+
 import com.bumptech.glide.Glide;
 import com.google.gson.Gson;
+import com.verycycle.adapter.AdapterAssemble;
 import com.verycycle.adapter.AdapterCycleModel;
+import com.verycycle.databinding.ActivityBikeAssembleBinding;
 import com.verycycle.databinding.ActivityChoosingTypeOfrideBinding;
 import com.verycycle.helper.App;
 import com.verycycle.helper.DataManager;
+import com.verycycle.helper.NetworkReceiver;
+import com.verycycle.helper.SessionManager;
+import com.verycycle.model.AssembleModel;
 import com.verycycle.model.CycleModel;
+import com.verycycle.model.SignupModel;
 import com.verycycle.retrofit.ApiClient;
+import com.verycycle.retrofit.Constant;
 import com.verycycle.retrofit.VeryCycleUserInterface;
 
 import java.io.File;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Map;
 
+import okhttp3.MediaType;
+import okhttp3.MultipartBody;
+import okhttp3.RequestBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class ChoosingTypeOfride extends AppCompatActivity {
-    public String TAG = "ChoosingTypeOfride";
-    ActivityChoosingTypeOfrideBinding binding;
-    String str_image_path = "",cycleId="";
+public class BikeAssembleAct extends AppCompatActivity {
+    public String TAG = "BikeAssembleAct";
+    ActivityBikeAssembleBinding binding;
+    String str_image_path = "",BikeTypeID="",BikeText="";
     private static final int REQUEST_CAMERA = 1;
     private static final int SELECT_FILE = 2;
     private static final int MY_PERMISSION_CONSTANT = 5;
     private Uri uriSavedImage;
-    ArrayList<CycleModel.Result> arrayList;
-    AdapterCycleModel adapter;
+    ArrayList<AssembleModel.Result> arrayList;
+    AdapterAssemble adapter;
     VeryCycleUserInterface apiInterface;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         apiInterface = ApiClient.getClient().create(VeryCycleUserInterface.class);
-        binding = DataBindingUtil.setContentView(this,R.layout.activity_choosing_type_ofride);
-
-        SetuiUI();
+        binding = DataBindingUtil.setContentView(this,R.layout.activity_bike_assemble);
+        initViews();
     }
 
-    private void SetuiUI() {
+    private void initViews() {
         arrayList = new ArrayList<>();
-        
-        adapter = new AdapterCycleModel(ChoosingTypeOfride.this,arrayList);
-        binding.spinnerModel.setAdapter(adapter);
+
+        adapter = new AdapterAssemble(BikeAssembleAct.this,arrayList);
+        binding.spinnerBikeType.setAdapter(adapter);
 
 
         binding.linerCycle.setOnClickListener(v -> {
@@ -77,15 +88,14 @@ public class ChoosingTypeOfride extends AppCompatActivity {
 
         binding.ivBack.setOnClickListener(v -> { finish(); });
 
-        binding.linearNext.setOnClickListener(v -> { validation(); });
-   
-        getCycleModel();
+        binding.btnSendReq.setOnClickListener(v -> { validation(); });
 
-
-        binding.spinnerModel.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+        binding.spinnerBikeType.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                cycleId = arrayList.get(position).id;
+                BikeTypeID = arrayList.get(position).id;
+                if(BikeTypeID.equals("7")) binding.cardEd.setVisibility(View.VISIBLE);
+                else binding.cardEd.setVisibility(View.GONE);
             }
 
             @Override
@@ -94,41 +104,52 @@ public class ChoosingTypeOfride extends AppCompatActivity {
             }
         });
 
+
+        getCarTypessss();
     }
+
 
     private void validation() {
-        if(cycleId.equals("")){
-            App.showToast(ChoosingTypeOfride.this,getString(R.string.please_select_cycle_model),Toast.LENGTH_LONG);
+        if(BikeTypeID.equals("")){
+            App.showToast(BikeAssembleAct.this,getString(R.string.please_select_bike_type), Toast.LENGTH_LONG);
+        }
+
+        else if(BikeTypeID.equals("7")){
+           if(binding.edtext.getText().toString().equals(""))
+           { binding.edtext.setFocusable(true);
+               binding.edtext.setError(getString(R.string.required));
+           }
         }
         else if(str_image_path.equals("")){
-            App.showToast(ChoosingTypeOfride.this,getString(R.string.please_upload_cycle_image),Toast.LENGTH_LONG);
+            App.showToast(BikeAssembleAct.this,getString(R.string.please_upload_cycle_image),Toast.LENGTH_LONG);
         }
         else {
-            startActivity(new Intent(this, Problam.class).putExtra("cycleModel",cycleId)
-                    .putExtra("cycleImage",str_image_path));
+          if(NetworkReceiver.isConnected())  SendAssembleReq(BikeTypeID,binding.edtext.getText().toString());
+          else Toast.makeText(this, getString(R.string.please_wait), Toast.LENGTH_SHORT).show();
         }
     }
 
-    private void getCycleModel() {
-        Call<CycleModel> signupCall = apiInterface.getCycleList();
-        signupCall.enqueue(new Callback<CycleModel>() {
+    private void getCarTypessss() {
+        DataManager.getInstance().showProgressMessage(BikeAssembleAct.this, getString(R.string.please_wait));
+        Call<AssembleModel> signupCall = apiInterface.getAllTypess();
+        signupCall.enqueue(new Callback<AssembleModel>() {
             @Override
-            public void onResponse(Call<CycleModel> call, Response<CycleModel> response) {
+            public void onResponse(Call<AssembleModel> call, Response<AssembleModel> response) {
                 DataManager.getInstance().hideProgressMessage();
                 try {
-                    CycleModel data = response.body();
+                    AssembleModel data = response.body();
                     String responseString = new Gson().toJson(response.body());
                     Log.e(TAG, "Cycle Model Response :" + responseString);
                     if (data.status.equals("1")) {
                         arrayList.clear();
                         arrayList.addAll(data.result);
                         adapter.notifyDataSetChanged();
-                        binding.spinnerModel.setSelection(0);
+                        binding.spinnerBikeType.setSelection(0);
                         // car_id =  carArrayList.get(0).id;
 
 
                     } else if (data.status.equals("0")) {
-                        App.showToast(ChoosingTypeOfride.this, data.message, Toast.LENGTH_SHORT);
+                        App.showToast(BikeAssembleAct.this, data.message, Toast.LENGTH_SHORT);
                     }
 
                 } catch (Exception e) {
@@ -137,7 +158,7 @@ public class ChoosingTypeOfride extends AppCompatActivity {
             }
 
             @Override
-            public void onFailure(Call<CycleModel> call, Throwable t) {
+            public void onFailure(Call<AssembleModel> call, Throwable t) {
                 DataManager.getInstance().hideProgressMessage();
                 call.cancel();
             }
@@ -146,7 +167,7 @@ public class ChoosingTypeOfride extends AppCompatActivity {
 
     public void showImageSelection() {
 
-        final Dialog dialog = new Dialog(ChoosingTypeOfride.this);
+        final Dialog dialog = new Dialog(BikeAssembleAct.this);
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
         dialog.getWindow().getAttributes().windowAnimations = android.R.style.Widget_Material_ListPopupWindow;
         dialog.setContentView(R.layout.dialog_show_image_selection);
@@ -201,7 +222,7 @@ public class ChoosingTypeOfride extends AppCompatActivity {
 
         str_image_path = tostoreFile.getPath();
 
-        uriSavedImage = FileProvider.getUriForFile(ChoosingTypeOfride.this,
+        uriSavedImage = FileProvider.getUriForFile(BikeAssembleAct.this,
                 BuildConfig.APPLICATION_ID + ".provider",
                 tostoreFile);
 
@@ -220,17 +241,16 @@ public class ChoosingTypeOfride extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, data);
         if (resultCode == RESULT_OK) {
             binding.ivCamera.setVisibility(View.GONE);
-            binding.ivDemo.setVisibility(View.GONE);
             Log.e("Result_code", requestCode + "");
             if (requestCode == SELECT_FILE) {
-                str_image_path = DataManager.getInstance().getRealPathFromURI(ChoosingTypeOfride.this, data.getData());
-                Glide.with(ChoosingTypeOfride.this)
+                str_image_path = DataManager.getInstance().getRealPathFromURI(BikeAssembleAct.this, data.getData());
+                Glide.with(BikeAssembleAct.this)
                         .load(str_image_path)
                         .centerCrop()
                         .into(binding.ivCycle);
 
             } else if (requestCode == REQUEST_CAMERA) {
-                Glide.with(ChoosingTypeOfride.this)
+                Glide.with(BikeAssembleAct.this)
                         .load(str_image_path)
                         .centerCrop()
                         .into(binding.ivCycle);
@@ -242,39 +262,39 @@ public class ChoosingTypeOfride extends AppCompatActivity {
 
     //CHECKING FOR Camera STATUS
     public boolean checkPermisssionForReadStorage() {
-        if (ContextCompat.checkSelfPermission(ChoosingTypeOfride.this,
+        if (ContextCompat.checkSelfPermission(BikeAssembleAct.this,
                 Manifest.permission.CAMERA)
                 != PackageManager.PERMISSION_GRANTED
 
                 ||
 
-                ContextCompat.checkSelfPermission(ChoosingTypeOfride.this,
+                ContextCompat.checkSelfPermission(BikeAssembleAct.this,
                         Manifest.permission.WRITE_EXTERNAL_STORAGE)
                         != PackageManager.PERMISSION_GRANTED
                 ||
 
-                ContextCompat.checkSelfPermission(ChoosingTypeOfride.this,
+                ContextCompat.checkSelfPermission(BikeAssembleAct.this,
                         Manifest.permission.READ_EXTERNAL_STORAGE)
                         != PackageManager.PERMISSION_GRANTED
         ) {
 
             // Should we show an explanation?
-            if (ActivityCompat.shouldShowRequestPermissionRationale(ChoosingTypeOfride.this,
+            if (ActivityCompat.shouldShowRequestPermissionRationale(BikeAssembleAct.this,
                     Manifest.permission.CAMERA)
 
                     ||
 
-                    ActivityCompat.shouldShowRequestPermissionRationale(ChoosingTypeOfride.this,
+                    ActivityCompat.shouldShowRequestPermissionRationale(BikeAssembleAct.this,
                             Manifest.permission.READ_EXTERNAL_STORAGE)
                     ||
-                    ActivityCompat.shouldShowRequestPermissionRationale(ChoosingTypeOfride.this,
+                    ActivityCompat.shouldShowRequestPermissionRationale(BikeAssembleAct.this,
                             Manifest.permission.WRITE_EXTERNAL_STORAGE)
 
 
             ) {
 
 
-                ActivityCompat.requestPermissions(ChoosingTypeOfride.this,
+                ActivityCompat.requestPermissions(BikeAssembleAct.this,
                         new String[]{Manifest.permission.CAMERA, Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.WRITE_EXTERNAL_STORAGE},
                         MY_PERMISSION_CONSTANT);
 
@@ -282,7 +302,7 @@ public class ChoosingTypeOfride extends AppCompatActivity {
 
                 //explain("Please Allow Location Permission");
                 // No explanation needed, we can request the permission.
-                ActivityCompat.requestPermissions(ChoosingTypeOfride.this,
+                ActivityCompat.requestPermissions(BikeAssembleAct.this,
                         new String[]{Manifest.permission.CAMERA, Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.WRITE_EXTERNAL_STORAGE},
                         MY_PERMISSION_CONSTANT);
             }
@@ -306,10 +326,10 @@ public class ChoosingTypeOfride extends AppCompatActivity {
                     if (camera && read_external_storage && write_external_storage) {
                         showImageSelection();
                     } else {
-                        Toast.makeText(ChoosingTypeOfride.this, " permission denied, boo! Disable the functionality that depends on this permission.", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(BikeAssembleAct.this, " permission denied, boo! Disable the functionality that depends on this permission.", Toast.LENGTH_SHORT).show();
                     }
                 } else {
-                    Toast.makeText(ChoosingTypeOfride.this, "  permission denied, boo! Disable the functionality that depends on this permission.", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(BikeAssembleAct.this, "  permission denied, boo! Disable the functionality that depends on this permission.", Toast.LENGTH_SHORT).show();
                 }
                 // return;
             }
@@ -318,6 +338,51 @@ public class ChoosingTypeOfride extends AppCompatActivity {
         }
     }
 
+    private void SendAssembleReq(String id,String name) {
+        DataManager.getInstance().showProgressMessage(BikeAssembleAct.this, getString(R.string.please_wait));
+        MultipartBody.Part filePart;
+        if (!str_image_path.equalsIgnoreCase("")) {
+            File file = DataManager.getInstance().saveBitmapToFile(new File(str_image_path));
+            filePart = MultipartBody.Part.createFormData("image", file.getName(), RequestBody.create(MediaType.parse("image/*"), file));
+        } else {
+            RequestBody attachmentEmpty = RequestBody.create(MediaType.parse("text/plain"), "");
+            filePart = MultipartBody.Part.createFormData("attachment", "", attachmentEmpty);
+        }
+
+        RequestBody BikeId = RequestBody.create(MediaType.parse("text/plain"),id );
+        RequestBody BikeName = RequestBody.create(MediaType.parse("text/plain"), name);
+        RequestBody user_id = RequestBody.create(MediaType.parse("text/plain"), DataManager.getInstance().getUserData(BikeAssembleAct.this).result.id);
+
+
+        Call<Map<String,String>> signupCall = apiInterface.addCarAsmReq(user_id, BikeId, BikeName, filePart);
+        signupCall.enqueue(new Callback<Map<String,String>>() {
+            @Override
+            public void onResponse(Call<Map<String,String>> call, Response<Map<String,String>> response) {
+                DataManager.getInstance().hideProgressMessage();
+                try {
+                    Map<String,String> data = response.body();
+                    if (data.get("status").equals("1")) {
+                        String dataResponse = new Gson().toJson(response.body());
+                        Log.e("MapMap", "Bike Type  RESPONSE" + dataResponse);
+                        Toast.makeText(BikeAssembleAct.this, data.get("message"), Toast.LENGTH_SHORT).show();
+                        finish();
+                    } else if (data.get("status").equals("0")) {
+                        Toast.makeText(BikeAssembleAct.this, data.get("message"), Toast.LENGTH_SHORT).show();
+                    }
+
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<Map<String,String>> call, Throwable t) {
+                call.cancel();
+                DataManager.getInstance().hideProgressMessage();
+            }
+
+        });
+    }
 
 
 

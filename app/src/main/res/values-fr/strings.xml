@@ -251,6 +251,11 @@
     <string name="tax">Impôt</string>
     <string name="footer_text">© Copyright 2021. Tous droits réservés.</string>
     <string name="notifications">Notifications</string>
+    <string name="bike_type">Type de vélo</string>
+    <string name="take_photo">Prendre une photo</string>
+    <string name="please_enter_other_type">Veuillez saisir un autre type</string>
+    <string name="required">obligatoire</string>
+    <string name="please_select_bike_type">Veuillez sélectionner le type de vélo</string>
 
 
 </resources>

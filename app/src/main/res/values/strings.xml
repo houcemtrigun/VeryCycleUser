@@ -246,5 +246,10 @@
     <string name="tax">Tax</string>
     <string name="footer_text">© Copyright 2021. All Rights Reserved.</string>
     <string name="notifications">Notifications</string>
+    <string name="bike_type">Bike type</string>
+    <string name="take_photo">Take photo</string>
+    <string name="please_enter_other_type">Please enter other type</string>
+    <string name="required">required</string>
+    <string name="please_select_bike_type">Please select bike type</string>
 
 </resources>

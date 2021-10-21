@@ -59,8 +59,6 @@ public class NotificationAct extends AppCompatActivity {
         else  App.showToast(NotificationAct.this,getString(R.string.network_failure), Toast.LENGTH_LONG);
     }
 
-
-
     private void getAllNoti() {
         DataManager.getInstance().showProgressMessage(NotificationAct.this,getString(R.string.please_wait));
         Map<String, String> map = new HashMap<>();
@@ -115,4 +113,5 @@ public class NotificationAct extends AppCompatActivity {
 
         });
     }
+
 }
