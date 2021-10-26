@@ -51,6 +51,8 @@ public class Problam extends AppCompatActivity implements OnItemPositionListener
             str_image_path = getIntent().getStringExtra("cycleImage");
         }
 
+        binding.ivBack.setOnClickListener(v -> finish());
+
         binding.btnContinue.setOnClickListener(v -> {
             if (problem.equals("")) {
                 App.showToast(Problam.this, getString(R.string.please_select_problem), Toast.LENGTH_LONG);
