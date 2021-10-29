@@ -273,9 +273,9 @@ public class SelectAddressAct extends AppCompatActivity implements OnMapReadyCal
             filePart1 = MultipartBody.Part.createFormData("attachment", "", attachmentEmpty);
         }
 
-       ;
+
         RequestBody cycle_id = RequestBody.create(MediaType.parse("text/plain"),cycleId);
-        RequestBody problm = RequestBody.create(MediaType.parse("text/plain"), problem);
+        RequestBody problm = RequestBody.create(MediaType.parse("text/plain"),  SessionManager.readString(SelectAddressAct.this,"problem_id",""));
         RequestBody datE = RequestBody.create(MediaType.parse("text/plain"), "");
         RequestBody timE = RequestBody.create(MediaType.parse("text/plain"), time);
         RequestBody addreSS = RequestBody.create(MediaType.parse("text/plain"), address);
@@ -286,8 +286,16 @@ public class SelectAddressAct extends AppCompatActivity implements OnMapReadyCal
         RequestBody serviceType1 = RequestBody.create(MediaType.parse("text/plain"), serviceType);
         RequestBody amount = RequestBody.create(MediaType.parse("text/plain"),  Double.parseDouble(SessionManager.readString(SelectAddressAct.this,"price",""))+"");
         RequestBody vat_amount = RequestBody.create(MediaType.parse("text/plain"),""  );
+        RequestBody sub_problm = RequestBody.create(MediaType.parse("text/plain"), SessionManager.readString(SelectAddressAct.this,"subproblem_id",""));
 
-        Call<Map<String,String>> signupCall = apiInterface.sendRequest(cycle_id, problm, datE, timE, addreSS,latitude1,longitude1,user_id, provider_id,serviceType1,amount,vat_amount,filePart,filePart1);
+
+
+      //  SessionManager.readString(SelectAddressAct.this,"sub_problem","");
+     //   SessionManager.readString(SelectAddressAct.this,"subproblem_id","");
+     //   SessionManager.writeString(SelectAddressAct.this,"problem_id","");
+
+
+        Call<Map<String,String>> signupCall = apiInterface.sendRequest(cycle_id, problm,sub_problm, datE, timE, addreSS,latitude1,longitude1,user_id, provider_id,serviceType1,amount,vat_amount,filePart,filePart1);
         signupCall.enqueue(new Callback<Map<String,String>>() {
             @Override
             public void onResponse(Call<Map<String,String>> call, Response<Map<String,String>> response) {

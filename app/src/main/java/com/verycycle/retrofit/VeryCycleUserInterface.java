@@ -18,6 +18,7 @@ import com.verycycle.model.ProblemModel;
 import com.verycycle.model.ProviderModel;
 import com.verycycle.model.RequestModel;
 import com.verycycle.model.SignupModel;
+import com.verycycle.model.SubProblmModel;
 
 import java.util.Map;
 
@@ -103,6 +104,7 @@ public interface VeryCycleUserInterface {
     Call<Map<String,String>> sendRequest(
             @Part("cycle_id") RequestBody cycle_id,
             @Part("problem") RequestBody problem,
+            @Part("sub_problem_id") RequestBody sub_problem_id,
             @Part("date") RequestBody date,
             @Part("time") RequestBody time,
             @Part("address") RequestBody address,
@@ -173,6 +175,11 @@ public interface VeryCycleUserInterface {
 
     @GET("get_problem_details")
     Call<ProblemModel> getProblemList();
+
+
+    @FormUrlEncoded
+    @POST("get_sub_problem_details")
+    Call<SubProblmModel>  getSubProblemList(@FieldMap Map<String, String> params);
 
 
     @FormUrlEncoded

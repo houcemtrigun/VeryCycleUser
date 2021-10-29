@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+    <RelativeLayout
+        android:id="@+id/rlMain"
+        android:layout_margin="@dimen/_7sdp"
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/_8sdp"
+        android:background="@drawable/btn_bg_">
+
+
+        <TextView
+            android:id="@+id/tv1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/_8sdp"
+            android:fontFamily="@font/poppinsmedium"
+            android:gravity="center_vertical"
+            android:text="@string/my_speeds_go_wrong"
+            android:textColor="@color/black"
+            android:textStyle="bold"
+            />
+
+        <TextView
+            android:id="@+id/tv2"
+            android:layout_below="@+id/tv1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/poppinsmedium"
+            android:gravity="center_vertical"
+            android:layout_marginLeft="@dimen/_8sdp"
+            android:text="@string/my_speeds_go_wrong"
+            android:textColor="@color/black"
+            android:textStyle="bold"
+            />
+
+
+
+
+    </RelativeLayout>
+</layout>

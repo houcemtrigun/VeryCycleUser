@@ -6,6 +6,7 @@ import androidx.databinding.DataBindingUtil;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.gson.Gson;
@@ -35,6 +36,7 @@ public class Problam extends AppCompatActivity implements OnItemPositionListener
     VeryCycleUserInterface apiInterface;
     ArrayList<ProblemModel.Result> arrayList;
     AdapterProblem adapter;
+    public static TextView tvPrice;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,6 +47,7 @@ public class Problam extends AppCompatActivity implements OnItemPositionListener
     }
 
     private void SetUpUI() {
+        tvPrice = findViewById(R.id.tvPrice);
         arrayList = new ArrayList<>();
         if (getIntent() != null) {
             cycleId = getIntent().getStringExtra("cycleModel");
@@ -158,7 +161,10 @@ public class Problam extends AppCompatActivity implements OnItemPositionListener
     @Override
     public void onPosition(int position) {
         problem = arrayList.get(position).name;
-        binding.tvPrice.setText(getString(R.string.continue_) + "  " + "€" + arrayList.get(position).price);
-        SessionManager.writeString(Problam.this,"price",arrayList.get(position).price);
+        startActivity(new Intent(Problam.this, SubCatAct.class).putExtra("problem_id",arrayList.get(position).id)
+        .putExtra("title",problem));
+
+                //
+        SessionManager.writeString(Problam.this,"problem_id",arrayList.get(position).id);
     }
 }
