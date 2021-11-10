@@ -272,17 +272,49 @@ public class DataManager {
 */
 
         public static String getCurrent() {
-            SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
+            SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy",Locale.US);
             String currentDateandTime = sdf.format(new Date());
             return currentDateandTime;
         }
 
 
     public static String getCurrent1() {
-        SimpleDateFormat sdf = new SimpleDateFormat("EEEE dd MMMM");
+        SimpleDateFormat sdf = new SimpleDateFormat("EEEE dd MMMM",Locale.US);
         String currentDateandTime = sdf.format(new Date());
         return currentDateandTime;
     }
+
+
+    public static String getCurrent2() {
+            SimpleDateFormat sdf = new SimpleDateFormat("EEEE dd MMMM",Locale.US);
+        String dt = sdf.format(new Date());
+        Calendar c = Calendar.getInstance();
+        try {
+            c.setTime(sdf.parse(dt));
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        c.add(Calendar.DATE, 1);  // number of days to add
+        dt = sdf.format(c.getTime());
+       return  dt;
+    }
+
+
+    public static String getCurrent3() {
+        SimpleDateFormat sdf = new SimpleDateFormat("EEEE dd MMMM",Locale.US);
+        String dt = sdf.format(new Date());
+        Calendar c = Calendar.getInstance();
+        try {
+            c.setTime(sdf.parse(dt));
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        c.add(Calendar.DATE, 2);  // number of days to add
+        dt = sdf.format(c.getTime());
+        return  dt;
+    }
+
+
 
     public static Date convertDateFormate(String strDate){
         Date date = null;

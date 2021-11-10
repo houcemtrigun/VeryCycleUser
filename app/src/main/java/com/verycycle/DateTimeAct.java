@@ -1,5 +1,6 @@
 package com.verycycle;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -50,8 +51,10 @@ public class DateTimeAct extends AppCompatActivity {
 
     int count = 1;
     String currentDate[];
+    int i1, i2;
 
     ArrayList<String> timeSlotList;
+    String days,days1,days2,month;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -74,26 +77,14 @@ public class DateTimeAct extends AppCompatActivity {
             repair_image_path = getIntent().getStringExtra("repairImage");
         }
 
-        currentDate = DataManager.getCurrent1().split(" ");
-        int i1, i2;
-        i1 = Integer.parseInt(currentDate[1]) + 1;
-        i2 = Integer.parseInt(currentDate[1]) + 2;
-        binding.FirsttvDate.setText(DataManager.getCurrent1());
-        binding.SecondtvDate.setText(currentDate[0] + " " + i1 + " " + currentDate[2]);
-        binding.ThreetvDate.setText(currentDate[0] + " " + i2 + " " + currentDate[2]);
-
-      //  covertIntoFrench(DataManager.getCurrent1());
-    //    translateTextToFrench(currentDate[0] + " " + i1 + " " + currentDate[2],2);
-    //    translateTextToFrench(currentDate[0] + " " + i2 + " " + currentDate[2],3);
-
-
+        convertDateInFr();
 
 
         binding.Firsttv910.setOnClickListener(v -> {
             if (binding.Firsttv910.getText().toString().equals("full")) {
 
             } else {
-                if (count <= 5) {
+                if (count <= 10) {
                     if (first910 == false) {
                         binding.Firsttv910.setBackgroundResource(R.drawable.rounded_yellow_bg_5);
                         binding.Firsttv910.setTextColor(getResources().getColor(R.color.white));
@@ -122,7 +113,7 @@ public class DateTimeAct extends AppCompatActivity {
             if (binding.Firsttv1011.getText().toString().equals("full")) {
 
             } else {
-                if (count <= 5) {
+                if (count <= 10) {
                     if (first1011 == false) {
                         binding.Firsttv1011.setBackgroundResource(R.drawable.rounded_yellow_bg_5);
                         binding.Firsttv1011.setTextColor(getResources().getColor(R.color.white));
@@ -151,7 +142,7 @@ public class DateTimeAct extends AppCompatActivity {
             if (binding.Firsttv1112.getText().toString().equals("full")) {
 
             } else {
-                if (count <= 5) {
+                if (count <= 10) {
                     if (first1112 == false) {
                         binding.Firsttv1112.setBackgroundResource(R.drawable.rounded_yellow_bg_5);
                         binding.Firsttv1112.setTextColor(getResources().getColor(R.color.white));
@@ -180,7 +171,7 @@ public class DateTimeAct extends AppCompatActivity {
             if (binding.Firsttv1201.getText().toString().equals("full")) {
 
             } else {
-                if (count <= 5) {
+                if (count <= 10) {
                     if (first1201 == false) {
                         binding.Firsttv1201.setBackgroundResource(R.drawable.rounded_yellow_bg_5);
                         binding.Firsttv1201.setTextColor(getResources().getColor(R.color.white));
@@ -208,7 +199,7 @@ public class DateTimeAct extends AppCompatActivity {
             if (binding.Firsttv0102.getText().toString().equals("full")) {
 
             } else {
-                if (count <= 5) {
+                if (count <= 10) {
                     if (first0102 == false) {
                         binding.Firsttv0102.setBackgroundResource(R.drawable.rounded_yellow_bg_5);
                         binding.Firsttv0102.setTextColor(getResources().getColor(R.color.white));
@@ -235,7 +226,7 @@ public class DateTimeAct extends AppCompatActivity {
             if (binding.Firsttv0203.getText().toString().equals("full")) {
 
             } else {
-                if (count <= 5) {
+                if (count <= 10) {
                     if (first0203 == false) {
                         binding.Firsttv0203.setBackgroundResource(R.drawable.rounded_yellow_bg_5);
                         binding.Firsttv0203.setTextColor(getResources().getColor(R.color.white));
@@ -263,7 +254,7 @@ public class DateTimeAct extends AppCompatActivity {
             if (binding.Firsttv0304.getText().toString().equals("full")) {
 
             } else {
-                if (count <= 5) {
+                if (count <= 10) {
                     if (first0304 == false) {
                         binding.Firsttv0304.setBackgroundResource(R.drawable.rounded_yellow_bg_5);
                         binding.Firsttv0304.setTextColor(getResources().getColor(R.color.white));
@@ -291,7 +282,7 @@ public class DateTimeAct extends AppCompatActivity {
             if (binding.Firsttv0405.getText().toString().equals("full")) {
 
             } else {
-                if (count <= 5) {
+                if (count <= 10) {
                     if (first0405 == false) {
                         binding.Firsttv0405.setBackgroundResource(R.drawable.rounded_yellow_bg_5);
                         binding.Firsttv0405.setTextColor(getResources().getColor(R.color.white));
@@ -319,7 +310,7 @@ public class DateTimeAct extends AppCompatActivity {
             if (binding.Firsttv0506.getText().toString().equals("full")) {
 
             } else {
-                if (count <= 5) {
+                if (count <= 10) {
                     if (first0506 == false) {
                         binding.Firsttv0506.setBackgroundResource(R.drawable.rounded_yellow_bg_5);
                         binding.Firsttv0506.setTextColor(getResources().getColor(R.color.white));
@@ -347,7 +338,7 @@ public class DateTimeAct extends AppCompatActivity {
             if (binding.Firsttv0607.getText().toString().equals("full")) {
 
             } else {
-                if (count <= 5) {
+                if (count <= 10) {
                     if (first0607 == false) {
                         binding.Firsttv0607.setBackgroundResource(R.drawable.rounded_yellow_bg_5);
                         binding.Firsttv0607.setTextColor(getResources().getColor(R.color.white));
@@ -375,7 +366,7 @@ public class DateTimeAct extends AppCompatActivity {
             if (binding.Firsttv0708.getText().toString().equals("full")) {
 
             } else {
-                if (count <= 5) {
+                if (count <= 10) {
                     if (first0708 == false) {
                         binding.Firsttv0708.setBackgroundResource(R.drawable.rounded_yellow_bg_5);
                         binding.Firsttv0708.setTextColor(getResources().getColor(R.color.white));
@@ -405,7 +396,7 @@ public class DateTimeAct extends AppCompatActivity {
             if (binding.Secondtv910.getText().toString().equals("full")) {
 
             } else {
-                if (count <= 5) {
+                if (count <= 10) {
                     if (second910 == false) {
                         binding.Secondtv910.setBackgroundResource(R.drawable.rounded_yellow_bg_5);
                         binding.Secondtv910.setTextColor(getResources().getColor(R.color.white));
@@ -433,7 +424,7 @@ public class DateTimeAct extends AppCompatActivity {
             if (binding.Firsttv1011.getText().toString().equals("full")) {
 
             } else {
-                if (count <= 5) {
+                if (count <= 10) {
                     if (second1011 == false) {
                         binding.Secondtv1011.setBackgroundResource(R.drawable.rounded_yellow_bg_5);
                         binding.Secondtv1011.setTextColor(getResources().getColor(R.color.white));
@@ -461,7 +452,7 @@ public class DateTimeAct extends AppCompatActivity {
             if (binding.Secondtv1112.getText().toString().equals("full")) {
 
             } else {
-                if (count <= 5) {
+                if (count <= 10) {
                     if (second1112 == false) {
                         binding.Secondtv1112.setBackgroundResource(R.drawable.rounded_yellow_bg_5);
                         binding.Secondtv1112.setTextColor(getResources().getColor(R.color.white));
@@ -489,7 +480,7 @@ public class DateTimeAct extends AppCompatActivity {
             if (binding.Secondtv1201.getText().toString().equals("full")) {
 
             } else {
-                if (count <= 5) {
+                if (count <= 10) {
                     if (second1201 == false) {
                         binding.Secondtv1201.setBackgroundResource(R.drawable.rounded_yellow_bg_5);
                         binding.Secondtv1201.setTextColor(getResources().getColor(R.color.white));
@@ -516,7 +507,7 @@ public class DateTimeAct extends AppCompatActivity {
             if (binding.Secondtv0102.getText().toString().equals("full")) {
 
             } else {
-                if (count <= 5) {
+                if (count <= 10) {
                     if (second0102 == false) {
                         binding.Secondtv0102.setBackgroundResource(R.drawable.rounded_yellow_bg_5);
                         binding.Secondtv0102.setTextColor(getResources().getColor(R.color.white));
@@ -543,7 +534,7 @@ public class DateTimeAct extends AppCompatActivity {
             if (binding.Secondtv0203.getText().toString().equals("full")) {
 
             } else {
-                if (count <= 5) {
+                if (count <= 10) {
                     if (second0203 == false) {
                         binding.Secondtv0203.setBackgroundResource(R.drawable.rounded_yellow_bg_5);
                         binding.Secondtv0203.setTextColor(getResources().getColor(R.color.white));
@@ -571,7 +562,7 @@ public class DateTimeAct extends AppCompatActivity {
             if (binding.Secondtv0304.getText().toString().equals("full")) {
 
             } else {
-                if (count <= 5) {
+                if (count <= 10) {
                     if (second0304 == false) {
                         binding.Secondtv0304.setBackgroundResource(R.drawable.rounded_yellow_bg_5);
                         binding.Secondtv0304.setTextColor(getResources().getColor(R.color.white));
@@ -599,7 +590,7 @@ public class DateTimeAct extends AppCompatActivity {
             if (binding.Secondtv0405.getText().toString().equals("full")) {
 
             } else {
-                if (count <= 5) {
+                if (count <= 10) {
                     if (second0405 == false) {
                         binding.Secondtv0405.setBackgroundResource(R.drawable.rounded_yellow_bg_5);
                         binding.Secondtv0405.setTextColor(getResources().getColor(R.color.white));
@@ -627,7 +618,7 @@ public class DateTimeAct extends AppCompatActivity {
             if (binding.Secondtv0506.getText().toString().equals("full")) {
 
             } else {
-                if (count <= 5) {
+                if (count <= 10) {
                     if (second0506 == false) {
                         binding.Secondtv0506.setBackgroundResource(R.drawable.rounded_yellow_bg_5);
                         binding.Secondtv0506.setTextColor(getResources().getColor(R.color.white));
@@ -655,7 +646,7 @@ public class DateTimeAct extends AppCompatActivity {
             if (binding.Secondtv0607.getText().toString().equals("full")) {
 
             } else {
-                if (count <= 5) {
+                if (count <= 10) {
                     if (second0607 == false) {
                         binding.Secondtv0607.setBackgroundResource(R.drawable.rounded_yellow_bg_5);
                         binding.Secondtv0607.setTextColor(getResources().getColor(R.color.white));
@@ -683,7 +674,7 @@ public class DateTimeAct extends AppCompatActivity {
             if (binding.Secondtv0708.getText().toString().equals("full")) {
 
             } else {
-                if (count <= 5) {
+                if (count <= 10) {
                     if (second0708 == false) {
                         binding.Secondtv0708.setBackgroundResource(R.drawable.rounded_yellow_bg_5);
                         binding.Secondtv0708.setTextColor(getResources().getColor(R.color.white));
@@ -713,7 +704,7 @@ public class DateTimeAct extends AppCompatActivity {
             if (binding.Threetv910.getText().toString().equals("full")) {
 
             } else {
-                if (count <= 5) {
+                if (count <= 10) {
                     if (three910 == false) {
                         binding.Threetv910.setBackgroundResource(R.drawable.rounded_yellow_bg_5);
                         binding.Threetv910.setTextColor(getResources().getColor(R.color.white));
@@ -743,7 +734,7 @@ public class DateTimeAct extends AppCompatActivity {
             if (binding.Threetv1011.getText().toString().equals("full")) {
 
             } else {
-                if (count <= 5) {
+                if (count <= 10) {
                     if (three1011 == false) {
                         binding.Threetv1011.setBackgroundResource(R.drawable.rounded_yellow_bg_5);
                         binding.Threetv1011.setTextColor(getResources().getColor(R.color.white));
@@ -773,7 +764,7 @@ public class DateTimeAct extends AppCompatActivity {
             if (binding.Threetv1112.getText().toString().equals("full")) {
 
             } else {
-                if (count <= 5) {
+                if (count <= 10) {
                     if (three1112 == false) {
                         binding.Threetv1112.setBackgroundResource(R.drawable.rounded_yellow_bg_5);
                         binding.Threetv1112.setTextColor(getResources().getColor(R.color.white));
@@ -801,7 +792,7 @@ public class DateTimeAct extends AppCompatActivity {
             if (binding.Threetv1201.getText().toString().equals("full")) {
 
             } else {
-                if (count <= 5) {
+                if (count <= 10) {
                     if (three1201 == false) {
                         binding.Threetv1201.setBackgroundResource(R.drawable.rounded_yellow_bg_5);
                         binding.Threetv1201.setTextColor(getResources().getColor(R.color.white));
@@ -830,7 +821,7 @@ public class DateTimeAct extends AppCompatActivity {
             if (binding.Threetv0102.getText().toString().equals("full")) {
 
             } else {
-                if (count <= 5) {
+                if (count <= 10) {
                     if (three0102 == false) {
                         binding.Threetv0102.setBackgroundResource(R.drawable.rounded_yellow_bg_5);
                         binding.Threetv0102.setTextColor(getResources().getColor(R.color.white));
@@ -859,7 +850,7 @@ public class DateTimeAct extends AppCompatActivity {
             if (binding.Threetv0203.getText().toString().equals("full")) {
 
             } else {
-                if (count <= 5) {
+                if (count <= 10) {
                     if (three0203 == false) {
                         binding.Threetv0203.setBackgroundResource(R.drawable.rounded_yellow_bg_5);
                         binding.Threetv0203.setTextColor(getResources().getColor(R.color.white));
@@ -890,7 +881,7 @@ public class DateTimeAct extends AppCompatActivity {
             if (binding.Threetv0304.getText().toString().equals("full")) {
 
             } else {
-                if (count <= 5) {
+                if (count <= 10) {
                     if (three0304 == false) {
                         binding.Threetv0304.setBackgroundResource(R.drawable.rounded_yellow_bg_5);
                         binding.Threetv0304.setTextColor(getResources().getColor(R.color.white));
@@ -919,7 +910,7 @@ public class DateTimeAct extends AppCompatActivity {
             if (binding.Threetv0405.getText().toString().equals("full")) {
 
             } else {
-                if (count <= 5) {
+                if (count <= 10) {
                     if (three0405 == false) {
                         binding.Threetv0405.setBackgroundResource(R.drawable.rounded_yellow_bg_5);
                         binding.Threetv0405.setTextColor(getResources().getColor(R.color.white));
@@ -949,7 +940,7 @@ public class DateTimeAct extends AppCompatActivity {
             if (binding.Threetv0506.getText().toString().equals("full")) {
 
             } else {
-                if (count <= 5) {
+                if (count <= 10) {
                     if (three0506 == false) {
                         binding.Threetv0506.setBackgroundResource(R.drawable.rounded_yellow_bg_5);
                         binding.Threetv0506.setTextColor(getResources().getColor(R.color.white));
@@ -977,7 +968,7 @@ public class DateTimeAct extends AppCompatActivity {
             if (binding.Threetv0607.getText().toString().equals("full")) {
 
             } else {
-                if (count <= 5) {
+                if (count <= 10) {
                     if (three0607 == false) {
                         binding.Threetv0607.setBackgroundResource(R.drawable.rounded_yellow_bg_5);
                         binding.Threetv0607.setTextColor(getResources().getColor(R.color.white));
@@ -1005,7 +996,7 @@ public class DateTimeAct extends AppCompatActivity {
             if (binding.Threetv0708.getText().toString().equals("full")) {
 
             } else {
-                if (count <= 5) {
+                if (count <= 10) {
                     if (three0708 == false) {
                         binding.Threetv0708.setBackgroundResource(R.drawable.rounded_yellow_bg_5);
                         binding.Threetv0708.setTextColor(getResources().getColor(R.color.white));
@@ -1081,23 +1072,91 @@ public class DateTimeAct extends AppCompatActivity {
         binding.btnContinue.setOnClickListener(v -> {
 
             Log.e("Comma Saprated Value===", addCommaSeprtValue());
+           if(timeSlotList.size()>=5) {
+               startActivity(new Intent(this, SelectAddressAct.class).putExtra("cycleModel", cycleId)
+                       .putExtra("cycleImage", str_image_path).putExtra("problem", problem)
+                       .putExtra("repairImage", repair_image_path)
+                       //.putExtra("date",date)
+                       .putExtra("time", addCommaSeprtValue())
+                       .putExtra("address", address)
+                       .putExtra("lat", latitude + "")
+                       .putExtra("lon", longitude + "")
+                       .putExtra("serviceType", type));
 
-            startActivity(new Intent(this, SelectAddressAct.class).putExtra("cycleModel", cycleId)
-                    .putExtra("cycleImage", str_image_path).putExtra("problem", problem)
-                    .putExtra("repairImage", repair_image_path)
-                    //.putExtra("date",date)
-                    .putExtra("time", addCommaSeprtValue())
-                    .putExtra("address", address)
-                    .putExtra("lat", latitude + "")
-                    .putExtra("lon", longitude + "")
-                    .putExtra("serviceType", type));
-
-            for (int i = 0; i < timeSlotList.size(); i++) {
-                Log.e("Date Tme Slot===", i + " " + timeSlotList.get(i));
-            }
+               for (int i = 0; i < timeSlotList.size(); i++) {
+                   Log.e("Date Tme Slot===", i + " " + timeSlotList.get(i));
+               }
+           }
+           else Toast.makeText(this, getString(R.string.please_select_atleast_5_slot), Toast.LENGTH_SHORT).show();
 
         });
 
+
+    }
+
+
+    private void convertDateInFr() {
+
+        currentDate = DataManager.getCurrent1().split(" ");
+        i1 = Integer.parseInt(currentDate[1]) + 1;
+        i2 = Integer.parseInt(currentDate[1]) + 2;
+
+        Log.e("currentDate==",DataManager.getCurrent1());
+        Log.e("currentDateNext==",DataManager.getCurrent2());
+        Log.e("currentDateNextTwo==",DataManager.getCurrent3());
+
+        if(currentDate[0].equals("Sunday")) {
+            days = getString(R.string.sunday);
+            days1 = getString(R.string.monday);
+            days2 = getString(R.string.tuesday);
+        }
+        else if(currentDate[0].equals("Monday")) {
+            days = getString(R.string.monday);
+            days1 = getString(R.string.tuesday);
+            days2 = getString(R.string.wednesday);
+        }
+        else if(currentDate[0].equals("Tuesday")) {
+            days = getString(R.string.tuesday);
+            days1 = getString(R.string.wednesday);
+            days2 = getString(R.string.thursday);
+        }
+        else if(currentDate[0].equals("Wednesday")) {
+            days = getString(R.string.wednesday);
+            days1 = getString(R.string.thursday);
+            days2 = getString(R.string.friday);
+        }
+        else if(currentDate[0].equals("Thursday")) {
+            days = getString(R.string.thursday);
+            days1 = getString(R.string.friday);
+            days2 = getString(R.string.saturday);
+        }
+        else if(currentDate[0].equals("Friday")) {
+            days = getString(R.string.friday);
+            days1 = getString(R.string.saturday);
+            days2 = getString(R.string.sunday);
+        }
+        else if(currentDate[0].equals("Saturday")) {
+            days = getString(R.string.saturday);
+            days1 = getString(R.string.sunday);
+            days2 = getString(R.string.monday);
+        }
+
+        if(currentDate[2].equals("January")) month = getString(R.string.jan);
+        else if(currentDate[2].equals("February")) month = getString(R.string.feb);
+        else if(currentDate[2].equals("March")) month = getString(R.string.mar);
+        else if(currentDate[2].equals("April")) month = getString(R.string.aprl);
+        else if(currentDate[2].equals("May")) month = getString(R.string.may);
+        else if(currentDate[2].equals("June")) month = getString(R.string.june);
+        else if(currentDate[2].equals("July")) month = getString(R.string.july);
+        else if(currentDate[2].equals("August")) month = getString(R.string.aug);
+        else if(currentDate[2].equals("September")) month = getString(R.string.sep);
+        else if(currentDate[2].equals("October")) month = getString(R.string.oct);
+        else if(currentDate[2].equals("November")) month = getString(R.string.nov);
+        else if(currentDate[2].equals("December")) month = getString(R.string.dec);
+
+        binding.FirsttvDate.setText(days + " " + currentDate[1] + " " + month);
+        binding.SecondtvDate.setText(days1 + " " + i1 + " " + month);
+        binding.ThreetvDate.setText(days2 + " " + i2 + " " + month);
 
     }
 

@@ -43,12 +43,13 @@ import retrofit2.Response;
 
 public class PaymentAct  extends AppCompatActivity implements OnItemPositionListener {
     ActivityPayBinding binding;
-    String amount = "", requestId = "", cardNumber = "", expiryMonth = "", expiryDate = "", cvvv = "";
+    String amount = "",  amount1 = "05.00", amount2="", requestId = "", cardNumber = "", expiryMonth = "", expiryDate = "", cvvv = "";
 
     AlertDialog.Builder alertBuilder;
     VeryCycleUserInterface apiInterface;
     ArrayList<GetCardModel.Result> arrayList;
     boolean selectCheck = false;
+
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -69,18 +70,59 @@ public class PaymentAct  extends AppCompatActivity implements OnItemPositionList
             amount = SessionManager.readString(PaymentAct.this,"price","");
             requestId = getIntent().getStringExtra("request_id");
             // DecimalFormat df = new DecimalFormat("0.00");
-            binding.btMakePayment.setText("€" + String.format("%.2f", Double.parseDouble(amount)) + " " + getString(R.string.pay));
-            binding.payment.setText("€" + String.format("%.2f", Double.parseDouble(amount)) + " " +   getString(R.string.pay));
+            binding.btMakePayment.setText("€" + String.format("%.2f", Double.parseDouble(amount1)) + " " + getString(R.string.pay));
+            binding.payment.setText("€" + String.format("%.2f", Double.parseDouble(amount1)) + " " +   getString(R.string.pay));
         }
 
         binding.btMakePayment.setOnClickListener(v -> {
-            if (binding.cardForm.isValid())
-                paymentConfirmDialog();
+            if (binding.cardForm.isValid()){
+                Card.Builder card = new Card.Builder(binding.cardForm.getCardNumber(),
+                        Integer.valueOf(binding.cardForm.getExpirationMonth()),
+                        Integer.valueOf(binding.cardForm.getExpirationYear()),
+                        binding.cardForm.getCvv());
+
+                if (!card.build().validateCard()) {
+                    Toast.makeText(PaymentAct.this, getString(R.string.card_not_valid), Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                Stripe stripe = new Stripe(PaymentAct.this, Constant.STRIPE_TEST_KEY);
+                //  Stripe stripe = new Stripe(PaymentAct.this, Constant.STRIPE_LIVE_KEY);
+
+                DataManager.getInstance().showProgressMessage(PaymentAct.this, getString(R.string.please_wait));
+                stripe.createCardToken(
+                        card.build(), new ApiResultCallback<Token>() {
+                            @Override
+                            public void onSuccess(Token token) {
+                                DataManager.getInstance().hideProgressMessage();
+                                Log.e("Stripe Token===", token.getId());
+                                // Toast.makeText(mContext, getString(R.string.successful), Toast.LENGTH_SHORT).show();
+                                // charge(token);
+                                if (NetworkReceiver.isConnected())
+                                    PayProvider(amount, requestId, token.getId());
+                                else
+                                    Toast.makeText(PaymentAct.this, getString(R.string.network_failure), Toast.LENGTH_SHORT).show();
+                               /* if(!DataManager.getInstance().getUserData(PaymentFirstActivity.this).result.custId.equals(""))
+                                addCard(DataManager.getInstance().getUserData(PaymentFirstActivity.this).result.custId,token.getId());
+                                 else
+                                     SaveCard(token.getId());*/
+                            }
+
+                            @Override
+                            public void onError(@NotNull Exception e) {
+                                DataManager.getInstance().hideProgressMessage();
+                                e.printStackTrace();
+                                Toast.makeText(PaymentAct.this, e.toString(), Toast.LENGTH_SHORT).show();
+                            }
+                        });
+
+                // paymentConfirmDialog();
+            }
+
             else Toast.makeText(this, getText(R.string.please_complete_form), Toast.LENGTH_LONG).show();
         });
         binding.payment.setOnClickListener(v -> {
 
-            if(selectCheck== true)   PayConfrm();
+            if(selectCheck== true)   cardPayment(); //PayConfrm();
         else Toast.makeText(this, getString(R.string.please_select_card), Toast.LENGTH_SHORT).show();
 
         });
@@ -335,7 +377,7 @@ public class PaymentAct  extends AppCompatActivity implements OnItemPositionList
                         if (arrayList.size() != 0) {
                             binding.layoutRv.setVisibility(View.VISIBLE);
                             binding.ViewScroll.setVisibility(View.GONE);
-                            binding.payment.setText("€" + String.format("%.2f", Double.parseDouble(amount)) + " "+getString(R.string.pay));
+                            binding.payment.setText("€" + String.format("%.2f", Double.parseDouble(amount1)) + " "+getString(R.string.pay));
                             binding.rvCard.setAdapter(new ShowCardAdapter(PaymentAct.this, PaymentAct.this, arrayList));
                         } else {
                             Log.e("dhhdhdhdhd", "jjdfjfdjdjdj====");

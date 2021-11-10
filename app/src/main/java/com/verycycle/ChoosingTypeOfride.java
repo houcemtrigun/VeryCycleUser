@@ -77,7 +77,7 @@ public class ChoosingTypeOfride extends AppCompatActivity {
 
         binding.ivBack.setOnClickListener(v -> { finish(); });
 
-        binding.linearNext.setOnClickListener(v -> { validation(); });
+        binding.btnNext.setOnClickListener(v -> { validation(); });
    
         getCycleModel();
 

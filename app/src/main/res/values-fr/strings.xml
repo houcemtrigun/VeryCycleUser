@@ -198,7 +198,7 @@
     <string name="please_select_repair_service">Veuillez sélectionner le service de réparation</string>
     <string name="whole_morning">Toute la matinée</string>
     <string name="all_afternoon">Tout l\'après-midi</string>
-    <string name="add_only_5_time_slot">Ajouter seulement 5 créneaux horaires</string>
+    <string name="add_only_5_time_slot">Ajouter seulement 10 créneaux horaires</string>
 
 
     <string name="english">Anglaise</string>
@@ -257,5 +257,41 @@
     <string name="required">obligatoire</string>
     <string name="please_select_bike_type">Veuillez sélectionner le type de vélo</string>
 
+    <string name="add">Ajouter</string>
+    <string name="please_select_atleast_5_slot">Veuillez sélectionner au moins 5 emplacements</string>
+
+    <string name="payment_notice">Remarque : Le prix n\'est qu\'une approximation, le prix final est déterminé par le réparateur.</string>
+    <string name="text910">9h à 10h</string>
+    <string name="text1011">10h à 11h</string>
+    <string name="text1112">11h à 12h</string>
+    <string name="text1201">12h à 13h</string>
+    <string name="text0102">13h à 14h</string>
+    <string name="text0203">14h à 15h</string>
+    <string name="text0304">15h à 16h</string>
+    <string name="text0405">16h à 17h</string>
+    <string name="text0506">17h à 18h</string>
+    <string name="text0607">18h à 19h</string>
+    <string name="text0708">19h à 20h</string>
+
+
+    <string name="sunday">dimanche</string>
+    <string name="monday">Lundi</string>
+    <string name="tuesday">Mardi</string>
+    <string name="wednesday">Mercredi</string>
+    <string name="thursday">jeudi</string>
+    <string name="friday">vendredi</string>
+    <string name="saturday">samedi</string>
+    <string name="jan">janvier</string>
+    <string name="feb">février</string>
+    <string name="mar">Mars</string>
+    <string name="aprl">avril</string>
+    <string name="may">Peut</string>
+    <string name="june">juin</string>
+    <string name="july">juillet</string>
+    <string name="aug">août</string>
+    <string name="sep">septembre</string>
+    <string name="oct">octobre</string>
+    <string name="nov">novembre</string>
+    <string name="dec">décembre</string>
 
 </resources>

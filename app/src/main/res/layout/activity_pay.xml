@@ -24,6 +24,19 @@
             android:visibility="visible"
             android:layout_above="@+id/payment"/>
 
+
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/payment_notice"
+            android:layout_above="@+id/payment"
+            android:fontFamily="@font/poppins_regular"
+            android:layout_marginLeft="@dimen/_15sdp"
+            android:layout_marginRight="@dimen/_15sdp"
+            android:textColor="@color/black"
+            android:textSize="@dimen/_12sdp"/>
+
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/payment"
             android:layout_width="match_parent"
@@ -45,6 +58,8 @@
         android:layout_height="match_parent"
         android:layout_below="@+id/header"
         android:visibility="gone">
+
+
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">
@@ -56,7 +71,6 @@
                 android:id="@+id/layoutCard"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_centerInParent="true"
                 android:orientation="vertical"
                 android:layout_marginTop="90dp">
 
@@ -92,11 +106,23 @@
 
 
 
-
+            <TextView
+                android:id="@+id/tvNote"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/payment_notice"
+                android:layout_marginTop="@dimen/_20sdp"
+                android:layout_below="@+id/layoutCard"
+                android:gravity="center_horizontal"
+                android:fontFamily="@font/poppins_regular"
+                android:layout_marginLeft="@dimen/_15sdp"
+                android:layout_marginRight="@dimen/_15sdp"
+                android:textColor="@color/black"
+                android:textSize="@dimen/_12sdp"/>
 
 
             <androidx.appcompat.widget.AppCompatButton
-                android:layout_below="@+id/layoutCard"
+                android:layout_below="@+id/tvNote"
                 android:id="@+id/bt_make_payment"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

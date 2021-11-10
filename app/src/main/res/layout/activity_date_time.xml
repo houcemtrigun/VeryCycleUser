@@ -207,7 +207,7 @@
 
                     <LinearLayout
                         android:layout_width="match_parent"
-                        android:layout_height="@dimen/_325sdp"
+                        android:layout_height="@dimen/_335sdp"
                         android:layout_below="@+id/rlMain"
                         android:orientation="horizontal"
                         android:weightSum="1">
@@ -247,7 +247,7 @@
                                 android:fontFamily="@font/poppins_regular"
                                 android:gravity="center_horizontal"
                                 android:padding="@dimen/_7sdp"
-                                android:text="9 am to 10 am"
+                                android:text="@string/text910"
                                 android:textColor="@color/black"
                                 android:textSize="@dimen/_12sdp" />
 
@@ -263,7 +263,7 @@
                                 android:fontFamily="@font/poppins_regular"
                                 android:gravity="center_horizontal"
                                 android:padding="@dimen/_7sdp"
-                                android:text="10 am to 11 am"
+                                android:text="@string/text1011"
                                 android:textColor="@color/black"
                                 android:textSize="@dimen/_12sdp" />
 
@@ -278,7 +278,7 @@
                                 android:fontFamily="@font/poppins_regular"
                                 android:gravity="center_horizontal"
                                 android:padding="@dimen/_7sdp"
-                                android:text="11 am to 12 pm"
+                                android:text="@string/text1112"
                                 android:textColor="@color/black"
                                 android:textSize="@dimen/_12sdp" />
 
@@ -293,7 +293,7 @@
                                 android:fontFamily="@font/poppins_regular"
                                 android:gravity="center_horizontal"
                                 android:padding="@dimen/_7sdp"
-                                android:text="12 pm to 1 pm"
+                                android:text="@string/text1201"
                                 android:textColor="@color/black"
                                 android:textSize="@dimen/_12sdp" />
 
@@ -308,7 +308,7 @@
                                 android:fontFamily="@font/poppins_regular"
                                 android:gravity="center_horizontal"
                                 android:padding="@dimen/_7sdp"
-                                android:text="1 pm to 2 pm"
+                                android:text="@string/text0102"
                                 android:textColor="@color/black"
                                 android:textSize="@dimen/_12sdp" />
 
@@ -349,7 +349,7 @@
                                 android:fontFamily="@font/poppins_regular"
                                 android:gravity="center_horizontal"
                                 android:padding="@dimen/_7sdp"
-                                android:text="2 pm to 3 pm"
+                                android:text="@string/text0203"
                                 android:textColor="@color/black"
                                 android:textSize="@dimen/_12sdp" />
 
@@ -364,7 +364,7 @@
                                 android:fontFamily="@font/poppins_regular"
                                 android:gravity="center_horizontal"
                                 android:padding="@dimen/_7sdp"
-                                android:text="3 pm to 4 pm"
+                                android:text="@string/text0304"
                                 android:textColor="@color/black"
                                 android:textSize="@dimen/_12sdp" />
 
@@ -379,7 +379,7 @@
                                 android:fontFamily="@font/poppins_regular"
                                 android:gravity="center_horizontal"
                                 android:padding="@dimen/_7sdp"
-                                android:text="4 pm to 5 pm"
+                                android:text="@string/text0405"
                                 android:textColor="@color/black"
                                 android:textSize="@dimen/_12sdp" />
 
@@ -394,7 +394,7 @@
                                 android:fontFamily="@font/poppins_regular"
                                 android:gravity="center_horizontal"
                                 android:padding="@dimen/_7sdp"
-                                android:text="5 pm to 6 pm"
+                                android:text="@string/text0506"
                                 android:textColor="@color/black"
                                 android:textSize="@dimen/_12sdp" />
 
@@ -409,7 +409,7 @@
                                 android:fontFamily="@font/poppins_regular"
                                 android:gravity="center_horizontal"
                                 android:padding="@dimen/_7sdp"
-                                android:text="6 pm to 7 pm"
+                                android:text="@string/text0607"
                                 android:textColor="@color/black"
                                 android:textSize="@dimen/_12sdp" />
 
@@ -424,7 +424,7 @@
                                 android:fontFamily="@font/poppins_regular"
                                 android:gravity="center_horizontal"
                                 android:padding="@dimen/_7sdp"
-                                android:text="7 pm to 8 pm"
+                                android:text="@string/text0708"
                                 android:textColor="@color/black"
                                 android:textSize="@dimen/_12sdp" />
 
@@ -471,7 +471,7 @@
 
                     <LinearLayout
                         android:layout_width="match_parent"
-                        android:layout_height="@dimen/_325sdp"
+                        android:layout_height="@dimen/_335sdp"
                         android:layout_below="@+id/rlMain2"
                         android:orientation="horizontal"
                         android:weightSum="1">
@@ -511,7 +511,7 @@
                                 android:fontFamily="@font/poppins_regular"
                                 android:gravity="center_horizontal"
                                 android:padding="@dimen/_7sdp"
-                                android:text="9 am to 10 am"
+                                android:text="@string/text910"
                                 android:textColor="@color/black"
                                 android:textSize="@dimen/_12sdp" />
 
@@ -527,7 +527,7 @@
                                 android:fontFamily="@font/poppins_regular"
                                 android:gravity="center_horizontal"
                                 android:padding="@dimen/_7sdp"
-                                android:text="10 am to 11 am"
+                                android:text="@string/text1011"
                                 android:textColor="@color/black"
                                 android:textSize="@dimen/_12sdp" />
 
@@ -542,7 +542,7 @@
                                 android:fontFamily="@font/poppins_regular"
                                 android:gravity="center_horizontal"
                                 android:padding="@dimen/_7sdp"
-                                android:text="11 am to 12 pm"
+                                android:text="@string/text1112"
                                 android:textColor="@color/black"
                                 android:textSize="@dimen/_12sdp" />
 
@@ -557,7 +557,7 @@
                                 android:fontFamily="@font/poppins_regular"
                                 android:gravity="center_horizontal"
                                 android:padding="@dimen/_7sdp"
-                                android:text="12 pm to 1 pm"
+                                android:text="@string/text1201"
                                 android:textColor="@color/black"
                                 android:textSize="@dimen/_12sdp" />
 
@@ -572,7 +572,7 @@
                                 android:fontFamily="@font/poppins_regular"
                                 android:gravity="center_horizontal"
                                 android:padding="@dimen/_7sdp"
-                                android:text="1 pm to 2 pm"
+                                android:text="@string/text0102"
                                 android:textColor="@color/black"
                                 android:textSize="@dimen/_12sdp" />
 
@@ -613,7 +613,7 @@
                                 android:fontFamily="@font/poppins_regular"
                                 android:gravity="center_horizontal"
                                 android:padding="@dimen/_7sdp"
-                                android:text="2 pm to 3 pm"
+                                android:text="@string/text0203"
                                 android:textColor="@color/black"
                                 android:textSize="@dimen/_12sdp" />
 
@@ -628,7 +628,7 @@
                                 android:fontFamily="@font/poppins_regular"
                                 android:gravity="center_horizontal"
                                 android:padding="@dimen/_7sdp"
-                                android:text="3 pm to 4 pm"
+                                android:text="@string/text0304"
                                 android:textColor="@color/black"
                                 android:textSize="@dimen/_12sdp" />
 
@@ -643,7 +643,7 @@
                                 android:fontFamily="@font/poppins_regular"
                                 android:gravity="center_horizontal"
                                 android:padding="@dimen/_7sdp"
-                                android:text="4 pm to 5 pm"
+                                android:text="@string/text0405"
                                 android:textColor="@color/black"
                                 android:textSize="@dimen/_12sdp" />
 
@@ -658,7 +658,7 @@
                                 android:fontFamily="@font/poppins_regular"
                                 android:gravity="center_horizontal"
                                 android:padding="@dimen/_7sdp"
-                                android:text="5 pm to 6 pm"
+                                android:text="@string/text0506"
                                 android:textColor="@color/black"
                                 android:textSize="@dimen/_12sdp" />
 
@@ -673,7 +673,7 @@
                                 android:fontFamily="@font/poppins_regular"
                                 android:gravity="center_horizontal"
                                 android:padding="@dimen/_7sdp"
-                                android:text="6 pm to 7 pm"
+                                android:text="@string/text0607"
                                 android:textColor="@color/black"
                                 android:textSize="@dimen/_12sdp" />
 
@@ -688,7 +688,7 @@
                                 android:fontFamily="@font/poppins_regular"
                                 android:gravity="center_horizontal"
                                 android:padding="@dimen/_7sdp"
-                                android:text="7 pm to 8 pm"
+                                android:text="@string/text0708"
                                 android:textColor="@color/black"
                                 android:textSize="@dimen/_12sdp" />
 
@@ -738,7 +738,7 @@
 
                     <LinearLayout
                         android:layout_width="match_parent"
-                        android:layout_height="@dimen/_325sdp"
+                        android:layout_height="@dimen/_335sdp"
                         android:layout_below="@+id/rlMain3"
                         android:orientation="horizontal"
                         android:weightSum="1">
@@ -778,7 +778,7 @@
                                 android:fontFamily="@font/poppins_regular"
                                 android:gravity="center_horizontal"
                                 android:padding="@dimen/_7sdp"
-                                android:text="9 am to 10 am"
+                                android:text="@string/text910"
                                 android:textColor="@color/black"
                                 android:textSize="@dimen/_12sdp" />
 
@@ -794,7 +794,7 @@
                                 android:fontFamily="@font/poppins_regular"
                                 android:gravity="center_horizontal"
                                 android:padding="@dimen/_7sdp"
-                                android:text="10 am to 11 am"
+                                android:text="@string/text1011"
                                 android:textColor="@color/black"
                                 android:textSize="@dimen/_12sdp" />
 
@@ -809,7 +809,7 @@
                                 android:fontFamily="@font/poppins_regular"
                                 android:gravity="center_horizontal"
                                 android:padding="@dimen/_7sdp"
-                                android:text="11 am to 12 pm"
+                                android:text="@string/text1112"
                                 android:textColor="@color/black"
                                 android:textSize="@dimen/_12sdp" />
 
@@ -824,7 +824,7 @@
                                 android:fontFamily="@font/poppins_regular"
                                 android:gravity="center_horizontal"
                                 android:padding="@dimen/_7sdp"
-                                android:text="12 pm to 1 pm"
+                                android:text="@string/text1201"
                                 android:textColor="@color/black"
                                 android:textSize="@dimen/_12sdp" />
 
@@ -839,7 +839,7 @@
                                 android:fontFamily="@font/poppins_regular"
                                 android:gravity="center_horizontal"
                                 android:padding="@dimen/_7sdp"
-                                android:text="1 pm to 2 pm"
+                                android:text="@string/text0102"
                                 android:textColor="@color/black"
                                 android:textSize="@dimen/_12sdp" />
 
@@ -880,7 +880,7 @@
                                 android:fontFamily="@font/poppins_regular"
                                 android:gravity="center_horizontal"
                                 android:padding="@dimen/_7sdp"
-                                android:text="2 pm to 3 pm"
+                                android:text="@string/text0203"
                                 android:textColor="@color/black"
                                 android:textSize="@dimen/_12sdp" />
 
@@ -895,7 +895,7 @@
                                 android:fontFamily="@font/poppins_regular"
                                 android:gravity="center_horizontal"
                                 android:padding="@dimen/_7sdp"
-                                android:text="3 pm to 4 pm"
+                                android:text="@string/text0304"
                                 android:textColor="@color/black"
                                 android:textSize="@dimen/_12sdp" />
 
@@ -910,7 +910,7 @@
                                 android:fontFamily="@font/poppins_regular"
                                 android:gravity="center_horizontal"
                                 android:padding="@dimen/_7sdp"
-                                android:text="4 pm to 5 pm"
+                                android:text="@string/text0405"
                                 android:textColor="@color/black"
                                 android:textSize="@dimen/_12sdp" />
 
@@ -925,7 +925,7 @@
                                 android:fontFamily="@font/poppins_regular"
                                 android:gravity="center_horizontal"
                                 android:padding="@dimen/_7sdp"
-                                android:text="5 pm to 6 pm"
+                                android:text="@string/text0506"
                                 android:textColor="@color/black"
                                 android:textSize="@dimen/_12sdp" />
 
@@ -940,7 +940,7 @@
                                 android:fontFamily="@font/poppins_regular"
                                 android:gravity="center_horizontal"
                                 android:padding="@dimen/_7sdp"
-                                android:text="6 pm to 7 pm"
+                                android:text="@string/text0607"
                                 android:textColor="@color/black"
                                 android:textSize="@dimen/_12sdp" />
 
@@ -955,7 +955,7 @@
                                 android:fontFamily="@font/poppins_regular"
                                 android:gravity="center_horizontal"
                                 android:padding="@dimen/_7sdp"
-                                android:text="7 pm to 8 pm"
+                                android:text="@string/text0708"
                                 android:textColor="@color/black"
                                 android:textSize="@dimen/_12sdp" />
 
