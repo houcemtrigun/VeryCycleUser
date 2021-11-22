@@ -55,7 +55,7 @@ public class AdapterAcceptBooking extends RecyclerView.Adapter<AdapterAcceptBook
 
         holder.binding.tvStatus.setText(mainStatus);
         holder.binding.tvAddress.setText(arrayList.get(position).address);
-        holder.binding.tvTime.setText(dateTimeSlot[3] + " "+ dateTimeSlot[4] + " " + dateTimeSlot[5] + " " + dateTimeSlot[6]+ " " + dateTimeSlot[7]);
+        holder.binding.tvTime.setText(dateTimeSlot[3] + " "+ dateTimeSlot[4] + " " + dateTimeSlot[5] /*+ " " + dateTimeSlot[6]+ " " + dateTimeSlot[7]*/);
         holder.binding.tvDate.setText(dateTimeSlot[0] + " "+ dateTimeSlot[1] + " " + dateTimeSlot[2]);
         holder.binding.tvDistance.setText(context.getString(R.string.distance_to_req)+" "+arrayList.get(position).estimatedDistance +"km");
         holder.binding.tvUsername.setText(arrayList.get(position).providerDetails.username);

@@ -52,14 +52,17 @@ import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.maps.model.PolylineOptions;
 import com.google.gson.Gson;
 import com.verycycle.databinding.ActivityTrackBinding;
+import com.verycycle.fragment.PayFinalFramentDialog;
 import com.verycycle.helper.App;
 import com.verycycle.helper.DataManager;
 import com.verycycle.helper.GPSTracker;
 import com.verycycle.helper.NetworkReceiver;
 import com.verycycle.helper.SessionManager;
 import com.verycycle.helper.UpdateLocationService;
+import com.verycycle.listener.FinalPay;
 import com.verycycle.maps.DrawPollyLine;
 import com.verycycle.model.BookingDetailModel;
+import com.verycycle.model.PaymentModel;
 import com.verycycle.retrofit.ApiClient;
 import com.verycycle.retrofit.Constant;
 import com.verycycle.retrofit.VeryCycleUserInterface;
@@ -72,7 +75,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class TrackAct extends AppCompatActivity implements OnMapReadyCallback {
+public class TrackAct extends AppCompatActivity implements OnMapReadyCallback ,FinalPay{
     public static String TAG = "TrackAct";
     ActivityTrackBinding binding;
     GoogleMap mMap;
@@ -92,6 +95,7 @@ public class TrackAct extends AppCompatActivity implements OnMapReadyCallback {
     GPSTracker gpsTracker;
     AlertDialog alert33;
     double amount =0.00, anualAmount=0.00;
+    double totalAmount=0.00;
 
 
     BroadcastReceiver LocationReceiver = new BroadcastReceiver() {
@@ -403,7 +407,7 @@ public class TrackAct extends AppCompatActivity implements OnMapReadyCallback {
                         mobile = "+" + data1.result.driverDetails.countryCode + data1.result.driverDetails.mobile;
                        if(!data1.result.amount.equals("")) amount = Double.parseDouble(data1.result.amount); else amount =0.00;
                         if(!data1.result.manual_amount.equals(""))   anualAmount = Double.parseDouble(data1.result.manual_amount); else anualAmount =0.00;
-                        double totalAmount = amount+anualAmount;
+                         totalAmount = amount+anualAmount;
                         binding.tvAmount.setText("€"+totalAmount +"");
                         binding.tvName.setText(DriverName);
                         Glide.with(TrackAct.this)
@@ -758,7 +762,6 @@ public class TrackAct extends AppCompatActivity implements OnMapReadyCallback {
                         String dataResponse = new Gson().toJson(response.body());
                         Log.e("MapMap", "Estimate Price RESPONSE" + dataResponse);
                         getBookingDetail(request_id);
-
                     } else if (data.get("status").equals("0")) {
                         Toast.makeText(TrackAct.this, data.get("message"), Toast.LENGTH_SHORT).show();
                     }
@@ -778,6 +781,14 @@ public class TrackAct extends AppCompatActivity implements OnMapReadyCallback {
 
     }
 
+    private void FinalPayDialog(int i) {
+        if(i==1) new PayFinalFramentDialog(String.valueOf(totalAmount)).callBack(this::pay).show(getSupportFragmentManager(),"");
+        else {
+            if (NetworkReceiver.isConnected()) estimatePriceMethod("cancel_request");
+            else App.showToast(TrackAct.this, getString(R.string.network_failure), Toast.LENGTH_LONG);
+        }
+    }
+
     public void EstimateConfirmDialog(BookingDetailModel bookingDetailModel,String amounttt) {
        AlertDialog.Builder builder1 = new AlertDialog.Builder(TrackAct.this);
 
@@ -791,8 +802,8 @@ public class TrackAct extends AppCompatActivity implements OnMapReadyCallback {
                 new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
                         dialog.dismiss();
-                        if (NetworkReceiver.isConnected()) estimatePriceMethod("accept_request");
-                        else App.showToast(TrackAct.this, getString(R.string.network_failure), Toast.LENGTH_LONG);
+                        FinalPayDialog(1);
+
                     }
                 });
 
@@ -801,12 +812,75 @@ public class TrackAct extends AppCompatActivity implements OnMapReadyCallback {
                 new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
                         dialog.dismiss();
-                        if (NetworkReceiver.isConnected()) estimatePriceMethod("cancel_request");
-                        else App.showToast(TrackAct.this, getString(R.string.network_failure), Toast.LENGTH_LONG);
+                        FinalPayDialog(2);
+
                     }
                 });
 
         alert33 = builder1.create();
         alert33.show();
     }
+
+
+
+    private void PayProvider(String amount, String requestId, String token) {
+        DataManager.getInstance().showProgressMessage(TrackAct.this, getString(R.string.please_wait));
+        Map<String, String> map = new HashMap<>();
+        map.put("user_id", DataManager.getInstance().getUserData(TrackAct.this).result.id);
+        map.put("request_id", requestId);
+        map.put("payment_method", "Stripe");
+        map.put("total_amount", amount);
+        map.put("token", token);
+        map.put("currency", "EUR");
+        Log.e(TAG, "PAYMENT REQUEST" + map);
+        Call<PaymentModel> payCall = apiInterface.holdPayment(map);
+        payCall.enqueue(new Callback<PaymentModel>() {
+            @Override
+            public void onResponse(Call<PaymentModel> call, Response<PaymentModel> response) {
+                DataManager.getInstance().hideProgressMessage();
+                try {
+                    PaymentModel data = response.body();
+                    String dataResponse = new Gson().toJson(response.body());
+                    Log.e("MapMap", "PAYMENT RESPONSE" + dataResponse);
+                    if (data.status.equals("1")) {
+                        //String dataResponse = new Gson().toJson(response.body());
+                        // Log.e("MapMap", "PAYMENT RESPONSE" + dataResponse);
+                        //   addCard(cardForm.getCardNumber(),
+                        //     cardForm.getExpirationMonth(), cardForm.getExpirationYear(), cardForm.getCvv());
+                        if (NetworkReceiver.isConnected()) estimatePriceMethod("accept_request");
+                        else App.showToast(TrackAct.this, getString(R.string.network_failure), Toast.LENGTH_LONG);
+
+
+                    } else if (data.status.equals("0")) {
+                        Toast.makeText(TrackAct.this, data.message, Toast.LENGTH_SHORT).show();
+                    }
+
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+
+            }
+
+
+            @Override
+            public void onFailure(Call<PaymentModel> call, Throwable t) {
+                call.cancel();
+                DataManager.getInstance().hideProgressMessage();
+            }
+
+        });
+
+    }
+
+    @Override
+    public void pay(String token) {
+        if (NetworkReceiver.isConnected()) PayProvider(String.valueOf(totalAmount),request_id,token);
+        else App.showToast(TrackAct.this, getString(R.string.network_failure), Toast.LENGTH_LONG);
+
+    }
+
+
+
+
+
 }

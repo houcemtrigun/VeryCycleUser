@@ -43,7 +43,7 @@ import retrofit2.Response;
 
 public class PaymentAct  extends AppCompatActivity implements OnItemPositionListener {
     ActivityPayBinding binding;
-    String amount = "",  amount1 = "05.00", amount2="", requestId = "", cardNumber = "", expiryMonth = "", expiryDate = "", cvvv = "";
+    String amount = "",  amount1 = "05.00", amount2="5", requestId = "", cardNumber = "", expiryMonth = "", expiryDate = "", cvvv = "";
 
     AlertDialog.Builder alertBuilder;
     VeryCycleUserInterface apiInterface;
@@ -98,7 +98,7 @@ public class PaymentAct  extends AppCompatActivity implements OnItemPositionList
                                 // Toast.makeText(mContext, getString(R.string.successful), Toast.LENGTH_SHORT).show();
                                 // charge(token);
                                 if (NetworkReceiver.isConnected())
-                                    PayProvider(amount, requestId, token.getId());
+                                    PayProvider(amount2, requestId, token.getId());
                                 else
                                     Toast.makeText(PaymentAct.this, getString(R.string.network_failure), Toast.LENGTH_SHORT).show();
                                /* if(!DataManager.getInstance().getUserData(PaymentFirstActivity.this).result.custId.equals(""))
@@ -168,7 +168,7 @@ public class PaymentAct  extends AppCompatActivity implements OnItemPositionList
                         // Toast.makeText(mContext, getString(R.string.successful), Toast.LENGTH_SHORT).show();
                         // charge(token);
                         if (NetworkReceiver.isConnected())
-                            PayProvider1(amount, requestId, token.getId());
+                            PayProvider1(amount1, requestId, token.getId());
                         else
                             Toast.makeText(PaymentAct.this, getString(R.string.network_failure), Toast.LENGTH_SHORT).show();
                                /* if(!DataManager.getInstance().getUserData(PaymentFirstActivity.this).result.custId.equals(""))
@@ -224,7 +224,7 @@ public class PaymentAct  extends AppCompatActivity implements OnItemPositionList
                                 // Toast.makeText(mContext, getString(R.string.successful), Toast.LENGTH_SHORT).show();
                                 // charge(token);
                                 if (NetworkReceiver.isConnected())
-                                    PayProvider(amount, requestId, token.getId());
+                                    PayProvider(amount2, requestId, token.getId());
                                 else
                                     Toast.makeText(PaymentAct.this, getString(R.string.network_failure), Toast.LENGTH_SHORT).show();
                                /* if(!DataManager.getInstance().getUserData(PaymentFirstActivity.this).result.custId.equals(""))
@@ -263,7 +263,7 @@ public class PaymentAct  extends AppCompatActivity implements OnItemPositionList
         map.put("payment_method", "Stripe");
         map.put("total_amount", amount);
         map.put("token", token);
-        map.put("currency", "EURO");
+        map.put("currency", "EUR");
         Log.e("MapMap", "PAYMENT REQUEST" + map);
         Call<PaymentModel> payCall = apiInterface.payment(map);
         payCall.enqueue(new Callback<PaymentModel>() {
@@ -314,7 +314,7 @@ public class PaymentAct  extends AppCompatActivity implements OnItemPositionList
         map.put("payment_method", "Stripe");
         map.put("total_amount", amount);
         map.put("token", token);
-        map.put("currency", "USD");
+        map.put("currency", "EUR");
         Log.e("MapMap", "PAYMENT REQUEST" + map);
         Call<PaymentModel> payCall = apiInterface.payment(map);
         payCall.enqueue(new Callback<PaymentModel>() {

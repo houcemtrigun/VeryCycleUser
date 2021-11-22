@@ -225,6 +225,9 @@ public interface VeryCycleUserInterface {
             @Part MultipartBody.Part file);
 
 
+    @FormUrlEncoded
+    @POST("hold_stripe_payment")
+    Call<PaymentModel> holdPayment(@FieldMap Map<String,String> params);
 
 
 }
