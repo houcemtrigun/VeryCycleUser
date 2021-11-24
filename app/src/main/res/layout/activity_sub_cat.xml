@@ -49,6 +49,7 @@
             android:layout_marginLeft="@dimen/_40sdp"
             android:layout_marginTop="@dimen/_98sdp"
             android:layout_marginRight="@dimen/_35sdp"
+            android:layout_marginBottom="@dimen/_20sdp"
             android:elevation="@dimen/_10sdp"
             app:cardBackgroundColor="@color/white"
             app:cardCornerRadius="@dimen/_10sdp"
@@ -87,6 +88,7 @@
 
 
         <LinearLayout
+            android:visibility="gone"
             android:id="@+id/btnContinue"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

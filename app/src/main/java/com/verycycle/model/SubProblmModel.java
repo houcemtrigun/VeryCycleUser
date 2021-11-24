@@ -5,8 +5,6 @@ import com.google.gson.annotations.SerializedName;
 
 import java.util.List;
 
-
-
 public class SubProblmModel {
 
     @SerializedName("result")
@@ -19,33 +17,38 @@ public class SubProblmModel {
     @Expose
     public String status;
 
-
     public class Result {
 
         @SerializedName("id")
         @Expose
         public String id;
-        @SerializedName("problem_details_id")
-        @Expose
-        public String problemDetailsId;
         @SerializedName("name")
         @Expose
         public String name;
-        @SerializedName("date_time")
+        @SerializedName("name_fr")
         @Expose
-        public String dateTime;
+        public String nameFr;
         @SerializedName("image")
         @Expose
         public String image;
-        @SerializedName("amount")
-        @Expose
-        public String amount;
-        @SerializedName("problem_details_name")
-        @Expose
-        public String problemDetailsName;
         @SerializedName("price")
         @Expose
         public String price;
+        @SerializedName("parent_id")
+        @Expose
+        public String parentId;
+        @SerializedName("sort_order")
+        @Expose
+        public String sortOrder;
+        @SerializedName("status")
+        @Expose
+        public String status;
+        @SerializedName("date_time")
+        @Expose
+        public String dateTime;
+        @SerializedName("problem_details_name")
+        @Expose
+        public String problemDetailsName;
 
         @SerializedName("chk")
         @Expose
@@ -59,7 +62,14 @@ public class SubProblmModel {
         public void setChk(boolean chk) {
             this.chk = chk;
         }
+
     }
 
-
 }
+
+
+
+
+
+
+

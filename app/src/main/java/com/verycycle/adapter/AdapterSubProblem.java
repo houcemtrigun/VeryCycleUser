@@ -2,6 +2,7 @@ package com.verycycle.adapter;
 
 import android.content.Context;
 import android.view.LayoutInflater;
+import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
@@ -38,8 +39,12 @@ public class AdapterSubProblem extends RecyclerView.Adapter<AdapterSubProblem.My
 
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
-        holder.binding.tv1.setText(arrayList.get(position).name);
-        holder.binding.tv2.setText("€"+arrayList.get(position).price);
+        holder.binding.tv1.setText(arrayList.get(position).nameFr);
+       if(!arrayList.get(position).price.equals("")){
+           holder.binding.tv2.setVisibility(View.VISIBLE);
+           holder.binding.tv2.setText("€"+arrayList.get(position).price);
+        }
+       else holder.binding.tv2.setVisibility(View.GONE);
 
         if(arrayList.get(position).isChk()== true)
             holder.binding.rlMain.setBackgroundResource(R.drawable.btn_bg_problem);

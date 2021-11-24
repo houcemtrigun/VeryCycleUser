@@ -68,6 +68,7 @@ public class SubCatAct extends AppCompatActivity implements OnItemPositionListen
        if(getIntent()!=null) {
            problmId = getIntent().getStringExtra("problem_id");
            title = getIntent().getStringExtra("title");
+           price = getIntent().getStringExtra("price");
        }
        binding.tvTitle.setText(title);
        if (NetworkReceiver.isConnected()) getAllSubProblem(problmId);
@@ -94,7 +95,12 @@ public class SubCatAct extends AppCompatActivity implements OnItemPositionListen
                         arrayList.addAll(data.result);
                         adapter.notifyDataSetChanged();
                     } else if (data.status.equals("0")) {
+                        if(!id.equals("")) {
+                            SessionManager.writeString(SubCatAct.this, "price", price);
+                            Problam.tvPrice.setText(getString(R.string.continue_) + "  " + "€" + price);
+                        }
                         App.showToast(SubCatAct.this, data.message, Toast.LENGTH_SHORT);
+                        finish();
                     }
                 } catch (Exception e) {
                     e.printStackTrace();
@@ -111,10 +117,13 @@ public class SubCatAct extends AppCompatActivity implements OnItemPositionListen
 
     @Override
     public void onPosition(int position) {
-        problem = arrayList.get(position).name;
+        problem = arrayList.get(position).nameFr;
         price = arrayList.get(position).price;
         SessionManager.writeString(SubCatAct.this,"sub_problem",problem);
         SessionManager.writeString(SubCatAct.this,"subproblem_id",arrayList.get(position).id);
+        startActivity(new Intent(SubCatAct.this, SubCatAct.class).putExtra("problem_id",arrayList.get(position).id)
+                .putExtra("title",problem).putExtra("price",price));
+        finish();
 
     }
 }

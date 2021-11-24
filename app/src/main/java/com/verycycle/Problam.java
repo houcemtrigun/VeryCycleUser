@@ -162,7 +162,7 @@ public class Problam extends AppCompatActivity implements OnItemPositionListener
     public void onPosition(int position) {
         problem = arrayList.get(position).name;
         startActivity(new Intent(Problam.this, SubCatAct.class).putExtra("problem_id",arrayList.get(position).id)
-        .putExtra("title",problem));
+        .putExtra("title",problem).putExtra("price",""));
 
                 //
         SessionManager.writeString(Problam.this,"problem_id",arrayList.get(position).id);
