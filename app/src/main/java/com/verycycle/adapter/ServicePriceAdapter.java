@@ -10,21 +10,20 @@ import androidx.databinding.DataBindingUtil;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.verycycle.R;
-import com.verycycle.databinding.ItemProblemBinding;
 import com.verycycle.databinding.ItemSubProblemBinding;
 import com.verycycle.listener.OnItemPositionListener;
-import com.verycycle.model.ProblemModel;
-import com.verycycle.model.SubProblmModel;
+import com.verycycle.listener.OnItemPositionListener2;
+import com.verycycle.model.ServicesModel;
+import com.verycycle.model.ServicesPriceModel;
 
 import java.util.ArrayList;
 
-public class AdapterSubProblem extends RecyclerView.Adapter<AdapterSubProblem.MyViewHolder> {
-
+public class ServicePriceAdapter extends RecyclerView.Adapter<ServicePriceAdapter.MyViewHolder> {
     Context context;
-    ArrayList<SubProblmModel.Result> arrayList;
-    OnItemPositionListener listener;
+    ArrayList<ServicesPriceModel.Result> arrayList;
+    OnItemPositionListener2 listener;
 
-    public AdapterSubProblem(Context context, ArrayList<SubProblmModel.Result> arrayList,OnItemPositionListener listener) {
+    public ServicePriceAdapter(Context context, ArrayList<ServicesPriceModel.Result> arrayList, OnItemPositionListener2 listener) {
         this.context = context;
         this.arrayList = arrayList;
         this.listener = listener;
@@ -39,12 +38,18 @@ public class AdapterSubProblem extends RecyclerView.Adapter<AdapterSubProblem.My
 
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
-        holder.binding.tv1.setText(arrayList.get(position).nameFr);
-       if(!arrayList.get(position).price.equals("")){
-           holder.binding.tv2.setVisibility(View.VISIBLE);
-          // holder.binding.tv2.setText("€"+arrayList.get(position).price);
+       if(!arrayList.get(position).fromPrice.equals("") && !arrayList.get(position).toPrice.equals("")) {
+           holder.binding.tv1.setText(arrayList.get(position).fromPrice + " - " + arrayList.get(position).toPrice);
+       }
+       else {
+           holder.binding.tv1.setText(arrayList.get(position).fromPrice);
+
+       }
+       /* if(!arrayList.get(position).price.equals("")){
+            holder.binding.tv2.setVisibility(View.VISIBLE);
+            // holder.binding.tv2.setText("€"+arrayList.get(position).price);
         }
-       else holder.binding.tv2.setVisibility(View.GONE);
+        else holder.binding.tv2.setVisibility(View.GONE);*/
 
         if(arrayList.get(position).isChk()== true)
             holder.binding.rlMain.setBackgroundResource(R.drawable.btn_bg_problem);
@@ -68,7 +73,7 @@ public class AdapterSubProblem extends RecyclerView.Adapter<AdapterSubProblem.My
                     arrayList.get(i).setChk(false);
                 }
                 arrayList.get(getAdapterPosition()).setChk(true);
-                listener.onPosition(getAdapterPosition());
+                listener.onPosition2(getAdapterPosition(),binding.tv1.getText().toString());
                 notifyDataSetChanged();
             });
         }

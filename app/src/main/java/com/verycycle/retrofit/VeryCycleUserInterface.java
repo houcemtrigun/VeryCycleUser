@@ -17,6 +17,8 @@ import com.verycycle.model.PaymentSummaryModel;
 import com.verycycle.model.ProblemModel;
 import com.verycycle.model.ProviderModel;
 import com.verycycle.model.RequestModel;
+import com.verycycle.model.ServicesModel;
+import com.verycycle.model.ServicesPriceModel;
 import com.verycycle.model.SignupModel;
 import com.verycycle.model.SubProblmModel;
 
@@ -228,6 +230,18 @@ public interface VeryCycleUserInterface {
     @FormUrlEncoded
     @POST("hold_stripe_payment")
     Call<PaymentModel> holdPayment(@FieldMap Map<String,String> params);
+
+
+    @FormUrlEncoded
+    @POST("get_services")
+    Call<ServicesModel> getServices(@FieldMap Map<String,String> params);
+
+
+    @FormUrlEncoded
+    @POST("get_services_price")
+    Call<ServicesPriceModel> getServicesPrice(@FieldMap Map<String,String> params);
+
+
 
 
 }

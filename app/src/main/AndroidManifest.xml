@@ -183,6 +183,16 @@
             android:theme="@style/AppTheme.NoActionBar"/>
 
 
+        <activity android:name=".ShowServicesAct"
+            android:screenOrientation="locked"
+            android:theme="@style/AppTheme.NoActionBar"/>
+
+
+        <activity android:name=".ServicePriceAct"
+            android:screenOrientation="locked"
+            android:theme="@style/AppTheme.NoActionBar"/>
+
+
 
         <provider
             android:name="androidx.core.content.FileProvider"

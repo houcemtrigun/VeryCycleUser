@@ -33,6 +33,7 @@
             android:text="@string/my_speeds_go_wrong"
             android:textColor="@color/black"
             android:textStyle="bold"
+            android:visibility="gone"
             />
 
 

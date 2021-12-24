@@ -284,9 +284,9 @@ public class SelectAddressAct extends AppCompatActivity implements OnMapReadyCal
         RequestBody provider_id = RequestBody.create(MediaType.parse("text/plain"), "");
         RequestBody user_id = RequestBody.create(MediaType.parse("text/plain"), DataManager.getInstance().getUserData(SelectAddressAct.this).result.id);
         RequestBody serviceType1 = RequestBody.create(MediaType.parse("text/plain"), serviceType);
-        RequestBody amount = RequestBody.create(MediaType.parse("text/plain"),  Double.parseDouble(SessionManager.readString(SelectAddressAct.this,"price",""))+"");
+        RequestBody amount = RequestBody.create(MediaType.parse("text/plain"),  SessionManager.readString(SelectAddressAct.this,"price",""));
         RequestBody vat_amount = RequestBody.create(MediaType.parse("text/plain"),""  );
-        RequestBody sub_problm = RequestBody.create(MediaType.parse("text/plain"), SessionManager.readString(SelectAddressAct.this,"subproblem_id",""));
+        RequestBody sub_problm = RequestBody.create(MediaType.parse("text/plain"), SessionManager.readString(SelectAddressAct.this,"service_id",""));
 
 
 

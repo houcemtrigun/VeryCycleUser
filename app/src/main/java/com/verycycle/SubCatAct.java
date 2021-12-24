@@ -52,7 +52,7 @@ public class SubCatAct extends AppCompatActivity implements OnItemPositionListen
 
         binding.ivBack.setOnClickListener(v -> finish());
 
-        binding.btnContinue.setOnClickListener(v -> {
+   /*     binding.btnContinue.setOnClickListener(v -> {
             if (problem.equals("")) {
                 App.showToast(SubCatAct.this, getString(R.string.please_select_problem), Toast.LENGTH_LONG);
             } else {
@@ -60,7 +60,7 @@ public class SubCatAct extends AppCompatActivity implements OnItemPositionListen
                 Problam.tvPrice.setText(getString(R.string.continue_) + "  " + "€" + price);
                 finish();
             }
-        });
+        });*/
 
         adapter = new AdapterSubProblem(SubCatAct.this, arrayList, SubCatAct.this);
         binding.rvSubProblem.setAdapter(adapter);
@@ -95,10 +95,6 @@ public class SubCatAct extends AppCompatActivity implements OnItemPositionListen
                         arrayList.addAll(data.result);
                         adapter.notifyDataSetChanged();
                     } else if (data.status.equals("0")) {
-                        if(!id.equals("")) {
-                            SessionManager.writeString(SubCatAct.this, "price", price);
-                            Problam.tvPrice.setText(getString(R.string.continue_) + "  " + "€" + price);
-                        }
                         App.showToast(SubCatAct.this, data.message, Toast.LENGTH_SHORT);
                         finish();
                     }
@@ -121,8 +117,8 @@ public class SubCatAct extends AppCompatActivity implements OnItemPositionListen
         price = arrayList.get(position).price;
         SessionManager.writeString(SubCatAct.this,"sub_problem",problem);
         SessionManager.writeString(SubCatAct.this,"subproblem_id",arrayList.get(position).id);
-        startActivity(new Intent(SubCatAct.this, SubCatAct.class).putExtra("problem_id",arrayList.get(position).id)
-                .putExtra("title",problem).putExtra("price",price));
+        startActivity(new Intent(SubCatAct.this, ShowServicesAct.class).putExtra("subproblem_id",arrayList.get(position).id)
+                .putExtra("title",problem));
         finish();
 
     }
