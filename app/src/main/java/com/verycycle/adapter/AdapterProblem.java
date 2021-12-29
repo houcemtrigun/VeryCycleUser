@@ -39,10 +39,10 @@ public class AdapterProblem extends RecyclerView.Adapter<AdapterProblem.MyViewHo
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
        holder.binding.tv1.setText(arrayList.get(position).name);
 
-       if(arrayList.get(position).isChk()== true)
+      /* if(arrayList.get(position).isChk()== true)
            holder.binding.tv1.setBackgroundResource(R.drawable.btn_bg_problem);
        else
-           holder.binding.tv1.setBackgroundResource(R.drawable.btn_bg_);
+           holder.binding.tv1.setBackgroundResource(R.drawable.btn_bg_);*/
 
     }
 
@@ -57,12 +57,12 @@ public class AdapterProblem extends RecyclerView.Adapter<AdapterProblem.MyViewHo
             super(itemView.getRoot());
             binding = itemView;
             binding.tv1.setOnClickListener(v -> {
-                for (int i=0;i<arrayList.size();i++){
+              /*  for (int i=0;i<arrayList.size();i++){
                     arrayList.get(i).setChk(false);
                 }
-                arrayList.get(getAdapterPosition()).setChk(true);
+                arrayList.get(getAdapterPosition()).setChk(true);*/
                 listener.onPosition(getAdapterPosition());
-                notifyDataSetChanged();
+               // notifyDataSetChanged();
             });
         }
     }

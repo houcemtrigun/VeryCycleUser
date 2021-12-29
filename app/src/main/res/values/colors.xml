@@ -30,4 +30,5 @@
     <color name="grey_two_color">#878789</color>
     <color name="color_gray_100">#F7F8F9</color>
     <color name="light_gray">#D5DDE0</color>
+    <color name="color_bg_gray">#F1F5F4</color>
 </resources>

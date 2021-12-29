@@ -8,41 +8,46 @@
         android:background="#F1EDED"
         tools:context=".Problam">
 
-        <LinearLayout
+        <RelativeLayout
             android:id="@+id/linear1"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="@dimen/_60sdp"
             android:background="@drawable/rectangle_bg_black"
             android:orientation="horizontal">
 
             <ImageView
                 android:id="@+id/ivBack"
-                android:layout_width="@dimen/_30sdp"
-                android:layout_height="@dimen/_30sdp"
-                android:layout_gravity="center_vertical"
-                android:layout_marginLeft="@dimen/_15sdp"
+                android:layout_width="@dimen/_25sdp"
+                android:layout_height="@dimen/_25sdp"
+                android:layout_marginLeft="@dimen/_5sdp"
+                android:layout_centerVertical="true"
                 android:padding="@dimen/_5sdp"
                 android:src="@drawable/ic_previous" />
 
 
             <TextView
-                android:layout_width="0dp"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
-                android:layout_marginLeft="@dimen/_15sdp"
-                android:layout_marginTop="@dimen/_12sdp"
-                android:layout_weight="1"
+                android:text="@string/auto_diagnostic"
                 android:fontFamily="@font/poppinsmedium"
-                android:text="@string/what_is_the_problem_with_your_bike"
-                android:textAlignment="center"
                 android:textColor="@color/white"
                 android:textSize="@dimen/_15sdp"
+                android:gravity="center_horizontal"
+                android:layout_centerInParent="true"
                 tools:ignore="RtlCompat" />
 
 
-        </LinearLayout>
+        </RelativeLayout>
 
-        <androidx.cardview.widget.CardView
+
+
+
+
+
+
+
+
+       <!-- <androidx.cardview.widget.CardView
             android:id="@+id/card_view"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -54,7 +59,7 @@
             app:cardBackgroundColor="@color/white"
             app:cardCornerRadius="@dimen/_10sdp"
             app:cardElevation="0dp"
-            android:visibility="visible">
+            android:visibility="gone">
 
 
             <RelativeLayout
@@ -62,7 +67,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/_2sdp"
                 android:orientation="vertical"
-                android:padding="@dimen/_10sdp">
+                android:padding="@dimen/_10sdp"
+                android:visibility="gone">
 
                 <ImageView
                     android:layout_width="wrap_content"
@@ -99,7 +105,8 @@
             android:background="@drawable/btn_bg"
             android:elevation="@dimen/_5sdp"
             android:orientation="horizontal"
-            android:padding="@dimen/_10sdp">
+            android:padding="@dimen/_10sdp"
+            android:visibility="gone">
 
 
             <TextView
@@ -117,7 +124,45 @@
 
             </TextView>
 
-        </LinearLayout>
+        </LinearLayout>-->
+
+
+
+        <TextView
+            android:id="@+id/tvTitle"
+            android:layout_below="@+id/linear1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:fontFamily="@font/poppinsmedium"
+            android:text="@string/what_is_the_problem_with_your_bike"
+            android:textColor="@color/black"
+            android:layout_marginStart="@dimen/_15sdp"
+            android:layout_marginEnd="@dimen/_10sdp"
+            android:layout_marginTop="@dimen/_15sdp"
+            android:textSize="@dimen/_15sdp"
+            tools:ignore="RtlCompat" />
+
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/_15sdp"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:layout_alignParentBottom="true"
+            android:src="@drawable/cycle_img_null"
+            android:layout_centerInParent="true"
+            />
+
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:layout_below="@+id/tvTitle"
+            android:id="@+id/rvProblem"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            tools:listitem="@layout/item_problem"/>
+
 
 
     </RelativeLayout>

@@ -1,6 +1,130 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android">
 
+    <!--  <RelativeLayout xmlns:app="http://schemas.android.com/apk/res-auto"
+          xmlns:tools="http://schemas.android.com/tools"
+          android:layout_width="match_parent"
+          android:layout_height="match_parent"
+          android:background="#F1EDED"
+          tools:context=".Problam">
+
+          <LinearLayout
+              android:id="@+id/linear1"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:background="@drawable/rectangle_bg_black"
+              android:orientation="horizontal">
+
+              <ImageView
+                  android:id="@+id/ivBack"
+                  android:layout_width="@dimen/_30sdp"
+                  android:layout_height="@dimen/_30sdp"
+                  android:layout_gravity="center_vertical"
+                  android:layout_marginLeft="@dimen/_15sdp"
+                  android:padding="@dimen/_5sdp"
+                  android:src="@drawable/ic_previous" />
+
+
+              <TextView
+                  android:id="@+id/tvTitle"
+                  android:layout_width="0dp"
+                  android:layout_height="wrap_content"
+                  android:gravity="center"
+                  android:layout_gravity="center_vertical"
+                  android:layout_marginLeft="@dimen/_15sdp"
+                  android:layout_weight="1"
+                  android:fontFamily="@font/poppinsmedium"
+                  android:textAlignment="center"
+                  android:text="Price"
+                  android:textColor="@color/white"
+                  android:textSize="@dimen/_15sdp"
+                  tools:ignore="RtlCompat" />
+
+
+          </LinearLayout>
+
+          <androidx.cardview.widget.CardView
+              android:id="@+id/card_view"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:layout_above="@+id/btnContinue"
+              android:layout_marginLeft="@dimen/_40sdp"
+              android:layout_marginTop="@dimen/_98sdp"
+              android:layout_marginRight="@dimen/_35sdp"
+              android:layout_marginBottom="@dimen/_20sdp"
+              android:elevation="@dimen/_10sdp"
+              app:cardBackgroundColor="@color/white"
+              app:cardCornerRadius="@dimen/_10sdp"
+              app:cardElevation="0dp"
+              android:visibility="visible">
+
+
+              <RelativeLayout
+                  android:layout_width="match_parent"
+                  android:layout_height="wrap_content"
+                  android:layout_marginTop="@dimen/_2sdp"
+                  android:orientation="vertical"
+                  android:padding="@dimen/_10sdp">
+
+                  <ImageView
+                      android:layout_width="wrap_content"
+                      android:layout_height="wrap_content"
+                      android:layout_marginLeft="@dimen/_15sdp"
+                      android:layout_marginTop="@dimen/_10sdp"
+                      android:layout_alignParentBottom="true"
+                      android:src="@drawable/cycle_img_null"
+                      />
+
+                  <androidx.recyclerview.widget.RecyclerView
+                      android:id="@+id/rvSubProblem"
+                      android:layout_width="match_parent"
+                      android:layout_height="wrap_content"
+                      app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                      tools:listitem="@layout/item_problem"/>
+
+
+
+              </RelativeLayout>
+
+          </androidx.cardview.widget.CardView>
+
+
+          <LinearLayout
+              android:visibility="visible"
+              android:id="@+id/btnContinue"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:layout_alignParentBottom="true"
+              android:layout_marginLeft="@dimen/_40sdp"
+              android:layout_marginTop="@dimen/_15sdp"
+              android:layout_marginRight="@dimen/_40sdp"
+              android:layout_marginBottom="@dimen/_10sdp"
+              android:background="@drawable/btn_bg"
+              android:elevation="@dimen/_5sdp"
+              android:orientation="horizontal"
+              android:padding="@dimen/_10sdp">
+
+
+              <TextView
+                  android:id="@+id/tvPrice"
+                  android:layout_width="wrap_content"
+                  android:layout_height="wrap_content"
+                  android:layout_weight="1"
+                  android:fontFamily="@font/poppinsmedium"
+                  android:gravity="center_horizontal"
+                  android:text="@string/add"
+                  android:textAlignment="center"
+                  android:textColor="#000"
+                  android:textSize="@dimen/_12sdp"
+                  android:textStyle="bold">
+
+              </TextView>
+
+          </LinearLayout>
+
+
+      </RelativeLayout>-->
+
     <RelativeLayout xmlns:app="http://schemas.android.com/apk/res-auto"
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
@@ -8,120 +132,170 @@
         android:background="#F1EDED"
         tools:context=".Problam">
 
-        <LinearLayout
+        <RelativeLayout
             android:id="@+id/linear1"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="@dimen/_60sdp"
             android:background="@drawable/rectangle_bg_black"
             android:orientation="horizontal">
 
             <ImageView
                 android:id="@+id/ivBack"
-                android:layout_width="@dimen/_30sdp"
-                android:layout_height="@dimen/_30sdp"
-                android:layout_gravity="center_vertical"
-                android:layout_marginLeft="@dimen/_15sdp"
+                android:layout_width="@dimen/_25sdp"
+                android:layout_height="@dimen/_25sdp"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="@dimen/_5sdp"
                 android:padding="@dimen/_5sdp"
                 android:src="@drawable/ic_previous" />
 
 
             <TextView
-                android:id="@+id/tvTitle"
-                android:layout_width="0dp"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:gravity="center"
-                android:layout_gravity="center_vertical"
-                android:layout_marginLeft="@dimen/_15sdp"
-                android:layout_weight="1"
+                android:layout_centerInParent="true"
                 android:fontFamily="@font/poppinsmedium"
-                android:textAlignment="center"
-                android:text="Price"
+                android:gravity="center_horizontal"
+                android:text="@string/estimation"
                 android:textColor="@color/white"
                 android:textSize="@dimen/_15sdp"
                 tools:ignore="RtlCompat" />
 
 
-        </LinearLayout>
+        </RelativeLayout>
 
-        <androidx.cardview.widget.CardView
-            android:id="@+id/card_view"
+
+        <TextView
+            android:id="@+id/tvTitle"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_above="@+id/btnContinue"
-            android:layout_marginLeft="@dimen/_40sdp"
-            android:layout_marginTop="@dimen/_98sdp"
-            android:layout_marginRight="@dimen/_35sdp"
-            android:layout_marginBottom="@dimen/_20sdp"
-            android:elevation="@dimen/_10sdp"
-            app:cardBackgroundColor="@color/white"
-            app:cardCornerRadius="@dimen/_10sdp"
-            app:cardElevation="0dp"
-            android:visibility="visible">
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/linear1"
+            android:layout_gravity="center_vertical"
+            android:layout_marginStart="@dimen/_15sdp"
+            android:layout_marginTop="@dimen/_15sdp"
+            android:layout_marginEnd="@dimen/_10sdp"
+            android:fontFamily="@font/poppinsmedium"
+            android:text="@string/what_is_the_problem_with_your_bike"
+            android:textColor="@color/black"
+            android:textSize="@dimen/_15sdp"
+            tools:ignore="RtlCompat" />
 
 
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/_2sdp"
-                android:orientation="vertical"
-                android:padding="@dimen/_10sdp">
-
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="@dimen/_15sdp"
-                    android:layout_marginTop="@dimen/_10sdp"
-                    android:layout_alignParentBottom="true"
-                    android:src="@drawable/cycle_img_null"
-                    />
-
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/rvSubProblem"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                    tools:listitem="@layout/item_problem"/>
-
-
-
-            </RelativeLayout>
-
-        </androidx.cardview.widget.CardView>
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_centerInParent="true"
+            android:layout_marginLeft="@dimen/_15sdp"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:src="@drawable/cycle_img_null" />
 
 
         <LinearLayout
-            android:visibility="visible"
-            android:id="@+id/btnContinue"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:layout_marginLeft="@dimen/_40sdp"
-            android:layout_marginTop="@dimen/_15sdp"
-            android:layout_marginRight="@dimen/_40sdp"
-            android:layout_marginBottom="@dimen/_10sdp"
-            android:background="@drawable/btn_bg"
-            android:elevation="@dimen/_5sdp"
-            android:orientation="horizontal"
-            android:padding="@dimen/_10sdp">
+            android:layout_below="@+id/tvTitle"
+            android:layout_margin="@dimen/_13sdp"
+            android:layout_marginBottom="@dimen/_70sdp"
+            android:background="@drawable/rounded_gray_bg"
+            android:padding="@dimen/_5sdp">
 
 
-            <TextView
-                android:id="@+id/tvPrice"
-                android:layout_width="wrap_content"
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rvSubProblem"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:fontFamily="@font/poppinsmedium"
-                android:gravity="center_horizontal"
-                android:text="@string/add"
-                android:textAlignment="center"
-                android:textColor="#000"
-                android:textSize="@dimen/_12sdp"
-                android:textStyle="bold">
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                tools:listitem="@layout/item_service_price" />
 
-            </TextView>
 
         </LinearLayout>
 
 
+        <RelativeLayout
+            android:id="@+id/layoutPrice"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_50sdp"
+            android:layout_alignParentBottom="true"
+            android:background="@color/white"
+            android:visibility="gone">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:layout_toLeftOf="@+id/btnContinue"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/tvService"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginStart="@dimen/_15sdp"
+                    android:layout_marginTop="@dimen/_9sdp"
+                    android:layout_marginEnd="@dimen/_5sdp"
+                    android:fontFamily="@font/poppinsmedium"
+                    android:singleLine="true"
+                    android:text="@string/what_is_the_problem_with_your_bike"
+                    android:textColor="@color/grey_two_color"
+                    android:textSize="@dimen/_12sdp"
+                    tools:ignore="RtlCompat"
+                    android:visibility="gone"/>
+
+
+                <TextView
+                    android:id="@+id/tvPrice33"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginStart="@dimen/_15sdp"
+                    android:layout_marginEnd="@dimen/_10sdp"
+                    android:fontFamily="@font/poppinsmedium"
+                    android:singleLine="true"
+                    android:text="$30"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/_15sdp"
+                    tools:ignore="RtlCompat" />
+
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:id="@+id/btnContinue"
+                android:layout_width="@dimen/_60sdp"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerInParent="true"
+                android:layout_marginEnd="@dimen/_15sdp"
+                android:background="@drawable/btn_bg"
+                android:elevation="@dimen/_5sdp"
+                android:orientation="horizontal"
+                android:padding="@dimen/_5sdp"
+                android:visibility="visible">
+
+
+                <TextView
+                    android:id="@+id/tvPrice"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:fontFamily="@font/poppinsmedium"
+                    android:gravity="center_horizontal"
+                    android:text="@string/add"
+                    android:textAlignment="center"
+                    android:textColor="#000"
+                    android:textSize="@dimen/_12sdp"
+                    android:textStyle="bold">
+
+                </TextView>
+
+            </LinearLayout>
+
+
+        </RelativeLayout>
+
+
     </RelativeLayout>
+
+
 </layout>

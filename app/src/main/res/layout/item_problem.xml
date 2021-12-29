@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout>
-<RelativeLayout
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+<!--<RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:visibility="gone">
 
 
     <TextView
@@ -20,5 +21,57 @@
         android:layout_margin="@dimen/_10sdp"/>
 
 
-</RelativeLayout>
+</RelativeLayout-->
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/_3sdp"
+
+       >
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/_7sdp">
+            <TextView
+                android:id="@+id/tv1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/poppins_regular"
+                android:textSize="@dimen/_11sdp"
+                android:gravity="center_vertical"
+
+                android:text="@string/my_eBike_has_broken_down"
+                android:textColor="@color/black"
+                android:layout_margin="@dimen/_7sdp"
+                android:layout_toLeftOf="@+id/ivNext"/>
+
+
+
+            <ImageView
+                android:id="@+id/ivNext"
+                android:layout_width="@dimen/_20sdp"
+                android:layout_height="@dimen/_20sdp"
+                android:padding="@dimen/_5sdp"
+                android:layout_alignParentRight="true"
+                android:layout_centerInParent="true"
+                android:src="@drawable/ic_rightarraow"/>
+
+
+        </RelativeLayout>
+
+
+
+
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/grey"
+            android:layout_marginStart="@dimen/_10sdp"
+            android:layout_marginEnd="@dimen/_10sdp"/>
+
+
+    </LinearLayout>
 </layout>

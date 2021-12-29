@@ -39,8 +39,10 @@ public class AdapterSubProblem extends RecyclerView.Adapter<AdapterSubProblem.My
 
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
+
+
         holder.binding.tv1.setText(arrayList.get(position).nameFr);
-       if(!arrayList.get(position).price.equals("")){
+       /*if(!arrayList.get(position).price.equals("")){
            holder.binding.tv2.setVisibility(View.VISIBLE);
           // holder.binding.tv2.setText("€"+arrayList.get(position).price);
         }
@@ -49,7 +51,7 @@ public class AdapterSubProblem extends RecyclerView.Adapter<AdapterSubProblem.My
         if(arrayList.get(position).isChk()== true)
             holder.binding.rlMain.setBackgroundResource(R.drawable.btn_bg_problem);
         else
-            holder.binding.rlMain.setBackgroundResource(R.drawable.btn_bg_);
+            holder.binding.rlMain.setBackgroundResource(R.drawable.btn_bg_);*/
 
     }
 
@@ -64,12 +66,12 @@ public class AdapterSubProblem extends RecyclerView.Adapter<AdapterSubProblem.My
             super(itemView.getRoot());
             binding = itemView;
             binding.tv1.setOnClickListener(v -> {
-                for (int i=0;i<arrayList.size();i++){
+              /*  for (int i=0;i<arrayList.size();i++){
                     arrayList.get(i).setChk(false);
                 }
-                arrayList.get(getAdapterPosition()).setChk(true);
+                arrayList.get(getAdapterPosition()).setChk(true);*/
                 listener.onPosition(getAdapterPosition());
-                notifyDataSetChanged();
+               // notifyDataSetChanged();
             });
         }
     }

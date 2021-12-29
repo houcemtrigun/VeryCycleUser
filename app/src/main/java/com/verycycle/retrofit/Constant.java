@@ -15,11 +15,11 @@ public class Constant {
 
     public static String driver_id = "driver_id";
 
-    public static String first_name = "first_name";
+    public static String CYCLE_ID = "cycle_id";
 
-    public static String last_name = "last_name";
+    public static String CYCLE_IMAGE = "cycle_image";
 
-    public static String card_number = "card_number";
+    public static String PROBLEM = "problem";
 
     public static String expiry_month = "expiry_month";
 

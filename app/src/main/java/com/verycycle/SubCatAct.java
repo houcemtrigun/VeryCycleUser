@@ -119,7 +119,7 @@ public class SubCatAct extends AppCompatActivity implements OnItemPositionListen
         SessionManager.writeString(SubCatAct.this,"subproblem_id",arrayList.get(position).id);
         startActivity(new Intent(SubCatAct.this, ShowServicesAct.class).putExtra("subproblem_id",arrayList.get(position).id)
                 .putExtra("title",problem));
-        finish();
+      //  finish();
 
     }
 }

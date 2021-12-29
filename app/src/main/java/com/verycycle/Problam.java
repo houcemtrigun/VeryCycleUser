@@ -52,18 +52,20 @@ public class Problam extends AppCompatActivity implements OnItemPositionListener
         if (getIntent() != null) {
             cycleId = getIntent().getStringExtra("cycleModel");
             str_image_path = getIntent().getStringExtra("cycleImage");
+            SessionManager.writeString(Problam.this,Constant.CYCLE_ID,cycleId);
+            SessionManager.writeString(Problam.this,Constant.CYCLE_IMAGE,str_image_path);
         }
 
         binding.ivBack.setOnClickListener(v -> finish());
 
-        binding.btnContinue.setOnClickListener(v -> {
+       /* binding.btnContinue.setOnClickListener(v -> {
             if (problem.equals("")) {
                 App.showToast(Problam.this, getString(R.string.please_select_problem), Toast.LENGTH_LONG);
             } else {
                 startActivity(new Intent(Problam.this, ChhosingATypeOfRepair.class).putExtra("cycleModel", cycleId)
                         .putExtra("cycleImage", str_image_path).putExtra("problem", problem));
             }
-        });
+        });*/
 
         adapter = new AdapterProblem(Problam.this, arrayList, Problam.this);
         binding.rvProblem.setAdapter(adapter);
@@ -163,8 +165,7 @@ public class Problam extends AppCompatActivity implements OnItemPositionListener
         problem = arrayList.get(position).name;
         startActivity(new Intent(Problam.this, SubCatAct.class).putExtra("problem_id",arrayList.get(position).id)
         .putExtra("title",problem).putExtra("price",""));
-
-                //
         SessionManager.writeString(Problam.this,"problem_id",arrayList.get(position).id);
+        SessionManager.writeString(Problam.this,Constant.PROBLEM,arrayList.get(position).name);
     }
 }

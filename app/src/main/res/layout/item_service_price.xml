@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+    <layout xmlns:android="http://schemas.android.com/apk/res/android">
+        <!--  <RelativeLayout
+              android:id="@+id/rlMain"
+              android:layout_margin="@dimen/_7sdp"
+              xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:padding="@dimen/_8sdp"
+              android:background="@drawable/btn_bg_">
+
+
+              <TextView
+                  android:id="@+id/tv1"
+                  android:layout_width="match_parent"
+                  android:layout_height="wrap_content"
+                  android:layout_marginLeft="@dimen/_8sdp"
+                  android:fontFamily="@font/poppinsmedium"
+                  android:gravity="center_vertical"
+                  android:text="@string/my_speeds_go_wrong"
+                  android:textColor="@color/black"
+                  android:textStyle="bold"
+                  />
+
+              <TextView
+                  android:id="@+id/tv2"
+                  android:layout_below="@+id/tv1"
+                  android:layout_width="match_parent"
+                  android:layout_height="wrap_content"
+                  android:fontFamily="@font/poppinsmedium"
+                  android:gravity="center_vertical"
+                  android:layout_marginLeft="@dimen/_8sdp"
+                  android:text="@string/my_speeds_go_wrong"
+                  android:textColor="@color/black"
+                  android:textStyle="bold"
+                  android:visibility="gone"
+                  />
+
+
+
+
+          </RelativeLayout>-->
+
+        <LinearLayout
+            android:id="@+id/rlMain"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/_3sdp"
+
+            >
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/_3sdp">
+
+
+                <ImageView
+                    android:id="@+id/ivNext"
+                    android:layout_width="@dimen/_12sdp"
+                    android:layout_height="@dimen/_12sdp"
+                    android:layout_marginTop="@dimen/_8sdp"
+                    android:layout_alignParentLeft="true"
+                     android:layout_marginEnd="-5dp"
+                    android:src="@drawable/next"/>
+
+
+                <TextView
+                    android:id="@+id/tv1"
+                    android:layout_toRightOf="@+id/ivNext"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/poppins_regular"
+                    android:textSize="@dimen/_12sdp"
+                    android:gravity="center_vertical"
+                    android:text="@string/my_eBike_has_broken_down"
+                    android:textColor="@color/black"
+                    android:layout_margin="@dimen/_7sdp"
+                    android:layout_toLeftOf="@+id/tvPrice"/>
+
+
+
+                <TextView
+                    android:id="@+id/tvPrice"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/poppins_bold"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginEnd="@dimen/_5sdp"
+                    android:textSize="@dimen/_14sdp"
+                    android:layout_centerInParent="true"
+                    android:text="$20"
+                    android:visibility="gone"
+                  />
+
+
+            </RelativeLayout>
+
+
+        </LinearLayout>
+
+
+    </layout>
+
+

@@ -27,6 +27,8 @@ import com.bumptech.glide.Glide;
 import com.verycycle.databinding.ActivityChhosingATypeOfRepairBinding;
 import com.verycycle.helper.App;
 import com.verycycle.helper.DataManager;
+import com.verycycle.helper.SessionManager;
+import com.verycycle.retrofit.Constant;
 
 import java.io.File;
 import java.util.Calendar;
@@ -51,9 +53,10 @@ public class ChhosingATypeOfRepair extends AppCompatActivity {
 
     private void SetuUI() {
        if(getIntent()!=null){
-           cycleId = getIntent().getStringExtra("cycleModel");
-           str_image_path = getIntent().getStringExtra("cycleImage");
-           problem = getIntent().getStringExtra("problem");
+           cycleId = SessionManager.readString(ChhosingATypeOfRepair.this, Constant.CYCLE_ID,""); //getIntent().getStringExtra("cycleModel");
+           str_image_path = SessionManager.readString(ChhosingATypeOfRepair.this, Constant.CYCLE_IMAGE,""); ///getIntent().getStringExtra("cycleImage");
+           problem = SessionManager.readString(ChhosingATypeOfRepair.this, Constant.PROBLEM,""); //getIntent().getStringExtra("problem");
+
        }
         binding.ivBack.setOnClickListener(v -> {finish();});
 

@@ -3,6 +3,7 @@ package com.verycycle;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;
@@ -59,8 +60,9 @@ public class ServicePriceAct extends AppCompatActivity implements OnItemPosition
                 App.showToast(ServicePriceAct.this, getString(R.string.please_select_problem), Toast.LENGTH_LONG);
             } else {
                 SessionManager.writeString(ServicePriceAct.this,"price",price);
-                Problam.tvPrice.setText(getString(R.string.continue_) + "  " + price);
-                finish();
+                startActivity(new Intent(ServicePriceAct.this, ChhosingATypeOfRepair.class));
+               // Problam.tvPrice.setText(getString(R.string.continue_) + "  " + price);
+              //  finish();
             }
         });
 
@@ -118,8 +120,10 @@ public class ServicePriceAct extends AppCompatActivity implements OnItemPosition
     public void onPosition2(int position,String price) {
         this.price = price;
         priceId = arrayList.get(position).id;
+        binding.layoutPrice.setVisibility(View.VISIBLE);
+        binding.tvPrice33.setText(price);
+
        // SessionManager.writeString(ServicePriceAct.this,"price",price);
         SessionManager.writeString(ServicePriceAct.this,"priceId",arrayList.get(position).id);
-
     }
 }

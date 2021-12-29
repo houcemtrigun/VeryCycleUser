@@ -10,6 +10,7 @@ import androidx.databinding.DataBindingUtil;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.verycycle.R;
+import com.verycycle.databinding.ItemServicePriceBinding;
 import com.verycycle.databinding.ItemSubProblemBinding;
 import com.verycycle.listener.OnItemPositionListener;
 import com.verycycle.listener.OnItemPositionListener2;
@@ -32,7 +33,7 @@ public class ServicePriceAdapter extends RecyclerView.Adapter<ServicePriceAdapte
     @NonNull
     @Override
     public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        ItemSubProblemBinding binding = DataBindingUtil.inflate(LayoutInflater.from(context), R.layout.item_sub_problem,parent,false);
+        ItemServicePriceBinding binding = DataBindingUtil.inflate(LayoutInflater.from(context), R.layout.item_service_price,parent,false);
         return new MyViewHolder(binding);
     }
 
@@ -51,10 +52,10 @@ public class ServicePriceAdapter extends RecyclerView.Adapter<ServicePriceAdapte
         }
         else holder.binding.tv2.setVisibility(View.GONE);*/
 
-        if(arrayList.get(position).isChk()== true)
+       /* if(arrayList.get(position).isChk()== true)
             holder.binding.rlMain.setBackgroundResource(R.drawable.btn_bg_problem);
         else
-            holder.binding.rlMain.setBackgroundResource(R.drawable.btn_bg_);
+            holder.binding.rlMain.setBackgroundResource(R.drawable.btn_bg_);*/
 
     }
 
@@ -64,17 +65,17 @@ public class ServicePriceAdapter extends RecyclerView.Adapter<ServicePriceAdapte
     }
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
-        ItemSubProblemBinding binding;
-        public MyViewHolder(@NonNull ItemSubProblemBinding itemView) {
+        ItemServicePriceBinding binding;
+        public MyViewHolder(@NonNull ItemServicePriceBinding itemView) {
             super(itemView.getRoot());
             binding = itemView;
             binding.tv1.setOnClickListener(v -> {
-                for (int i=0;i<arrayList.size();i++){
+               /* for (int i=0;i<arrayList.size();i++){
                     arrayList.get(i).setChk(false);
                 }
-                arrayList.get(getAdapterPosition()).setChk(true);
+                arrayList.get(getAdapterPosition()).setChk(true);*/
                 listener.onPosition2(getAdapterPosition(),binding.tv1.getText().toString());
-                notifyDataSetChanged();
+              //  notifyDataSetChanged();
             });
         }
     }
