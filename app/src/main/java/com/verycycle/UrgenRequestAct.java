@@ -38,11 +38,15 @@ import com.google.android.libraries.places.widget.Autocomplete;
 import com.google.android.libraries.places.widget.AutocompleteActivity;
 import com.google.android.libraries.places.widget.model.AutocompleteActivityMode;
 import com.google.gson.Gson;
+import com.verycycle.adapter.AdapterAssemble;
 import com.verycycle.adapter.AdapterCycleModel;
 import com.verycycle.databinding.ActivityUrgentRepairBinding;
 import com.verycycle.helper.App;
 import com.verycycle.helper.DataManager;
 import com.verycycle.helper.GPSTracker;
+import com.verycycle.helper.NetworkReceiver;
+import com.verycycle.helper.SessionManager;
+import com.verycycle.model.AssembleModel;
 import com.verycycle.model.CycleModel;
 import com.verycycle.retrofit.ApiClient;
 import com.verycycle.retrofit.VeryCycleUserInterface;
@@ -52,7 +56,11 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Calendar;
 import java.util.List;
+import java.util.Map;
 
+import okhttp3.MediaType;
+import okhttp3.MultipartBody;
+import okhttp3.RequestBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -63,13 +71,14 @@ public class UrgenRequestAct extends AppCompatActivity {
     VeryCycleUserInterface apiInterface;
     double latitude = 0.0, longitude = 0.0;
     int AUTOCOMPLETE_REQUEST_CODE_ADDRESS = 101;
-    String address="",cycleId="",str_image_path="",type ="Urgent repair",flatRepair="",breakingLock="",chk="";
+    String address="",cycleId="",str_image_path="",type ="Urgent repair",flatRepair="",breakingLock="",chk="",BikeTypeID="";
     private static final int REQUEST_CAMERA = 1;
     private static final int SELECT_FILE = 2;
     private static final int MY_PERMISSION_CONSTANT = 5;
     private Uri uriSavedImage;
-    ArrayList<CycleModel.Result> arrayList;
-    AdapterCycleModel adapter;
+  //  ArrayList<CycleModel.Result> arrayList;
+    ArrayList<AssembleModel.Result> arrayList;
+    AdapterAssemble adapter;
     GPSTracker gpsTracker;
     int flatPrice=0,breakDown=0,total;
    public static final int PERMISSION_ID = 44;
@@ -91,7 +100,7 @@ public class UrgenRequestAct extends AppCompatActivity {
 
         arrayList = new ArrayList<>();
 
-        adapter = new AdapterCycleModel(UrgenRequestAct.this,arrayList);
+        adapter = new AdapterAssemble(UrgenRequestAct.this,arrayList);
         binding.spinnerModel.setAdapter(adapter);
 
 
@@ -138,7 +147,11 @@ public class UrgenRequestAct extends AppCompatActivity {
         binding.spinnerModel.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                cycleId = arrayList.get(position).id;
+               // cycleId = arrayList.get(position).id;
+
+                BikeTypeID = arrayList.get(position).id;
+                if(BikeTypeID.equals("7")) binding.cardEd.setVisibility(View.VISIBLE);
+                else binding.cardEd.setVisibility(View.GONE);
             }
 
             @Override
@@ -203,9 +216,24 @@ public class UrgenRequestAct extends AppCompatActivity {
     private void validation() {
          getchk();
          if(chk.equals("")) App.showToast(UrgenRequestAct.this,getString(R.string.please_select_repair_service),Toast.LENGTH_LONG);
-         else  if(cycleId.equals("")){
+         else  if(BikeTypeID.equals("")){
              App.showToast(UrgenRequestAct.this,getString(R.string.please_select_cycle_model),Toast.LENGTH_LONG);
          }
+         else if(BikeTypeID.equals("7")){
+             if(binding.edtext.getText().toString().equals(""))
+             { binding.edtext.setFocusable(true);
+                 binding.edtext.setError(getString(R.string.required));
+             }
+             else if(str_image_path.equals("")){
+                 App.showToast(UrgenRequestAct.this,getString(R.string.please_upload_cycle_image),Toast.LENGTH_LONG);
+             }
+             else {
+                 if(NetworkReceiver.isConnected())  SendAssembleReq(BikeTypeID,binding.edtext.getText().toString());
+                 else Toast.makeText(this, getString(R.string.please_wait), Toast.LENGTH_SHORT).show();
+             }
+
+         }
+
          else if(str_image_path.equals("")){
              App.showToast(UrgenRequestAct.this,getString(R.string.please_upload_cycle_image),Toast.LENGTH_LONG);
          }
@@ -224,11 +252,14 @@ public class UrgenRequestAct extends AppCompatActivity {
                      .putExtra("lat",latitude+"")
                      .putExtra("lon",longitude+"")
                      .putExtra("serviceType",type));
+
 */
 
-             Toast.makeText(UrgenRequestAct.this, getString(R.string.request_send_successfully), Toast.LENGTH_SHORT).show();
-             startActivity(new Intent(UrgenRequestAct.this,MainActivity.class).addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK| Intent.FLAG_ACTIVITY_CLEAR_TOP));
-             finish();
+
+             if(NetworkReceiver.isConnected())  SendAssembleReq(BikeTypeID,binding.edtext.getText().toString());
+             else Toast.makeText(this, getString(R.string.please_wait), Toast.LENGTH_SHORT).show();
+
+
 
          }
 
@@ -267,13 +298,13 @@ public class UrgenRequestAct extends AppCompatActivity {
     }*/
 
     private void getCycleModel() {
-        Call<CycleModel> signupCall = apiInterface.getCycleList();
-        signupCall.enqueue(new Callback<CycleModel>() {
+        Call<AssembleModel> signupCall = apiInterface.getAllTypess();
+        signupCall.enqueue(new Callback<AssembleModel>() {
             @Override
-            public void onResponse(Call<CycleModel> call, Response<CycleModel> response) {
+            public void onResponse(Call<AssembleModel> call, Response<AssembleModel> response) {
                 DataManager.getInstance().hideProgressMessage();
                 try {
-                    CycleModel data = response.body();
+                    AssembleModel data = response.body();
                     String responseString = new Gson().toJson(response.body());
                     Log.e(TAG, "Cycle Model Response :" + responseString);
                     if (data.status.equals("1")) {
@@ -294,7 +325,7 @@ public class UrgenRequestAct extends AppCompatActivity {
             }
 
             @Override
-            public void onFailure(Call<CycleModel> call, Throwable t) {
+            public void onFailure(Call<AssembleModel> call, Throwable t) {
                 DataManager.getInstance().hideProgressMessage();
                 call.cancel();
             }
@@ -535,6 +566,87 @@ public class UrgenRequestAct extends AppCompatActivity {
         binding.tvAddress.setText(address);
         Log.e("Location====","Latitude=== :"+gpsTracker.getLatitude() + "  " + "Longitute=== : " + gpsTracker.getLongitude());
 
+    }
+
+
+    /*private void validation() {
+        if(BikeTypeID.equals("")){
+            App.showToast(BikeAssembleAct.this,getString(R.string.please_select_bike_type), Toast.LENGTH_LONG);
+        }
+
+        else if(BikeTypeID.equals("7")){
+            if(binding.edtext.getText().toString().equals(""))
+            { binding.edtext.setFocusable(true);
+                binding.edtext.setError(getString(R.string.required));
+            }
+            else if(str_image_path.equals("")){
+                App.showToast(BikeAssembleAct.this,getString(R.string.please_upload_cycle_image),Toast.LENGTH_LONG);
+            }
+            else {
+                if(NetworkReceiver.isConnected())  SendAssembleReq(BikeTypeID,binding.edtext.getText().toString());
+                else Toast.makeText(this, getString(R.string.please_wait), Toast.LENGTH_SHORT).show();
+            }
+
+        }
+        else if(str_image_path.equals("")){
+            App.showToast(BikeAssembleAct.this,getString(R.string.please_upload_cycle_image),Toast.LENGTH_LONG);
+        }
+        else {
+            if(NetworkReceiver.isConnected())  SendAssembleReq(BikeTypeID,"");
+            else Toast.makeText(this, getString(R.string.please_wait), Toast.LENGTH_SHORT).show();
+        }
+    }*/
+
+    private void SendAssembleReq(String id,String name) {
+        DataManager.getInstance().showProgressMessage(UrgenRequestAct.this, getString(R.string.please_wait));
+        MultipartBody.Part filePart;
+        if (!str_image_path.equalsIgnoreCase("")) {
+            File file = DataManager.getInstance().saveBitmapToFile(new File(str_image_path));
+            filePart = MultipartBody.Part.createFormData("image", file.getName(), RequestBody.create(MediaType.parse("image/*"), file));
+        } else {
+            RequestBody attachmentEmpty = RequestBody.create(MediaType.parse("text/plain"), "");
+            filePart = MultipartBody.Part.createFormData("attachment", "", attachmentEmpty);
+        }
+
+        RequestBody BikeId = RequestBody.create(MediaType.parse("text/plain"),id );
+        RequestBody BikeName = RequestBody.create(MediaType.parse("text/plain"), name);
+        RequestBody user_id = RequestBody.create(MediaType.parse("text/plain"), DataManager.getInstance().getUserData(UrgenRequestAct.this).result.id);
+        RequestBody date = RequestBody.create(MediaType.parse("text/plain"),DataManager.getCurrent1() );
+        RequestBody time = RequestBody.create(MediaType.parse("text/plain"),DataManager.getCurrentTime() );
+        RequestBody lat = RequestBody.create(MediaType.parse("text/plain"), String.valueOf(latitude));
+        RequestBody lon = RequestBody.create(MediaType.parse("text/plain"), String.valueOf(longitude));
+        RequestBody addresses = RequestBody.create(MediaType.parse("text/plain"),address );
+        RequestBody type = RequestBody.create(MediaType.parse("text/plain"),"urgent_repair" );
+
+        Call<Map<String,String>> signupCall = apiInterface.addCarAsmReq(user_id, BikeId, BikeName,date,time,lat,lon,addresses,type, filePart);
+        signupCall.enqueue(new Callback<Map<String,String>>() {
+            @Override
+            public void onResponse(Call<Map<String,String>> call, Response<Map<String,String>> response) {
+                DataManager.getInstance().hideProgressMessage();
+                try {
+                    Map<String,String> data = response.body();
+                    if (data.get("status").equals("1")) {
+                        String dataResponse = new Gson().toJson(response.body());
+                        Log.e("MapMap", "Bike Type  RESPONSE" + dataResponse);
+                        Toast.makeText(UrgenRequestAct.this, getString(R.string.request_send_successfully), Toast.LENGTH_SHORT).show();
+                        startActivity(new Intent(UrgenRequestAct.this,MainActivity.class).addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK| Intent.FLAG_ACTIVITY_CLEAR_TOP));
+                        finish();
+                    } else if (data.get("status").equals("0")) {
+                        Toast.makeText(UrgenRequestAct.this, data.get("message"), Toast.LENGTH_SHORT).show();
+                    }
+
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<Map<String,String>> call, Throwable t) {
+                call.cancel();
+                DataManager.getInstance().hideProgressMessage();
+            }
+
+        });
     }
 
 }

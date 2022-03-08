@@ -27,12 +27,18 @@ public class ProblemModel {
         @SerializedName("name")
         @Expose
         public String name;
+        @SerializedName("name_fr")
+        @Expose
+        public String nameFr;
         @SerializedName("date_time")
         @Expose
         public String dateTime;
         @SerializedName("price")
         @Expose
         public String price;
+
+
+
 
         @SerializedName("chk")
         @Expose

@@ -244,6 +244,16 @@ public class DataManager {
         return ti;
     }
 
+    public static String getCurrentTime() {
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd  HH:mm a",Locale.US);
+        String currentDateandTime = sdf.format(new Date());
+
+        String datesplite[] = currentDateandTime.split("  ");
+        String time[] = datesplite[1].split(":");
+        return convertStringAmPm(time[0] + ":" + time[1]);
+    }
+
+
 
 
     public static int getDiffYears(Date first, Date last) {

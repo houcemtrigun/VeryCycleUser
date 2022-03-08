@@ -224,6 +224,12 @@ public interface VeryCycleUserInterface {
             @Part("user_id") RequestBody user_id,
             @Part("bike_id") RequestBody bike_id,
             @Part("bike_name") RequestBody bike_name,
+            @Part("date") RequestBody date,
+            @Part("time") RequestBody time,
+            @Part("lat") RequestBody lat,
+            @Part("lon") RequestBody lon,
+            @Part("address") RequestBody address,
+            @Part("type") RequestBody type,
             @Part MultipartBody.Part file);
 
 
@@ -238,8 +244,23 @@ public interface VeryCycleUserInterface {
 
 
     @FormUrlEncoded
+    @POST("get_services")
+    Call<SubProblmModel> getServices11(@FieldMap Map<String,String> params);
+
+    @FormUrlEncoded
+    @POST("get_services")
+    Call<SubProblmModel> getServices1133(@FieldMap Map<String,String> params);
+
+
+
+
+
+    @FormUrlEncoded
     @POST("get_services_price")
     Call<ServicesPriceModel> getServicesPrice(@FieldMap Map<String,String> params);
+
+
+
 
 
 

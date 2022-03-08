@@ -116,10 +116,10 @@ public class MsgChatAct extends AppCompatActivity implements View.OnClickListene
             reference1 = FirebaseDatabase.getInstance()
 
                     //   https://decoded-reducer-294611.firebaseio.com/
-                    .getReferenceFromUrl("https://decoded-reducer-294611.firebaseio.com/" + "messages" + "_" + self_user + "_" + other_user);
+                    .getReferenceFromUrl("https://verycycle-723f8-default-rtdb.firebaseio.com/" + "messages" + "_" + self_user + "_" + other_user);
         } else {
             reference1 = FirebaseDatabase.getInstance()
-                    .getReferenceFromUrl("https://decoded-reducer-294611.firebaseio.com/" + "messages" + "_" + other_user + "_" + self_user);
+                    .getReferenceFromUrl("https://verycycle-723f8-default-rtdb.firebaseio.com/" + "messages" + "_" + other_user + "_" + self_user);
         }
         reference1.addChildEventListener(new ChildEventListener() {
             @Override

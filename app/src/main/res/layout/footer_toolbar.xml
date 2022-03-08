@@ -110,7 +110,7 @@
                 android:layout_height="wrap_content"
                 android:visibility="gone">
 
-                <SearchView
+                <androidx.appcompat.widget.SearchView
                     android:layout_width="0dp"
                     android:layout_height="@dimen/_35sdp"
                     android:layout_margin="@dimen/_12sdp"
@@ -120,9 +120,9 @@
                     android:iconifiedByDefault="false"
                     android:padding="@dimen/_2sdp"
                     android:queryHint="Search"
-                    android:tooltipText="">
+                    android:tooltipText=""
+                    />
 
-                </SearchView>
 
 
                 <!--   <SearchView
@@ -155,27 +155,11 @@
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="@dimen/_10sdp">
-
-
-                    <androidx.cardview.widget.CardView
-                        android:layout_width="@dimen/_80sdp"
-                        android:layout_height="@dimen/_80sdp"
-                        android:layout_marginTop="@dimen/_15sdp"
-                        app:cardBackgroundColor="@color/primary"
-                        app:cardCornerRadius="8dp">
-
-
-                        <ImageView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center_vertical|center_horizontal"
-                            android:src="@drawable/circle_logo"/>
+                    android:layout_marginLeft="@dimen/_10sdp"
+                    >
 
 
 
-
-                    </androidx.cardview.widget.CardView>
 
 
                     <androidx.cardview.widget.CardView
@@ -184,7 +168,6 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
                         android:layout_marginLeft="@dimen/_40sdp"
-                        android:layout_marginTop="@dimen/_8sdp"
                         android:layout_marginRight="@dimen/_35sdp"
                         android:elevation="@dimen/_10sdp"
                         app:cardBackgroundColor="@color/white"
@@ -195,12 +178,10 @@
                         <LinearLayout
                             android:id="@+id/linearNormal"
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="bottom"
-                            android:layout_marginTop="@dimen/_2sdp"
+                            android:layout_height="@dimen/_100sdp"
                             android:background="#6BFFFFFF"
-                            android:orientation="horizontal"
-                            android:padding="@dimen/_38sdp">
+                            android:layout_gravity="center"
+                            android:orientation="horizontal">
 
 
                             <TextView
@@ -209,6 +190,9 @@
                                 android:fontFamily="@font/poppinsmedium"
                                 android:gravity="center"
                                 android:text="@string/normal_repair"
+                                android:layout_gravity="center"
+                                android:layout_marginStart="@dimen/_40sdp"
+                                android:layout_marginEnd="@dimen/_7sdp"
                                 android:textColor="#000"
                                 android:textStyle="bold">
 
@@ -219,34 +203,34 @@
 
                     </androidx.cardview.widget.CardView>
 
+
+
+                    <RelativeLayout
+                        android:layout_width="@dimen/_80sdp"
+                        android:layout_height="@dimen/_80sdp"
+                        android:background="@drawable/dash_bg"
+                        android:layout_centerVertical="true">
+
+
+                        <ImageView
+                            android:layout_width="@dimen/_60sdp"
+                            android:layout_height="@dimen/_60sdp"
+                            android:layout_centerInParent="true"
+                            android:src="@drawable/dash1" />
+
+
+                    </RelativeLayout>
+
                 </RelativeLayout>
 
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/_5sdp"
+                    android:layout_marginTop="@dimen/_10sdp"
                     android:layout_marginRight="@dimen/_10sdp">
 
 
-                    <androidx.cardview.widget.CardView
-                        android:layout_width="@dimen/_80sdp"
-                        android:layout_height="@dimen/_80sdp"
-                        android:layout_alignParentEnd="true"
-                        android:layout_marginTop="@dimen/_15sdp"
-                        app:cardBackgroundColor="@color/black"
-                        app:cardCornerRadius="8dp">
 
-
-                        <ImageView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center_vertical|center_horizontal"
-                            android:src="@drawable/circle_logo"/>
-
-
-
-
-                    </androidx.cardview.widget.CardView>
 
                     <androidx.cardview.widget.CardView
                         android:id="@+id/card_view2"
@@ -265,12 +249,11 @@
                         <LinearLayout
                             android:id="@+id/llUrgent"
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="bottom"
-                            android:layout_marginTop="@dimen/_2sdp"
+                            android:layout_height="@dimen/_100sdp"
+                            android:layout_gravity="center"
                             android:background="#6BFFFFFF"
                             android:orientation="horizontal"
-                            android:padding="@dimen/_38sdp">
+                            >
 
 
                             <TextView
@@ -278,15 +261,40 @@
                                 android:layout_height="wrap_content"
                                 android:fontFamily="@font/poppinsmedium"
                                 android:gravity="center"
+                                android:layout_gravity="center"
                                 android:text="@string/urgent_repair"
-                                android:textColor="#000"
-                                android:textStyle="bold">
+                                android:layout_marginStart="@dimen/_10sdp"
 
-                            </TextView>
+                               android:layout_marginEnd="@dimen/_15sdp"
+                                android:textColor="#000"
+                                android:textStyle="bold"/>
+
+
+
+
 
                         </LinearLayout>
 
                     </androidx.cardview.widget.CardView>
+
+
+                    <RelativeLayout
+                        android:layout_width="@dimen/_80sdp"
+                        android:layout_height="@dimen/_80sdp"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerInParent="true"
+                        android:background="@drawable/dash_bg"
+                        >
+
+
+                        <ImageView
+                            android:layout_width="@dimen/_60sdp"
+                            android:layout_height="@dimen/_60sdp"
+                            android:layout_centerInParent="true"
+                            android:src="@drawable/dash2" />
+
+
+                    </RelativeLayout>
 
                 </RelativeLayout>
 
@@ -294,37 +302,19 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="@dimen/_10sdp"
-                    android:layout_marginTop="@dimen/_5sdp">
-
-
-                    <androidx.cardview.widget.CardView
-                        android:layout_width="@dimen/_80sdp"
-                        android:layout_height="@dimen/_80sdp"
-                        android:layout_marginTop="@dimen/_15sdp"
-                        app:cardBackgroundColor="@color/primary"
-                        app:cardCornerRadius="8dp">
-
-
-                        <ImageView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center_vertical|center_horizontal"
-                            android:src="@drawable/circle_logo"/>
+                    android:layout_marginTop="@dimen/_25sdp">
 
 
 
-                    </androidx.cardview.widget.CardView>
 
 
                     <androidx.cardview.widget.CardView
                         android:id="@+id/card_view3"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_gravity="center"
+                        android:layout_centerVertical="true"
                         android:layout_marginLeft="@dimen/_40sdp"
-                        android:layout_marginTop="@dimen/_8sdp"
                         android:layout_marginRight="@dimen/_35sdp"
-                        android:layout_marginBottom="@dimen/_25sdp"
 
                         android:elevation="@dimen/_10sdp"
                         app:cardBackgroundColor="@color/white"
@@ -335,12 +325,11 @@
                         <LinearLayout
                             android:id="@+id/llBike"
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="bottom"
-                            android:layout_marginTop="@dimen/_2sdp"
+                            android:layout_height="@dimen/_100sdp"
+                            android:layout_gravity="center"
                             android:background="#6BFFFFFF"
                             android:orientation="horizontal"
-                            android:padding="@dimen/_38sdp">
+                            >
 
 
                             <TextView
@@ -348,16 +337,36 @@
                                 android:layout_height="wrap_content"
                                 android:fontFamily="@font/poppinsmedium"
                                 android:gravity="center"
+                                android:layout_gravity="center"
+                                android:layout_marginStart="@dimen/_40sdp"
+                                android:layout_marginEnd="@dimen/_7sdp"
                                 android:text="@string/bike_rental"
                                 android:textColor="#000"
-                                android:textStyle="bold">
+                                android:textStyle="bold"/>
 
-                            </TextView>
 
 
                         </LinearLayout>
 
                     </androidx.cardview.widget.CardView>
+
+
+
+                    <RelativeLayout
+                        android:layout_width="@dimen/_80sdp"
+                        android:layout_height="@dimen/_80sdp"
+                        android:background="@drawable/dash_bg"
+                        android:layout_centerVertical="true">
+
+
+                        <ImageView
+                            android:layout_width="@dimen/_60sdp"
+                            android:layout_height="@dimen/_60sdp"
+                            android:layout_centerInParent="true"
+                            android:src="@drawable/dash3" />
+
+
+                    </RelativeLayout>
 
                 </RelativeLayout>
 

@@ -1,12 +1,15 @@
 package com.verycycle;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.Html;
 import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
 
@@ -55,15 +58,15 @@ public class ServicePriceAct extends AppCompatActivity implements OnItemPosition
 
         binding.ivBack.setOnClickListener(v -> finish());
 
-        binding.btnContinue.setOnClickListener(v -> {
-            if (price.equals("")) {
-                App.showToast(ServicePriceAct.this, getString(R.string.please_select_problem), Toast.LENGTH_LONG);
-            } else {
-                SessionManager.writeString(ServicePriceAct.this,"price",price);
+        binding.btnContinue1.setOnClickListener(v -> {
+           // if (price.equals("")) {
+            //   App.showToast(ServicePriceAct.this, getString(R.string.please_select_problem), Toast.LENGTH_LONG);
+           // } else {
+                SessionManager.writeString(ServicePriceAct.this,"price","");
                 startActivity(new Intent(ServicePriceAct.this, ChhosingATypeOfRepair.class));
                // Problam.tvPrice.setText(getString(R.string.continue_) + "  " + price);
               //  finish();
-            }
+         //   }
         });
 
         adapter = new ServicePriceAdapter(ServicePriceAct.this, arrayList, ServicePriceAct.this);
@@ -98,9 +101,9 @@ public class ServicePriceAct extends AppCompatActivity implements OnItemPosition
                         arrayList.clear();
                         arrayList.addAll(data.result);
                         adapter.notifyDataSetChanged();
+                        binding.tvDescription.setText(Html.fromHtml(data.descriptionFr)+"");
                     } else if (data.status.equals("0")) {
-                        App.showToast(ServicePriceAct.this, data.message, Toast.LENGTH_SHORT);
-                        finish();
+                       NotAvailable();
                     }
                 } catch (Exception e) {
                     e.printStackTrace();
@@ -120,10 +123,32 @@ public class ServicePriceAct extends AppCompatActivity implements OnItemPosition
     public void onPosition2(int position,String price) {
         this.price = price;
         priceId = arrayList.get(position).id;
-        binding.layoutPrice.setVisibility(View.VISIBLE);
-        binding.tvPrice33.setText(price);
+       // binding.layoutPrice.setVisibility(View.VISIBLE);
+      //  binding.tvPrice33.setText(price);
+       // binding.tvService.setText(arrayList.get(position).priceForFr);
 
        // SessionManager.writeString(ServicePriceAct.this,"price",price);
         SessionManager.writeString(ServicePriceAct.this,"priceId",arrayList.get(position).id);
+    }
+
+
+    public void NotAvailable(){
+        AlertDialog.Builder  builder1 = new AlertDialog.Builder(ServicePriceAct.this);
+        builder1.setMessage(getResources().getString(R.string.service_not_available));
+        builder1.setCancelable(false);
+
+        builder1.setPositiveButton(
+                getString(R.string.ok),
+                new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        dialog.dismiss();
+                        finish();
+                    }
+                });
+
+
+
+        AlertDialog alert11 = builder1.create();
+        alert11.show();
     }
 }

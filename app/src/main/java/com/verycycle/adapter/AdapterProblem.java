@@ -37,7 +37,7 @@ public class AdapterProblem extends RecyclerView.Adapter<AdapterProblem.MyViewHo
 
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
-       holder.binding.tv1.setText(arrayList.get(position).name);
+       holder.binding.tv1.setText(arrayList.get(position).nameFr);
 
       /* if(arrayList.get(position).isChk()== true)
            holder.binding.tv1.setBackgroundResource(R.drawable.btn_bg_problem);

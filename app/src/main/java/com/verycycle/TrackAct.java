@@ -90,12 +90,13 @@ public class TrackAct extends AppCompatActivity implements OnMapReadyCallback ,F
     BookingDetailModel data1;
     double tolerance = 10; // meters
     ArrayList<LatLng> polineLanLongLine = new ArrayList<>();
-    boolean isMarkerRotating = false;
+    boolean isMarkerRotating = false,chkDialog=false;
     private float start_rotation;
     GPSTracker gpsTracker;
     AlertDialog alert33;
     double amount =0.00, anualAmount=0.00;
     double totalAmount=0.00;
+    AlertDialog.Builder builder1;
 
 
     BroadcastReceiver LocationReceiver = new BroadcastReceiver() {
@@ -439,7 +440,11 @@ public class TrackAct extends AppCompatActivity implements OnMapReadyCallback ,F
                             DriverArriveDialog();
                         }
                         else if (data1.result.status.equals("send_request"))
-                            EstimateConfirmDialog(data1,totalAmount+"");
+                          if(chkDialog==false)  EstimateConfirmDialog(data1,totalAmount+"");
+                          else {
+                              alert33.dismiss();
+                              EstimateConfirmDialog(data1,totalAmount+"");
+                          }
 
                         else if (data1.result.status.equals("Start")) {
                             TripStartDialog();
@@ -790,8 +795,7 @@ public class TrackAct extends AppCompatActivity implements OnMapReadyCallback ,F
     }
 
     public void EstimateConfirmDialog(BookingDetailModel bookingDetailModel,String amounttt) {
-       AlertDialog.Builder builder1 = new AlertDialog.Builder(TrackAct.this);
-
+        AlertDialog.Builder builder1 = new AlertDialog.Builder(TrackAct.this);
         builder1.setMessage(getResources().getString(R.string.are_you_satisfy_with));
         builder1.setTitle("€"+amounttt);
 
@@ -817,6 +821,8 @@ public class TrackAct extends AppCompatActivity implements OnMapReadyCallback ,F
                     }
                 });
 
+
+        chkDialog = true;
         alert33 = builder1.create();
         alert33.show();
     }

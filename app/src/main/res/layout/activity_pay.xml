@@ -25,17 +25,17 @@
             android:layout_above="@+id/payment"/>
 
 
-
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/payment_notice"
             android:layout_above="@+id/payment"
-            android:fontFamily="@font/poppins_regular"
             android:layout_marginLeft="@dimen/_15sdp"
             android:layout_marginRight="@dimen/_15sdp"
+            android:fontFamily="@font/poppins_regular"
+            android:text="@string/payment_notice"
             android:textColor="@color/black"
-            android:textSize="@dimen/_12sdp"/>
+            android:background="@color/blue_color"
+            android:textSize="@dimen/_12sdp" />
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/payment"

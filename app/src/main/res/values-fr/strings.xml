@@ -105,12 +105,12 @@
     <string name="camera">Caméra</string>
     <string name="select_image_from">Sélectionnez l\'image de</string>
     <string name="please_enter_name">Veuillez entrer le nom</string>
-    <string name="profile">Profil</string>
-    <string name="helpand_feedback"><![CDATA[Aide et commentaires]]></string>
-    <string name="notification">Notification</string>
+    <string name="profile">Mes Informations</string>
+    <string name="helpand_feedback">Aide</string>
+    <string name="notification">Notifications</string>
     <string name="settings">Paramètres</string>
     <string name="sign_out">Déconnexion</string>
-    <string name="my_history">Mon histoire</string>
+    <string name="my_history">Historiques</string>
     <string name="help">Aider</string>
     <string name="feedback">Retour</string>
     <string name="contact_us">Contactez-nous</string>
@@ -155,8 +155,8 @@
     <string name="request_send_successfully">Demande envoyée avec succès</string>
     <string name="new_booking_request">Nouvelle demande de réservation</string>
     <string name="please_upload_repair_image">Veuillez télécharger l\'image de réparation</string>
-    <string name="accept">J\'accepte</string>
-    <string name="request">Demander</string>
+    <string name="accept">Demandes acceptées</string>
+    <string name="request">Mes demandes</string>
     <string name="accept_booking">Accepter la réservation</string>
     <string name="no_booking_available">Aucune réservation disponible</string>
 
@@ -193,7 +193,7 @@
     <string name="cancelled">Annulé</string>
     <string name="no_data_available">Données non disponibles</string>
     <string name="flat_tire">Pneu à plat</string>
-    <string name="breaking_lock">Briser une serrure</string>
+    <string name="breaking_lock">Découpe d\'un antivol</string>
     <string name="urgent_repair">Réparation urgente</string>
     <string name="please_select_repair_service">Veuillez sélectionner le service de réparation</string>
     <string name="whole_morning">Toute la matinée</string>
@@ -211,7 +211,7 @@
     <string name="damage">Dommages ou frais de nettoyage</string>
     <string name="price">Price higher than accepted</string>
     <string name="normal_repair">Réparation normale</string>
-    <string name="bike_rental">Assemblage de vélo</string>
+    <string name="bike_rental">Assemblage d’un vélo neuf</string>
     <string name="password">Mot de passe</string>
     <string name="sign_up">S\'inscrire</string>
     <string name="already_have">Vous avez déjà un compte ? chanter</string>
@@ -231,7 +231,7 @@
     <string name="expiry_date">"Date d'expiration de la carte: "</string>
     <string name="card_cvv">"Carte CVV : "</string>
     <string name="card_not_available">Carte non disponible</string>
-    <string name="payment_info">Informations sur la carte</string>
+    <string name="payment_info">Moyens de paiement</string>
     <string name="purchase">Acheter</string>
     <string name="add_card_">Ajouter une carte</string>
     <string name="update">Mettre à jour</string>
@@ -260,7 +260,13 @@
     <string name="add">Ajouter</string>
     <string name="please_select_atleast_5_slot">Veuillez sélectionner au moins 5 emplacements</string>
 
-    <string name="payment_notice">Remarque : Le prix n\'est qu\'une approximation, le prix final est déterminé par le réparateur.</string>
+    <string name="payment_notice">Remarque : Nous sommes en train de pré-autoriser votre carte.
+La somme finale à payer sera déterminé après le constat du réparateur.
+
+
+
+
+</string>
     <string name="text910">9h à 10h</string>
     <string name="text1011">10h à 11h</string>
     <string name="text1112">11h à 12h</string>
@@ -293,5 +299,9 @@
     <string name="oct">octobre</string>
     <string name="nov">novembre</string>
     <string name="dec">décembre</string>
+    <string name="service_not_available">Service non disponible</string>
+    <string name="already_in_ride">Vous avez déjà une demande en cours.</string>
+    <string name="auto_diagnostic">Auto-diagnostic</string>
+    <string name="estimation">Estimation</string>
 
 </resources>

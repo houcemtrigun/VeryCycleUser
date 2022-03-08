@@ -179,23 +179,20 @@
 
 
         <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="@dimen/_15sdp"
-            android:layout_marginTop="@dimen/_10sdp"
-            android:layout_alignParentBottom="true"
-            android:src="@drawable/cycle_img_null"
-            android:layout_centerInParent="true"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:src="@drawable/cycle_copy"
+            android:alpha=".1"
             />
 
 
         <androidx.recyclerview.widget.RecyclerView
-            android:layout_below="@+id/tvTitle"
             android:id="@+id/rvSubProblem"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_below="@+id/tvTitle"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-            tools:listitem="@layout/item_problem"/>
+            tools:listitem="@layout/item_problem" />
 
     </RelativeLayout>
 

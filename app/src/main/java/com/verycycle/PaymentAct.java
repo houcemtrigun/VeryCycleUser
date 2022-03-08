@@ -70,8 +70,12 @@ public class PaymentAct  extends AppCompatActivity implements OnItemPositionList
             amount = SessionManager.readString(PaymentAct.this,"price","");
             requestId = getIntent().getStringExtra("request_id");
             // DecimalFormat df = new DecimalFormat("0.00");
-            binding.btMakePayment.setText("€" + String.format("%.2f", Double.parseDouble(amount1)) + " " + getString(R.string.pay));
-            binding.payment.setText("€" + String.format("%.2f", Double.parseDouble(amount1)) + " " +   getString(R.string.pay));
+           // binding.btMakePayment.setText("€" + String.format("%.2f", Double.parseDouble(amount1)) + " " + getString(R.string.pay));
+           // binding.payment.setText("€" + String.format("%.2f", Double.parseDouble(amount1)) + " " +   getString(R.string.pay));
+
+            binding.payment.setText(getString(R.string.pay));
+            binding.btMakePayment.setText(getString(R.string.pay));
+
         }
 
         binding.btMakePayment.setOnClickListener(v -> {
@@ -377,7 +381,8 @@ public class PaymentAct  extends AppCompatActivity implements OnItemPositionList
                         if (arrayList.size() != 0) {
                             binding.layoutRv.setVisibility(View.VISIBLE);
                             binding.ViewScroll.setVisibility(View.GONE);
-                            binding.payment.setText("€" + String.format("%.2f", Double.parseDouble(amount1)) + " "+getString(R.string.pay));
+                            binding.payment.setText(getString(R.string.pay));
+                            //  binding.payment.setText("€" + String.format("%.2f", Double.parseDouble(amount1)) + " "+getString(R.string.pay));
                             binding.rvCard.setAdapter(new ShowCardAdapter(PaymentAct.this, PaymentAct.this, arrayList));
                         } else {
                             Log.e("dhhdhdhdhd", "jjdfjfdjdjdj====");

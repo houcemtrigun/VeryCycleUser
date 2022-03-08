@@ -29,6 +29,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
+
 public class Problam extends AppCompatActivity implements OnItemPositionListener {
     public String TAG = "Problam";
     ActivityProblamBinding binding;
@@ -162,10 +163,10 @@ public class Problam extends AppCompatActivity implements OnItemPositionListener
 
     @Override
     public void onPosition(int position) {
-        problem = arrayList.get(position).name;
+        problem = arrayList.get(position).nameFr;
         startActivity(new Intent(Problam.this, SubCatAct.class).putExtra("problem_id",arrayList.get(position).id)
         .putExtra("title",problem).putExtra("price",""));
         SessionManager.writeString(Problam.this,"problem_id",arrayList.get(position).id);
-        SessionManager.writeString(Problam.this,Constant.PROBLEM,arrayList.get(position).name);
+        SessionManager.writeString(Problam.this,Constant.PROBLEM,arrayList.get(position).nameFr);
     }
 }

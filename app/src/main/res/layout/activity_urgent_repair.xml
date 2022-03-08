@@ -112,6 +112,34 @@
                     </androidx.cardview.widget.CardView>
 
 
+                    <androidx.cardview.widget.CardView
+                        android:id="@+id/cardEd"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/_35sdp"
+                        android:layout_marginLeft="@dimen/_35sdp"
+                        android:layout_marginTop="@dimen/_15sdp"                    android:layout_marginRight="@dimen/_35sdp"
+                        app:cardCornerRadius="@dimen/_2sdp"
+                        app:cardElevation="@dimen/_15sdp"
+                        android:visibility="gone">
+
+                        <EditText
+                            android:id="@+id/edtext"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:background="@null"
+                            android:inputType="text"
+                            android:singleLine="true"
+                            android:fontFamily="@font/poppins_regular"
+                            android:textSize="@dimen/_12sdp"
+                            android:paddingLeft="@dimen/_10sdp"
+                            android:paddingRight="@dimen/_10sdp"
+                            android:hint="@string/please_enter_other_type"
+
+                            />
+
+                    </androidx.cardview.widget.CardView>
+
+
                     <RelativeLayout
                         android:id="@+id/linerCycle"
                         android:layout_width="match_parent"

@@ -31,7 +31,7 @@ public class SubProblmModel {
         @SerializedName("image")
         @Expose
         public String image;
-        @SerializedName("price")
+       /* @SerializedName("price")
         @Expose
         public String price;
         @SerializedName("parent_id")
@@ -39,7 +39,7 @@ public class SubProblmModel {
         public String parentId;
         @SerializedName("sort_order")
         @Expose
-        public String sortOrder;
+        public String sortOrder;*/
         @SerializedName("status")
         @Expose
         public String status;

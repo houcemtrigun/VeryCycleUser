@@ -99,12 +99,12 @@
 
                     <ImageView
                         android:id="@+id/ivDemo"
-                        android:layout_width="wrap_content"
-
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_below="@+id/ivCamera"
                         android:layout_centerInParent="true"
-                        android:src="@drawable/cycle_img" />
+                        android:src="@drawable/cycle_copy"
+                        android:alpha=".1"/>
 
                     <ImageView
                         android:id="@+id/ivCycle"

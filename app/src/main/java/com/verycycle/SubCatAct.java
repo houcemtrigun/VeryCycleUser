@@ -1,11 +1,13 @@
 package com.verycycle;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
 
@@ -19,6 +21,7 @@ import com.verycycle.helper.NetworkReceiver;
 import com.verycycle.helper.SessionManager;
 import com.verycycle.listener.OnItemPositionListener;
 import com.verycycle.model.ProblemModel;
+import com.verycycle.model.ServicesModel;
 import com.verycycle.model.SubProblmModel;
 import com.verycycle.retrofit.ApiClient;
 import com.verycycle.retrofit.VeryCycleUserInterface;
@@ -95,8 +98,8 @@ public class SubCatAct extends AppCompatActivity implements OnItemPositionListen
                         arrayList.addAll(data.result);
                         adapter.notifyDataSetChanged();
                     } else if (data.status.equals("0")) {
-                        App.showToast(SubCatAct.this, data.message, Toast.LENGTH_SHORT);
-                        finish();
+                        if (NetworkReceiver.isConnected()) getAllServicess(problmId);
+                        else App.showToast(SubCatAct.this, getString(R.string.network_failure), Toast.LENGTH_LONG);
                     }
                 } catch (Exception e) {
                     e.printStackTrace();
@@ -114,7 +117,7 @@ public class SubCatAct extends AppCompatActivity implements OnItemPositionListen
     @Override
     public void onPosition(int position) {
         problem = arrayList.get(position).nameFr;
-        price = arrayList.get(position).price;
+     //   price = arrayList.get(position).price;
         SessionManager.writeString(SubCatAct.this,"sub_problem",problem);
         SessionManager.writeString(SubCatAct.this,"subproblem_id",arrayList.get(position).id);
         startActivity(new Intent(SubCatAct.this, ShowServicesAct.class).putExtra("subproblem_id",arrayList.get(position).id)
@@ -122,4 +125,62 @@ public class SubCatAct extends AppCompatActivity implements OnItemPositionListen
       //  finish();
 
     }
+
+
+    public void NotAvailable(){
+        AlertDialog.Builder  builder1 = new AlertDialog.Builder(SubCatAct.this);
+        builder1.setMessage(getResources().getString(R.string.service_not_available));
+        builder1.setCancelable(false);
+
+        builder1.setPositiveButton(
+                getString(R.string.ok),
+                new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        dialog.dismiss();
+                        finish();
+                    }
+                });
+
+
+
+        AlertDialog alert11 = builder1.create();
+        alert11.show();
+    }
+
+
+    public void getAllServicess(String id) {
+        DataManager.getInstance().showProgressMessage(SubCatAct.this, getString(R.string.please_wait));
+        Map<String, String> map = new HashMap<>();
+        map.put("problem_id",id );
+        Log.e(TAG, "GET All Services REQUEST" + map);
+        Call<SubProblmModel> loginCall = apiInterface.getServices11(map);
+        loginCall.enqueue(new Callback<SubProblmModel>() {
+            @Override
+            public void onResponse(Call<SubProblmModel> call, Response<SubProblmModel> response) {
+                DataManager.getInstance().hideProgressMessage();
+                try {
+                    SubProblmModel data = response.body();
+                    String responseString = new Gson().toJson(response.body());
+                    Log.e(TAG, "GET All Services  Response :" + responseString);
+                    if (data.status.equals("1")) {
+                        arrayList.clear();
+                        arrayList.addAll(data.result);
+                        adapter.notifyDataSetChanged();
+                    } else if (data.status.equals("0")) {
+                        NotAvailable();
+                    }
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<SubProblmModel> call, Throwable t) {
+                call.cancel();
+                DataManager.getInstance().hideProgressMessage();
+            }
+        });
+    }
+
+
 }

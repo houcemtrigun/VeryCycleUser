@@ -125,11 +125,36 @@
 
       </RelativeLayout>-->
 
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_centerInParent="true"
+            android:layout_marginLeft="@dimen/_15sdp"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:src="@drawable/cycle_copy"
+            android:alpha=".1"/>
+
+
+
+
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#F1EDED"
+        android:scrollbars="none">
+
     <RelativeLayout xmlns:app="http://schemas.android.com/apk/res-auto"
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="#F1EDED"
+
         tools:context=".Problam">
 
         <RelativeLayout
@@ -180,22 +205,15 @@
             tools:ignore="RtlCompat" />
 
 
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:layout_centerInParent="true"
-            android:layout_marginLeft="@dimen/_15sdp"
-            android:layout_marginTop="@dimen/_10sdp"
-            android:src="@drawable/cycle_img_null" />
+
 
 
         <LinearLayout
+            android:id="@+id/layoutRv"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/tvTitle"
             android:layout_margin="@dimen/_13sdp"
-            android:layout_marginBottom="@dimen/_70sdp"
             android:background="@drawable/rounded_gray_bg"
             android:padding="@dimen/_5sdp">
 
@@ -211,12 +229,39 @@
         </LinearLayout>
 
 
+
+        <LinearLayout
+            android:id="@+id/layoutDes"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/layoutRv"
+            android:layout_margin="@dimen/_13sdp"
+            android:background="@drawable/rounded_yellow_bg"
+            android:padding="@dimen/_5sdp">
+
+
+            <TextView
+                android:id="@+id/tvDescription"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/black"
+                android:textSize="@dimen/_11sdp"
+                android:fontFamily="@font/poppins_regular"
+                />
+
+
+
+        </LinearLayout>
+
+
         <RelativeLayout
             android:id="@+id/layoutPrice"
+            android:layout_below="@+id/layoutDes"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/_50sdp"
+            android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
             android:background="@color/white"
+            android:padding="@dimen/_5sdp"
             android:visibility="gone">
 
             <LinearLayout
@@ -235,12 +280,12 @@
                     android:layout_marginTop="@dimen/_9sdp"
                     android:layout_marginEnd="@dimen/_5sdp"
                     android:fontFamily="@font/poppinsmedium"
-                    android:singleLine="true"
+                    android:singleLine="false"
                     android:text="@string/what_is_the_problem_with_your_bike"
                     android:textColor="@color/grey_two_color"
                     android:textSize="@dimen/_12sdp"
                     tools:ignore="RtlCompat"
-                    android:visibility="gone"/>
+                    android:visibility="visible"/>
 
 
                 <TextView
@@ -295,7 +340,40 @@
         </RelativeLayout>
 
 
+        <LinearLayout
+            android:id="@+id/btnContinue1"
+            android:layout_width="@dimen/_100sdp"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/layoutDes"
+            android:layout_margin="@dimen/_15sdp"
+            android:layout_centerHorizontal="true"
+            android:background="@drawable/btn_bg"
+            android:elevation="@dimen/_5sdp"
+            android:orientation="horizontal"
+            android:padding="@dimen/_5sdp"
+            android:visibility="visible">
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:fontFamily="@font/poppinsmedium"
+                android:gravity="center_horizontal"
+                android:text="@string/next"
+                android:textAlignment="center"
+                android:textColor="#000"
+                android:textSize="@dimen/_12sdp"
+                android:textStyle="bold"/>
+
+
+        </LinearLayout>
+
+
     </RelativeLayout>
 
 
+    </androidx.core.widget.NestedScrollView>
+
+    </RelativeLayout>
 </layout>

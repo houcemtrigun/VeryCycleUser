@@ -2,14 +2,17 @@ package com.verycycle;
 
 import android.Manifest;
 import android.app.Dialog;
+import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
+import android.location.LocationManager;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
+import android.provider.Settings;
 import android.util.Log;
 import android.view.View;
 import android.view.Window;
@@ -26,6 +29,11 @@ import androidx.core.content.FileProvider;
 import androidx.databinding.DataBindingUtil;
 
 import com.bumptech.glide.Glide;
+import com.google.android.gms.common.api.Status;
+import com.google.android.libraries.places.api.model.Place;
+import com.google.android.libraries.places.widget.Autocomplete;
+import com.google.android.libraries.places.widget.AutocompleteActivity;
+import com.google.android.libraries.places.widget.model.AutocompleteActivityMode;
 import com.google.gson.Gson;
 import com.verycycle.adapter.AdapterAssemble;
 import com.verycycle.adapter.AdapterCycleModel;
@@ -33,6 +41,7 @@ import com.verycycle.databinding.ActivityBikeAssembleBinding;
 import com.verycycle.databinding.ActivityChoosingTypeOfrideBinding;
 import com.verycycle.helper.App;
 import com.verycycle.helper.DataManager;
+import com.verycycle.helper.GPSTracker;
 import com.verycycle.helper.NetworkReceiver;
 import com.verycycle.helper.SessionManager;
 import com.verycycle.model.AssembleModel;
@@ -44,7 +53,9 @@ import com.verycycle.retrofit.VeryCycleUserInterface;
 
 import java.io.File;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Calendar;
+import java.util.List;
 import java.util.Map;
 
 import okhttp3.MediaType;
@@ -57,14 +68,17 @@ import retrofit2.Response;
 public class BikeAssembleAct extends AppCompatActivity {
     public String TAG = "BikeAssembleAct";
     ActivityBikeAssembleBinding binding;
-    String str_image_path = "",BikeTypeID="",BikeText="";
+    String str_image_path = "",BikeTypeID="",BikeText="",address="";
     private static final int REQUEST_CAMERA = 1;
     private static final int SELECT_FILE = 2;
     private static final int MY_PERMISSION_CONSTANT = 5;
+    double latitude = 0.0, longitude = 0.0;
+    int AUTOCOMPLETE_REQUEST_CODE_ADDRESS = 101;
     private Uri uriSavedImage;
     ArrayList<AssembleModel.Result> arrayList;
     AdapterAssemble adapter;
     VeryCycleUserInterface apiInterface;
+    GPSTracker gpsTracker;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -79,12 +93,30 @@ public class BikeAssembleAct extends AppCompatActivity {
 
         adapter = new AdapterAssemble(BikeAssembleAct.this,arrayList);
         binding.spinnerBikeType.setAdapter(adapter);
+        setCurrentLoc();
+
 
 
         binding.linerCycle.setOnClickListener(v -> {
             if(checkPermisssionForReadStorage())
                 showImageSelection();
         });
+
+
+
+        binding.tvAddress.setOnClickListener(v -> {
+            List<Place.Field> fields = Arrays.asList(Place.Field.ID, Place.Field.NAME, Place.Field.LAT_LNG, Place.Field.ADDRESS);
+
+            // Start the autocomplete intent.
+            Intent intent = new Autocomplete.IntentBuilder(
+                    AutocompleteActivityMode.FULLSCREEN, fields)
+                    .build(BikeAssembleAct.this);
+
+            startActivityForResult(intent, AUTOCOMPLETE_REQUEST_CODE_ADDRESS);
+        });
+
+
+
 
         binding.ivBack.setOnClickListener(v -> { finish(); });
 
@@ -119,12 +151,20 @@ public class BikeAssembleAct extends AppCompatActivity {
            { binding.edtext.setFocusable(true);
                binding.edtext.setError(getString(R.string.required));
            }
+           else if(str_image_path.equals("")){
+               App.showToast(BikeAssembleAct.this,getString(R.string.please_upload_cycle_image),Toast.LENGTH_LONG);
+           }
+           else {
+               if(NetworkReceiver.isConnected())  SendAssembleReq(BikeTypeID,binding.edtext.getText().toString());
+               else Toast.makeText(this, getString(R.string.please_wait), Toast.LENGTH_SHORT).show();
+           }
+
         }
         else if(str_image_path.equals("")){
             App.showToast(BikeAssembleAct.this,getString(R.string.please_upload_cycle_image),Toast.LENGTH_LONG);
         }
         else {
-          if(NetworkReceiver.isConnected())  SendAssembleReq(BikeTypeID,binding.edtext.getText().toString());
+          if(NetworkReceiver.isConnected())  SendAssembleReq(BikeTypeID,"");
           else Toast.makeText(this, getString(R.string.please_wait), Toast.LENGTH_SHORT).show();
         }
     }
@@ -256,6 +296,27 @@ public class BikeAssembleAct extends AppCompatActivity {
                         .into(binding.ivCycle);
             }
 
+            else if (requestCode == AUTOCOMPLETE_REQUEST_CODE_ADDRESS) {
+                if (resultCode == RESULT_OK) {
+                    Place place = Autocomplete.getPlaceFromIntent(data);
+                    try {
+                        Log.e("addressStreet====", place.getAddress());
+                        address = place.getAddress();
+                        binding.tvAddress.setText(place.getAddress());
+                        latitude = place.getLatLng().latitude;
+                        longitude = place.getLatLng().longitude;
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                        //setMarker(latLng);
+                    }
+
+                } else if (resultCode == AutocompleteActivity.RESULT_ERROR) {
+                    // TODO: Handle the error.
+                    Status status = Autocomplete.getStatusFromIntent(data);
+                }
+
+            }
+
         }
     }
 
@@ -352,9 +413,14 @@ public class BikeAssembleAct extends AppCompatActivity {
         RequestBody BikeId = RequestBody.create(MediaType.parse("text/plain"),id );
         RequestBody BikeName = RequestBody.create(MediaType.parse("text/plain"), name);
         RequestBody user_id = RequestBody.create(MediaType.parse("text/plain"), DataManager.getInstance().getUserData(BikeAssembleAct.this).result.id);
+        RequestBody date = RequestBody.create(MediaType.parse("text/plain"),DataManager.getCurrent1() );
+        RequestBody time = RequestBody.create(MediaType.parse("text/plain"),DataManager.getCurrentTime() );
+        RequestBody lat = RequestBody.create(MediaType.parse("text/plain"), String.valueOf(latitude));
+        RequestBody lon = RequestBody.create(MediaType.parse("text/plain"), String.valueOf(longitude));
+        RequestBody addresses = RequestBody.create(MediaType.parse("text/plain"),address );
+        RequestBody type = RequestBody.create(MediaType.parse("text/plain"),"bike_assemble" );
 
-
-        Call<Map<String,String>> signupCall = apiInterface.addCarAsmReq(user_id, BikeId, BikeName, filePart);
+        Call<Map<String,String>> signupCall = apiInterface.addCarAsmReq(user_id, BikeId, BikeName,date,time,lat,lon,addresses,type, filePart);
         signupCall.enqueue(new Callback<Map<String,String>>() {
             @Override
             public void onResponse(Call<Map<String,String>> call, Response<Map<String,String>> response) {
@@ -364,7 +430,7 @@ public class BikeAssembleAct extends AppCompatActivity {
                     if (data.get("status").equals("1")) {
                         String dataResponse = new Gson().toJson(response.body());
                         Log.e("MapMap", "Bike Type  RESPONSE" + dataResponse);
-                        Toast.makeText(BikeAssembleAct.this, data.get("message"), Toast.LENGTH_SHORT).show();
+                        Toast.makeText( BikeAssembleAct.this, getString(R.string.request_send_successfully), Toast.LENGTH_SHORT).show();
                         finish();
                     } else if (data.get("status").equals("0")) {
                         Toast.makeText(BikeAssembleAct.this, data.get("message"), Toast.LENGTH_SHORT).show();
@@ -385,6 +451,19 @@ public class BikeAssembleAct extends AppCompatActivity {
     }
 
 
+
+
+
+
+    private void setCurrentLoc() {
+        gpsTracker = new GPSTracker(BikeAssembleAct.this);
+        latitude = gpsTracker.getLatitude();
+        longitude = gpsTracker.getLongitude();
+        address = DataManager.getInstance().getAddress(BikeAssembleAct.this,gpsTracker.getLatitude(),gpsTracker.getLongitude());
+        binding.tvAddress.setText(address);
+        Log.e("Location====","Latitude=== :"+gpsTracker.getLatitude() + "  " + "Longitute=== : " + gpsTracker.getLongitude());
+
+    }
 
 
 }

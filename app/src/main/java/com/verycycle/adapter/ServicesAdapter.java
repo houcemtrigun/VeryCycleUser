@@ -19,10 +19,11 @@ import java.util.ArrayList;
 
 public class ServicesAdapter extends RecyclerView.Adapter<ServicesAdapter.MyViewHolder> {
     Context context;
-    ArrayList<ServicesModel.Result> arrayList;
+  //  ArrayList<ServicesModel.Result> arrayList;
+    ArrayList<SubProblmModel.Result> arrayList;
     OnItemPositionListener listener;
 
-    public ServicesAdapter(Context context, ArrayList<ServicesModel.Result> arrayList, OnItemPositionListener listener) {
+    public ServicesAdapter(Context context, ArrayList<SubProblmModel.Result> arrayList, OnItemPositionListener listener) {
         this.context = context;
         this.arrayList = arrayList;
         this.listener = listener;

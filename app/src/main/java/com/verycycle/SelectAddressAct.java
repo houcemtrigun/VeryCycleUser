@@ -284,8 +284,8 @@ public class SelectAddressAct extends AppCompatActivity implements OnMapReadyCal
         RequestBody provider_id = RequestBody.create(MediaType.parse("text/plain"), "");
         RequestBody user_id = RequestBody.create(MediaType.parse("text/plain"), DataManager.getInstance().getUserData(SelectAddressAct.this).result.id);
         RequestBody serviceType1 = RequestBody.create(MediaType.parse("text/plain"), serviceType);
-        RequestBody amount = RequestBody.create(MediaType.parse("text/plain"),  SessionManager.readString(SelectAddressAct.this,"price",""));
-        RequestBody vat_amount = RequestBody.create(MediaType.parse("text/plain"),""  );
+        RequestBody amount = RequestBody.create(MediaType.parse("text/plain"), "0" );//SessionManager.readString(SelectAddressAct.this,"price",""));
+        RequestBody vat_amount = RequestBody.create(MediaType.parse("text/plain"),"0"  );
         RequestBody sub_problm = RequestBody.create(MediaType.parse("text/plain"), SessionManager.readString(SelectAddressAct.this,"service_id",""));
 
 
@@ -311,7 +311,9 @@ public class SelectAddressAct extends AppCompatActivity implements OnMapReadyCal
                         .putExtra("request_id",request_id));
                          finish();
                     } else if (data.get("status").equals("0")) {
-                        Toast.makeText(SelectAddressAct.this, data.get("message"), Toast.LENGTH_SHORT).show();
+                    //    Toast.makeText(SelectAddressAct.this, data.get("message"), Toast.LENGTH_SHORT).show();
+                        Toast.makeText(SelectAddressAct.this, getString(R.string.already_in_ride), Toast.LENGTH_SHORT).show();
+
                     }
 
                 } catch (Exception e) {

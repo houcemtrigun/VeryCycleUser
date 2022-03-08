@@ -18,6 +18,15 @@ public class ServicesPriceModel {
     @Expose
     public String status;
 
+    @SerializedName("description")
+    @Expose
+    public String description;
+
+    @SerializedName("description_fr")
+    @Expose
+    public String descriptionFr;
+
+
     public class Result {
 
         @SerializedName("id")

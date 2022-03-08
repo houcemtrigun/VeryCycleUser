@@ -40,12 +40,13 @@ public class ServicePriceAdapter extends RecyclerView.Adapter<ServicePriceAdapte
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
        if(!arrayList.get(position).fromPrice.equals("") && !arrayList.get(position).toPrice.equals("")) {
-           holder.binding.tv1.setText(arrayList.get(position).fromPrice + " - " + arrayList.get(position).toPrice);
+           holder.binding.tvPrice.setText(arrayList.get(position).fromPrice + " - " + arrayList.get(position).toPrice);
        }
        else {
-           holder.binding.tv1.setText(arrayList.get(position).fromPrice);
+           holder.binding.tvPrice.setText(arrayList.get(position).fromPrice);
 
        }
+       holder.binding.tv1.setText(arrayList.get(position).priceForFr);
        /* if(!arrayList.get(position).price.equals("")){
             holder.binding.tv2.setVisibility(View.VISIBLE);
             // holder.binding.tv2.setText("€"+arrayList.get(position).price);
@@ -69,12 +70,12 @@ public class ServicePriceAdapter extends RecyclerView.Adapter<ServicePriceAdapte
         public MyViewHolder(@NonNull ItemServicePriceBinding itemView) {
             super(itemView.getRoot());
             binding = itemView;
-            binding.tv1.setOnClickListener(v -> {
+            binding.rlMain.setOnClickListener(v -> {
                /* for (int i=0;i<arrayList.size();i++){
                     arrayList.get(i).setChk(false);
                 }
                 arrayList.get(getAdapterPosition()).setChk(true);*/
-                listener.onPosition2(getAdapterPosition(),binding.tv1.getText().toString());
+                listener.onPosition2(getAdapterPosition(),binding.tvPrice.getText().toString());
               //  notifyDataSetChanged();
             });
         }
