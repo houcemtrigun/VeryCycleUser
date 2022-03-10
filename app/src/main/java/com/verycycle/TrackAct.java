@@ -244,7 +244,7 @@ public class TrackAct extends AppCompatActivity implements OnMapReadyCallback ,F
                 .icon(BitmapDescriptorFactory.fromResource(R.drawable.red_marker));
 
         carMarker1 = new MarkerOptions().title("Car")
-                .icon(BitmapDescriptorFactory.fromResource(R.drawable.blue_marker));
+                .icon(BitmapDescriptorFactory.fromResource(R.drawable.motorcycle));
     }
 
     @Override
