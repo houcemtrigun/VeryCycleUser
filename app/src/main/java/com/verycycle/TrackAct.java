@@ -243,7 +243,7 @@ public class TrackAct extends AppCompatActivity implements OnMapReadyCallback ,F
         DropOffMarker = new MarkerOptions().title("Drop Off Location")
                 .icon(BitmapDescriptorFactory.fromResource(R.drawable.red_marker));
 
-        carMarker1 = new MarkerOptions().title("Car")
+        carMarker1 = new MarkerOptions().title("Bike")
                 .icon(BitmapDescriptorFactory.fromResource(R.drawable.motorcycle));
     }
 
