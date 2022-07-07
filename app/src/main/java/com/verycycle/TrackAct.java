@@ -69,6 +69,7 @@ import com.verycycle.retrofit.VeryCycleUserInterface;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Locale;
 import java.util.Map;
 
 import retrofit2.Call;
@@ -199,6 +200,7 @@ public class TrackAct extends AppCompatActivity implements OnMapReadyCallback ,F
         super.onCreate(savedInstanceState);
         apiInterface = ApiClient.getClient().create(VeryCycleUserInterface.class);
         // gpsTracker = new GPSTracker(TrackAct.this);
+        setUpMapLocale();
         binding = DataBindingUtil.setContentView(this, R.layout.activity_track);
         if (getIntent() != null) {
             request_id = getIntent().getStringExtra("request_id");
@@ -209,6 +211,14 @@ public class TrackAct extends AppCompatActivity implements OnMapReadyCallback ,F
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
     }
+
+    private void setUpMapLocale() {
+        String languageToLoad = "fr" ;// your desired language locale
+        Locale locale = new Locale(languageToLoad);
+        Locale.setDefault(locale);
+        getBaseContext().getResources().getConfiguration().setLocale(locale);
+    }
+
 
     private void initView() {
         binding.ivBack.setOnClickListener(v -> {

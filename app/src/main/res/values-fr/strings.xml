@@ -214,11 +214,11 @@
     <string name="bike_rental">Assemblage d’un vélo neuf</string>
     <string name="password">Mot de passe</string>
     <string name="sign_up">S\'inscrire</string>
-    <string name="already_have">Vous avez déjà un compte ? chanter</string>
+    <string name="already_have">Vous avez déjà un compte ? Se connecter</string>
     <string name="loging">Connexion</string>
     <string name="enter_your_email_pass">Entrez votre email et votre mot de passe</string>
     <string name="forgot_pass">Mot de passe oublié?</string>
-    <string name="dont_have_an_account">Vous n\'avez pas de compte ? Singup</string>
+    <string name="dont_have_an_account">Vous n\'avez pas de compte ? S\'inscrire</string>
     <string name="save_update">Enregistrer et mettre à jour</string>
 
 

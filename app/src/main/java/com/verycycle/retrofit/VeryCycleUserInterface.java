@@ -252,9 +252,6 @@ public interface VeryCycleUserInterface {
     Call<SubProblmModel> getServices1133(@FieldMap Map<String,String> params);
 
 
-
-
-
     @FormUrlEncoded
     @POST("get_services_price")
     Call<ServicesPriceModel> getServicesPrice(@FieldMap Map<String,String> params);

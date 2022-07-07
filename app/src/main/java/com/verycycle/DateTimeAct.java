@@ -31,6 +31,7 @@ import com.verycycle.model.DateTimeModel;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Locale;
 import java.util.Set;
 
 public class DateTimeAct extends AppCompatActivity {
@@ -67,7 +68,7 @@ public class DateTimeAct extends AppCompatActivity {
         arrayList = new ArrayList<>();
         timeSlotList = new ArrayList<>();
         if (!Places.isInitialized()) {
-            Places.initialize(DateTimeAct.this, getString(R.string.place_api_key));
+            Places.initialize(DateTimeAct.this, getString(R.string.place_api_key), Locale.FRANCE);
         }
 
         if (getIntent() != null) {

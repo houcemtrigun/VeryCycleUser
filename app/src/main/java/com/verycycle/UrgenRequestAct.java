@@ -56,6 +56,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Calendar;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 
 import okhttp3.MediaType;
@@ -95,7 +96,7 @@ public class UrgenRequestAct extends AppCompatActivity {
 
     private void initViews() {
         if (!Places.isInitialized()) {
-            Places.initialize(UrgenRequestAct.this, getString(R.string.place_api_key));
+            Places.initialize(UrgenRequestAct.this, getString(R.string.place_api_key), Locale.FRANCE);
         }
 
         arrayList = new ArrayList<>();

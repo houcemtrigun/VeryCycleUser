@@ -496,7 +496,8 @@ public class DataManager {
     public String getAddress(Context context, double latitude, double longitute) {
         List<Address> addresses;
         String addressStreet="";
-        Geocoder geocoder = new Geocoder(context, Locale.getDefault());
+        Locale aLocale = new Locale.Builder().setLanguage("fr").build();
+        Geocoder geocoder = new Geocoder(context,aLocale);
         try {
             addresses = geocoder.getFromLocation(latitude, longitute, 1); // Here 1 represent max location result to returned, by documents it recommended 1 to 5
             addressStreet = addresses.get(0).getAddressLine(0);

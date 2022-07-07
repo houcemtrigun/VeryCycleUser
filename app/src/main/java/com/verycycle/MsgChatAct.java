@@ -25,6 +25,7 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.GenericTypeIndicator;
 import com.google.gson.Gson;
 import com.verycycle.databinding.ActivityMsgChatBinding;
 import com.verycycle.helper.App;
@@ -124,8 +125,11 @@ public class MsgChatAct extends AppCompatActivity implements View.OnClickListene
         reference1.addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
-                Map<String, Object> map = (Map<String, Object>) dataSnapshot.getValue();
+                GenericTypeIndicator<Map<String, String>> genericTypeIndicator = new GenericTypeIndicator<Map<String, String>>() {};
+                Map<String, String> map = dataSnapshot.getValue(genericTypeIndicator);
+           //     Map<String, Object> map = (Map<String, Object>) dataSnapshot.getValue();
                 String message = map.get("message").toString();
+                Log.e("ttttt",map+"");
                 if (map != null) {
                     String sender_id = map.get("sender_id").toString();
                     String userName = map.get("user").toString();

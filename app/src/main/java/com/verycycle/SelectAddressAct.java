@@ -4,7 +4,9 @@ import android.Manifest;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.content.res.Configuration;
 import android.location.LocationManager;
+import android.os.Build;
 import android.os.Bundle;
 import android.provider.Settings;
 import android.util.Log;
@@ -42,6 +44,7 @@ import com.verycycle.retrofit.VeryCycleUserInterface;
 import java.io.File;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 
 import okhttp3.MediaType;
@@ -66,6 +69,8 @@ public class SelectAddressAct extends AppCompatActivity implements OnMapReadyCal
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+       // DataManager.updateResources(SelectAddressAct.this,"fr");
+        setUpMapLocale();
         binding = DataBindingUtil.setContentView(this, R.layout.activity_select_address);
         apiInterface = ApiClient.getClient().create(VeryCycleUserInterface.class);
      //   mapFragment = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map);
@@ -75,9 +80,17 @@ public class SelectAddressAct extends AppCompatActivity implements OnMapReadyCal
 
     }
 
+
+    private void setUpMapLocale() {
+        String languageToLoad = "fr" ;// your desired language locale
+        Locale locale = new Locale(languageToLoad);
+        Locale.setDefault(locale);
+        getBaseContext().getResources().getConfiguration().setLocale(locale);
+    }
+
     private void initView() {
         if (!Places.isInitialized()) {
-            Places.initialize(SelectAddressAct.this, getString(R.string.place_api_key));
+            Places.initialize(SelectAddressAct.this, getString(R.string.place_api_key), Locale.FRANCE);
         }
 
         binding.toolbar.tvTitle.setText(getString(R.string.select_address));

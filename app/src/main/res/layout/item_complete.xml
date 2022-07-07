@@ -32,11 +32,11 @@
                         android:id="@+id/tvDateTime"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:layout_marginRight="@dimen/_4sdp"
+                        android:layout_toLeftOf="@+id/tvPrice"
                         android:fontFamily="@font/poppins_semibold"
                         android:textColor="@color/black"
-                        android:textSize="@dimen/_12sdp"
-                        android:layout_marginRight="@dimen/_4sdp"
-                        android:layout_toLeftOf="@+id/tvPrice"/>
+                        android:textSize="@dimen/_12sdp" />
 
                     <TextView
                         android:id="@+id/tvPrice"

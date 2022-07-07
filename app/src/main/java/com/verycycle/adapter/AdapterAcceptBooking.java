@@ -42,7 +42,6 @@ public class AdapterAcceptBooking extends RecyclerView.Adapter<AdapterAcceptBook
 
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
-        String dateTimeSlot[] = arrayList.get(position).accept_time_slote.split(" ");
         if(arrayList.get(position).status.equals("send_request")) mainStatus = "Order Edit Confirmation";
         else if(arrayList.get(position).status.equals("accept_request"))mainStatus = arrayList.get(position).status;
         else mainStatus = arrayList.get(position).status;
@@ -55,8 +54,13 @@ public class AdapterAcceptBooking extends RecyclerView.Adapter<AdapterAcceptBook
 
         holder.binding.tvStatus.setText(mainStatus);
         holder.binding.tvAddress.setText(arrayList.get(position).address);
-        holder.binding.tvTime.setText(dateTimeSlot[3] + " "+ dateTimeSlot[4] + " " + dateTimeSlot[5] /*+ " " + dateTimeSlot[6]+ " " + dateTimeSlot[7]*/);
-        holder.binding.tvDate.setText(dateTimeSlot[0] + " "+ dateTimeSlot[1] + " " + dateTimeSlot[2]);
+
+       if(!arrayList.get(position).accept_time_slote.equals("")) {
+           String dateTimeSlot[] = arrayList.get(position).accept_time_slote.split(" ");
+           holder.binding.tvTime.setText(dateTimeSlot[3] + " " + dateTimeSlot[4] + " " + dateTimeSlot[5] /*+ " " + dateTimeSlot[6]+ " " + dateTimeSlot[7]*/);
+           holder.binding.tvDate.setText(dateTimeSlot[0] + " " + dateTimeSlot[1] + " " + dateTimeSlot[2]);
+
+       }
         holder.binding.tvDistance.setText(context.getString(R.string.distance_to_req)+" "+arrayList.get(position).estimatedDistance +"km");
         holder.binding.tvUsername.setText(arrayList.get(position).providerDetails.username);
         holder.binding.tvMobile.setText("+"+arrayList.get(position).providerDetails.countryCode+arrayList.get(position).providerDetails.mobile);
