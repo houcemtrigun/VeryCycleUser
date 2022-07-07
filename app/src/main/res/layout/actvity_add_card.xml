@@ -21,18 +21,19 @@
             android:id="@+id/btnAdd"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@drawable/btn_bg_problem"
             android:layout_alignParentBottom="true"
-            android:layout_marginTop="@dimen/_8sdp"
-            android:textAllCaps="false"
-            android:padding="@dimen/_10sdp"
-            android:fontFamily="@font/poppinsmedium"
-            android:textSize="@dimen/_12sdp"
-            android:textColor="@color/white"
             android:layout_centerVertical="true"
-            android:text="Add Card"
-            android:layout_margin="@dimen/_15sdp"
-            />
+            android:layout_marginStart="@dimen/_15sdp"
+            android:layout_marginTop="@dimen/_15sdp"
+            android:layout_marginEnd="@dimen/_15sdp"
+            android:layout_marginBottom="@dimen/_15sdp"
+            android:background="@drawable/btn_bg_problem"
+            android:fontFamily="@font/poppinsmedium"
+            android:padding="@dimen/_10sdp"
+            android:text="@string/add_card_"
+            android:textAllCaps="false"
+            android:textColor="@color/white"
+            android:textSize="@dimen/_12sdp" />
 
 
     </RelativeLayout>

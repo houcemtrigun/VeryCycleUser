@@ -49,8 +49,11 @@ public class ShowCardAdapter extends RecyclerView.Adapter<ShowCardAdapter.MyView
         } else {
             lastFourDigits = input;
         }
+
+
+
         holder.binding.tvCardNumber.setText("XXXXXXXXXXXX" + lastFourDigits);
-        holder.binding.tvExpDate.setText(" Valid upto " + arrayList.get(position).expiryMonth + "/" +
+        holder.binding.tvExpDate.setText(context.getString(R.string.valid_upto) + " " + arrayList.get(position).expiryMonth + "/" +
                 arrayList.get(position).expiryDate);
 
         if(arrayList.get(position).isChk()) {

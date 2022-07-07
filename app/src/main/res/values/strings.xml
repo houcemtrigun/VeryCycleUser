@@ -288,6 +288,5 @@
     <string name="estimation">Estimation</string>
     <string name="service_not_available">Service not available</string>
     <string name="already_in_ride">Already in ride</string>
-
-
+    <string name="valid_upto">Valid upto</string>
 </resources>

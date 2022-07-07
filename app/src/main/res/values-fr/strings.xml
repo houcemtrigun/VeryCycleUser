@@ -124,13 +124,13 @@
     <string name="edit_profile">Editer le profil</string>
     <string name="mobile_number">Numéro de portable</string>
     <string name="please_enter_mobile_number">Veuillez entrer le numéro de portable.</string>
-    <string name="choosing_the_type_of_ride">Choisir le type de trajet</string>
+    <string name="choosing_the_type_of_ride">Réparation normale</string>
     <string name="next">Suivant</string>
     <string name="upload_cycle_image">Télécharger l\'image du cycle</string>
     <string name="exact_model">Modèle exact</string>
     <string name="please_select_cycle_model">Veuillez sélectionner le modèle de cycle</string>
     <string name="please_upload_cycle_image">Veuillez télécharger l\'image du cycle</string>
-    <string name="choosing_the_type_of_repair">Choisir le type de réparation</string>
+    <string name="choosing_the_type_of_repair">Sélectionnez l\'image de réparation</string>
     <string name="upload_repair_image">Télécharger l\'image de réparation</string>
     <string name="continue_">Continuer</string>
     <string name="my_eBike_has_broken_down">Mon eBike est en panne</string>
@@ -139,7 +139,7 @@
     <string name="my_speeds_go_wrong">Mes vitesses vont mal</string>
     <string name="what_is_the_problem_with_your_bike">Quel est le problème avec votre vélo?</string>
     <string name="please_select_problem">Veuillez sélectionner le problème</string>
-    <string name="choose_possible_repair_time_or_address">Choisissez l\'heure ou l\'adresse de réparation</string>
+    <string name="choose_possible_repair_time_or_address">Choisissez l\'heure de réparation</string>
     <string name="pick_at_least_ten_spread_over_three_days">(Choisissez au moins 5 répartis sur 3 jours)</string>
     <string name="select_date">Sélectionner une date</string>
     <string name="select_time">Sélectionnez l\'heure</string>
@@ -233,7 +233,7 @@
     <string name="card_not_available">Carte non disponible</string>
     <string name="payment_info">Moyens de paiement</string>
     <string name="purchase">Acheter</string>
-    <string name="add_card_">Ajouter une carte</string>
+    <string name="add_card_">Ajouter la carte</string>
     <string name="update">Mettre à jour</string>
     <string name="card_updated">Mise à jour de la carte réussie</string>
     <string name="edit_card">Modifier la carte</string>
@@ -303,5 +303,7 @@ La somme finale à payer sera déterminé après le constat du réparateur.
     <string name="already_in_ride">Vous avez déjà une demande en cours.</string>
     <string name="auto_diagnostic">Auto-diagnostic</string>
     <string name="estimation">Estimation</string>
+    <string name="valid_upto">Valide jusqu\'au</string>
+
 
 </resources>

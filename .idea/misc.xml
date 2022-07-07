@@ -11,6 +11,7 @@
         <entry key="..\:/MyProjects/VeryCycleUser/app/src/main/res/layout/activity_bike_assemble.xml" value="0.1" />
         <entry key="..\:/MyProjects/VeryCycleUser/app/src/main/res/layout/activity_chhosing_a_type_of_repair.xml" value="0.10190217391304347" />
         <entry key="..\:/MyProjects/VeryCycleUser/app/src/main/res/layout/activity_choosing_type_ofride.xml" value="0.10190217391304347" />
+        <entry key="..\:/MyProjects/VeryCycleUser/app/src/main/res/layout/activity_date_time.xml" value="0.11367753623188406" />
         <entry key="..\:/MyProjects/VeryCycleUser/app/src/main/res/layout/activity_login.xml" value="0.1" />
         <entry key="..\:/MyProjects/VeryCycleUser/app/src/main/res/layout/activity_my_history.xml" value="0.13179347826086957" />
         <entry key="..\:/MyProjects/VeryCycleUser/app/src/main/res/layout/activity_pay.xml" value="0.13802083333333334" />
@@ -21,7 +22,9 @@
         <entry key="..\:/MyProjects/VeryCycleUser/app/src/main/res/layout/activity_sub_cat.xml" value="0.1068840579710145" />
         <entry key="..\:/MyProjects/VeryCycleUser/app/src/main/res/layout/activity_track.xml" value="0.1" />
         <entry key="..\:/MyProjects/VeryCycleUser/app/src/main/res/layout/activity_urgent_repair.xml" value="0.12092391304347826" />
+        <entry key="..\:/MyProjects/VeryCycleUser/app/src/main/res/layout/actvity_add_card.xml" value="0.11367753623188406" />
         <entry key="..\:/MyProjects/VeryCycleUser/app/src/main/res/layout/footer_toolbar.xml" value="0.1" />
+        <entry key="..\:/MyProjects/VeryCycleUser/app/src/main/res/layout/item_card.xml" value="0.11367753623188406" />
         <entry key="..\:/MyProjects/VeryCycleUser/app/src/main/res/layout/item_complete.xml" value="0.25" />
         <entry key="..\:/MyProjects/VeryCycleUser/app/src/main/res/layout/item_problem.xml" value="0.20416666666666666" />
         <entry key="..\:/MyProjects/VeryCycleUser/app/src/main/res/layout/item_service_price.xml" value="0.10190217391304347" />
