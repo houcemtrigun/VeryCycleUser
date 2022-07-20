@@ -15,7 +15,7 @@
         android:name=".helper.App"
         android:allowBackup="true"
         android:hardwareAccelerated="false"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@mipmap/ic_launcher_round"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
@@ -196,14 +196,13 @@
 
         <provider
             android:name="androidx.core.content.FileProvider"
-            android:authorities="com.verycycle.provider"
+            android:authorities="com.verycycle.fileprovider"
             android:exported="false"
             android:grantUriPermissions="true">
             <meta-data
                 android:name="android.support.FILE_PROVIDER_PATHS"
-                android:resource="@xml/file_path" />
+                android:resource="@xml/file_path"></meta-data>
         </provider>
-
         <service
             android:name=".notification_manager.MyFirebaseMessagingService"
             android:exported="false">

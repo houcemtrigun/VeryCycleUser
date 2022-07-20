@@ -37,7 +37,10 @@ import com.verycycle.retrofit.Constant;
 import com.verycycle.retrofit.VeryCycleUserInterface;
 
 import java.io.File;
+import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -159,7 +162,7 @@ public class Register extends AppCompatActivity {
 
         private void openCamera () {
 
-            File dirtostoreFile = new File(Environment.getExternalStorageDirectory() + "/VeryCycle/Images/");
+          /*  File dirtostoreFile = new File(Environment.getExternalStorageDirectory() + "/VeryCycle/Images/");
 
             if (!dirtostoreFile.exists()) {
                 dirtostoreFile.mkdirs();
@@ -179,10 +182,50 @@ public class Register extends AppCompatActivity {
 
             intent.putExtra(MediaStore.EXTRA_OUTPUT, uriSavedImage);
 
-            startActivityForResult(intent, REQUEST_CAMERA);
+            startActivityForResult(intent, REQUEST_CAMERA);*/
 
 
+
+            Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+            // Ensure that there's a camera activity to handle the intent
+            if (takePictureIntent.resolveActivity(getPackageManager()) != null) {
+                // Create the File where the photo should go
+                File photoFile = null;
+                try {
+                    photoFile = createImageFile();
+                } catch (IOException ex) {
+
+                }
+                // Continue only if the File was successfully created
+                if (photoFile != null) {
+                    Uri photoURI = FileProvider.getUriForFile(Register.this,
+                            "com.verycycle.fileprovider",
+                            photoFile);
+                    takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT, photoURI);
+                    startActivityForResult(takePictureIntent, REQUEST_CAMERA);
+                }
+            }
         }
+
+
+
+    private File createImageFile() throws IOException {
+        // Create an image file name
+        String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
+        String imageFileName = "JPEG_" /*+ timeStamp + "_"*/;
+//        File storageDir = getExternalFilesDir(Environment.DIRECTORY_PICTURES);
+        File storageDir = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES);
+        File image = File.createTempFile(
+                imageFileName,  /* prefix */
+                ".jpg",         /* suffix */
+                storageDir      /* directory */
+        );
+
+        // Save a file: path for use with ACTION_VIEW intents
+        str_image_path = image.getAbsolutePath();
+        return image;
+    }
+
 
 
         @Override

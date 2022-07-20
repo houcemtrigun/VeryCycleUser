@@ -67,6 +67,9 @@ public class DateTimeAct extends AppCompatActivity {
     private void initViews() {
         arrayList = new ArrayList<>();
         timeSlotList = new ArrayList<>();
+
+        binding.ivBack.setOnClickListener(v -> finish());
+
         if (!Places.isInitialized()) {
             Places.initialize(DateTimeAct.this, getString(R.string.place_api_key), Locale.FRANCE);
         }

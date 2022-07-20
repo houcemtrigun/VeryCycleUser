@@ -12,10 +12,11 @@
         <entry key="..\:/MyProjects/VeryCycleUser/app/src/main/res/layout/activity_chhosing_a_type_of_repair.xml" value="0.10190217391304347" />
         <entry key="..\:/MyProjects/VeryCycleUser/app/src/main/res/layout/activity_choosing_type_ofride.xml" value="0.10190217391304347" />
         <entry key="..\:/MyProjects/VeryCycleUser/app/src/main/res/layout/activity_date_time.xml" value="0.11367753623188406" />
-        <entry key="..\:/MyProjects/VeryCycleUser/app/src/main/res/layout/activity_login.xml" value="0.1" />
+        <entry key="..\:/MyProjects/VeryCycleUser/app/src/main/res/layout/activity_login.xml" value="0.5" />
         <entry key="..\:/MyProjects/VeryCycleUser/app/src/main/res/layout/activity_my_history.xml" value="0.13179347826086957" />
         <entry key="..\:/MyProjects/VeryCycleUser/app/src/main/res/layout/activity_pay.xml" value="0.13802083333333334" />
         <entry key="..\:/MyProjects/VeryCycleUser/app/src/main/res/layout/activity_problam.xml" value="0.1082427536231884" />
+        <entry key="..\:/MyProjects/VeryCycleUser/app/src/main/res/layout/activity_register.xml" value="0.1403985507246377" />
         <entry key="..\:/MyProjects/VeryCycleUser/app/src/main/res/layout/activity_service_price.xml" value="0.1068840579710145" />
         <entry key="..\:/MyProjects/VeryCycleUser/app/src/main/res/layout/activity_show_services.xml" value="0.12092391304347826" />
         <entry key="..\:/MyProjects/VeryCycleUser/app/src/main/res/layout/activity_splash.xml" value="0.1" />
@@ -28,8 +29,11 @@
         <entry key="..\:/MyProjects/VeryCycleUser/app/src/main/res/layout/item_complete.xml" value="0.25" />
         <entry key="..\:/MyProjects/VeryCycleUser/app/src/main/res/layout/item_problem.xml" value="0.20416666666666666" />
         <entry key="..\:/MyProjects/VeryCycleUser/app/src/main/res/layout/item_service_price.xml" value="0.10190217391304347" />
+        <entry key="..\:/MyProjects/VeryCycleUser/app/src/main/res/layout/item_spinner.xml" value="0.12182971014492754" />
         <entry key="..\:/MyProjects/VeryCycleUser/app/src/main/res/layout/item_sub_problem.xml" value="0.20416666666666666" />
         <entry key="..\:/MyProjects/VeryCycleUser/app/src/main/res/layout/lay_drawer_menu.xml" value="0.18802083333333333" />
+        <entry key="..\:/MyProjects/VeryCycleUser/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.1515625" />
+        <entry key="..\:/MyProjects/VeryCycleUser/app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" value="0.1515625" />
       </map>
     </option>
   </component>

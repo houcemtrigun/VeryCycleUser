@@ -23,3 +23,10 @@ admin
 rfJsk5G22k0f8%fUk$
 
 I will add the domain verycycle.fr after lunch
+
+
+Key Store Details
+
+key store password : verycycle
+key alias : verycycle
+key password : verycycle
